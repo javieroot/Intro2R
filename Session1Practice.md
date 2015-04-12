@@ -47,9 +47,9 @@ Práctica 1: Temas 1-3
 Práctica 1: Temas 1-3
 =======================================================
 
-1. Dados los objetos df y z generados anteriormente, indique si la siguiente línea de código correrá sin generar avisos. Justifique su respuesta: `cbind(df, a = 1:3)` (A esto se le llama recursividad, más sobre eso en la siguiente sesión).
+1. Dados los objetos `df` y `z` generados anteriormente, indique si la siguiente línea de código correrá sin generar avisos. Justifique su respuesta: `cbind(df, a = 1:3)` (A esto se le llama recursividad, más sobre eso en la siguiente sesión).
 
-2. la siguiente línea de código genera un vector que contiene de los días de la semana. Usando la función adecuada (cubierta durante esta sesión), elija al azar tres de dichos días para salir a rumbear durante el congreso: `dias <- c("lunes", "martes", "miercoles", "jueves", "viernes")`. El sábado no está porque hay que dedicar al menos un día a conocer Leticia, y el domingo se dedica al señor, así que tampoco aplica.
+2. la siguiente línea de código genera un vector que contiene los días de la semana del congreso. Usando la función adecuada (cubierta durante esta sesión), elija al azar tres de dichos días para salir a rumbear durante el congreso: `dias <- c("lunes", "martes", "miercoles", "jueves", "viernes")`. El sábado no está porque hay que dedicar al menos un día a conocer Leticia, y el domingo se dedica al señor, así que tampoco aplica.
 
 =======================================================
 
