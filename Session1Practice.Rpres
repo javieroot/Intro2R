@@ -40,12 +40,15 @@ Práctica 1: Temas 1-3 [NO CORRER ANTES DE RESPONDER!]
 Práctica 1: Temas 1-3
 =======================================================
 
-1. Cree el siguiente objeto `matriz <- cbind(a = 1:10, b = 11:20, c = 21:30, d = 31:40)`. Ahora agregue una columna adicional de 10 valores de clase `integer`. Es importante que sean de la misma clase pues estamos creando una matriz y no un data frame. Cuáles son las dimensiones de ese objeto? 
+1. Cree el siguiente objeto `matriz <- cbind(a = 1:10, b = 11:20, c = 21:30, d = 31:40)`. Ahora agregue una columna adicional de 10 valores de clase `integer`. Es importante que sean de la misma clase pues estamos creando una matriz y no un data frame. Cuáles son las dimensiones de ese objeto?
 
-2. 
+2. Cree ahora un data frame con el siguiente código `df <- data.frame(a = 1:10, b = c("a", "b", "c", "b", "e", "f", "g", "h", "i", "j"), d = c(T, F, F, T, F, T, T, T, F, F))`. Es igual usar la función `cbind()` o `data.frame()` para crear un objeto con columnas de diferentes clases? Por qué? Verifique corriendo esa misma línea de código pero usando la función `cbind` en vez de `data.frame`.
 
-3. 
+=======================================================
 
+=======================================================
+
+3. Vamos a crear nuestra primera lista con la línea `lista <- list(x, y, z, matriz, df)`. Observe el contenido de ese objeto llamado lista. En qué difiere con respecto a los objetos creados por usted hasta el momento?
 
 =======================================================
 
