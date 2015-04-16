@@ -35,7 +35,7 @@ Historia y contexto
 
 * `S` aparece en el año 1988 desarrollado por John Chambers et al. en Bell Labs
 * `R` aparece como una versión de libre acceso en el año 1993
-* En el año XXXX se encuentran XXX paquetes desarrollados por la comunidad disponibles en CRAN
+* En el año 2001 se encuentran 110 paquetes desarrollados por la comunidad disponibles en CRAN
 
 Historia y contexto
 =======================================================
@@ -124,8 +124,8 @@ Vectores
 =======================================================
 
 * Son arreglos unidimensionales, análogos a los vectores matemáticos. 
-* Pueden contener diferentes clases de valores (más acerca de clases a continuación)
-* Pueden concatenarse en vectores multidimensionales (e.g., una matriz es una colección de vectores)
+* Pueden contener diferentes clases de valores, pero solo una por vector (e.g., todos `character`)
+* Pueden concatenarse en vectores multidimensionales (e.g., un data frame es una colección de vectores)
 
 ***
 
@@ -364,220 +364,48 @@ sample(vocales, 3)
 * which()
 
 
-```r
-which(vocales =="e")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ```
-
+processing file: Session1.Rpres
+Quitting from lines 298-299 (Session1.Rpres) 
+Erro em get(sprintf(".%s", hash), envir = knit_global(), mode = mode,  : 
+  objeto '.Session1-cache/unnamed-chunk-13_5584a8aa47aae42b25f481338ec35d5a' de modo 'character'  não foi encontrado
 ```
-[1] 2
-```
-
-Algunas funciones de uso frecuente
-=======================================================
-
-* class()
-
-
-```r
-class(df)
-```
-
-```
-[1] "data.frame"
-```
-
-* length()
-
-
-```r
-length(myList)
-```
-
-```
-[1] 3
-```
-
-
-=======================================================
-# PAQUETERÍA Y POTENCIAL GRÁFICO
-
-¿Qué son los paquetes?
-=======================================================
-
-* Software (i.e., funciones) escritas para llevar a cabo tareas relacionadas
-* TODOS de libre acceso
-* La mayoría escritos en R, pero varios en C, C++ o FORTRAN
-* Nivel pro en R. Si se ha aprendido a programar y se han generado funciones útiles para alguna tarea que valga la pena publicar, tal vez sea buena idea someter un nuevo paquete. La inmensa mayoría de los usuarios jamás llega a este punto
-
-¿Qué son los paquetes?
-=======================================================
-
-* R + 4 paquetes
-![alt text](Session1-figure/navaja4.jpe)
-* R + 6 paquetes
-![alt text](Session1-figure/navaja6.jpe)
-
-***
-
-R + 12 paquetes
-![alt text](Session1-figure/navaja12.jpe)
-* R + montones de paquetes
-![alt text](Session1-figure/navajan.jpe)
-
-¿Dónde se encuentran?
-=======================================================
-
-* En el "Comprehensive R Archive Network", el repositorio oficial de R (http://cran.r-project.org/)
-* R ha evolucionado de manera increíble en cuanto a soporte adicional de paquetería.
-
-![alt text](Session1-figure/cranEvol.png)
-
-Ejemplos de paquetes
-=======================================================
-
-* `ggplot2`. Sistema avanzado de graficación
-* `vegan`. Paquete para análisis ecológicos
-* `ddplyr`. Paquete de herramientas para manipulación de datos
-* `xlsx`. Paquete para importar/exportar datos entre R y MS Excel
-
-Instalación
-=======================================================
-
-* install.packages()
-
-
-```r
-install.packages("vegan") #El nombre del paquete va entre comillas
-```
-
-Cargando paquetes
-=======================================================
-
-* library()
-
-
-```r
-library(vegan) #Al cargar el paquete NO usar comillas
-```
-
-* Los paquetes pueden tener dependencias, es decir, requerir paquetes adicionales para funcionar. Siempre descargar e instalar el paquete Y sus dependencias
-* Una vez cargado el paquete, se puede hacer uso de sus funciones
-* En este ejemplo, la función `specaccum()` del paquete `vegan`, solo funcionará después de cargar el paquete
-
-Gráficos en `R`
-=======================================================
-
-* R tiene opciones extensas de graficación, desde sistemas sencillos como `base` a algunos más sofisticados como `lattice` o `ggplot2`
-* Cada sistema de gráficos de `R` tiene sus pros y sus contras, y trabaja mejor bajo condiciones específicas
-* La graficación en `R` es un arte complejo y requiere mucho esfuerzo para ser dominado. Cada tipo de gráfica puede requerir un sistema gráfico diferente
-
-Gráficos en `R`
-=======================================================
-
-* Hay dos pasos básicos que son más evidentes en `base`: Generación del gráfico y anotación. EL sistema `lattice` es diferente pues el gráfico se genera con una sola llamada de función. 
-* En contraste, `ggplot2` es un sistema que funciona con ambos procedimientos, generación de gráficos y anotación, pero también puede generar un gráfico completo con una sola llamada de función como `lattice`.
-
-Gráficos en R: `base`
-=======================================================
-
-
-
-
-```r
-plot(Y ~ X, data = datos) # Gráfico básico
-```
-
-![plot of chunk unnamed-chunk-19](Session1-figure/unnamed-chunk-19-1.png) 
-
-***
-
-
-```r
-par(lty = 2, pch = 2)
-plot(Y ~ X, data = datos, main = "Gráfico", xlab = "Var1", ylab = "Var2")
-abline(lmod)
-```
-
-![plot of chunk unnamed-chunk-20](Session1-figure/unnamed-chunk-20-1.png) 
-
-Gráficos en R: `lattice`
-=======================================================
-
-
-```r
-library(lattice)
-cloud(mpg~wt*qsec|cyl.f, main="3D Scatterplot by Cylinders")
-```
-
-![plot of chunk unnamed-chunk-22](Session1-figure/unnamed-chunk-22-1.png) 
-
-Gráficos en R: `ggplot2`
-=======================================================
-
-
-
-
-```r
-library(ggplot2)
-attach(mtcars)
-qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"), method="lm", formula=y~x, color=cyl, main="Regression of MPG on Weight", xlab="Weight", ylab="Miles per Gallon")
-```
-
-![plot of chunk unnamed-chunk-24](Session1-figure/unnamed-chunk-24-1.png) 
-
-```r
-detach(mtcars)
-```
-
-Gráficos en R: `ggplot2`
-=======================================================
-
-```r
-# Creación del objeto que alojará las capas del gráfico
-p <- qplot(hp, mpg, data=mtcars, shape=am, color=am, facets=gear~cyl, main="Scatterplots of MPG vs. Horsepower", xlab="Horsepower", ylab="Miles per Gallon")
-
-# Adición de fondo blanco y líneas de separación negras
-p + theme_bw()
-
-# Cambios en el color y el tamanho de los rótulos, adición de leyenda
-p + theme(axis.title=element_text(face="bold.italic",
-   size="12", color="brown"), legend.position="top") 
-```
-
-Gráficos básicos: Histograma
-=======================================================
-
-![plot of chunk unnamed-chunk-26](Session1-figure/unnamed-chunk-26-1.png) 
-
-
-Gráficos básicos: Boxplot
-=======================================================
-
-![plot of chunk unnamed-chunk-27](Session1-figure/unnamed-chunk-27-1.png) 
-
-Gráficos básicos: Diagrama de barras
-=======================================================
-
-![plot of chunk unnamed-chunk-28](Session1-figure/unnamed-chunk-28-1.png) 
-
-Gráficos básicos: Diagrama de dispersión + Regresión
-=======================================================
-
-![plot of chunk unnamed-chunk-29](Session1-figure/unnamed-chunk-29-1.png) 
-
-
-Gráficos básicos: Gráficos de densidad (Distribuciones)
-=======================================================
-
-![plot of chunk unnamed-chunk-30](Session1-figure/unnamed-chunk-30-1.png) 
-
-Gráficos básicos: Dendrogramas
-=======================================================
-
-![plot of chunk unnamed-chunk-31](Session1-figure/unnamed-chunk-31-1.png) 
-
-
-Gráficos básicos: Heatmaps
-=======================================================
-
-![plot of chunk unnamed-chunk-32](Session1-figure/unnamed-chunk-32-1.png) 

@@ -128,8 +128,8 @@ Vectores
 =======================================================
 
 * Son arreglos unidimensionales, análogos a los vectores matemáticos. 
-* Pueden contener diferentes clases de valores (más acerca de clases a continuación)
-* Pueden concatenarse en vectores multidimensionales (e.g., una matriz es una colección de vectores)
+* Pueden contener diferentes clases de valores, pero solo una por vector (e.g., todos `character`)
+* Pueden concatenarse en vectores multidimensionales (e.g., un data frame es una colección de vectores)
 
 ***
 
