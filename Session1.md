@@ -227,7 +227,7 @@ Operadores
 * Asignación
      + `<-` (recomendado), `=` (NO recomendado)
 
-Operadores
+Operadores de asignación
 =======================================================
 
 Uso de los operadores de asignación y funciones útiles para generar datos
