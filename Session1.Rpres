@@ -250,40 +250,42 @@ vocales <- c("a", "e", "i", "o", "u")
 vocales
 ```
 
-Algunas funciones de uso frecuente
+Modificando los valores de un vector: c()
 =======================================================
 
-* c()
+* `c()` `c`oncatena valores a un vector
+* `c(vector, valores_a_agregar)`
 ```{r}
 A <- 45
 A <- c(A, 23)
 A
 ```
 
+Modificando los valores de un arreglo: cbind
+=======================================================
+
+Limpiando el espacio de trabajo: rm()
+=======================================================
+
 ```{r, eval=TRUE, echo=FALSE}
 rm(myInteger, myNumeric, myChar, myComplex, myLogical, diffClasses)
 ```
+
+* rm()
+
+```{r}
+rm(A)
+```
+
+Qué tenemos en el espacio de trabajo?: ls()
+=======================================================
 
 * ls()
 ```{r}
 ls()
 ```
 
-Algunas funciones de uso frecuente
-=======================================================
-
-* rm()
-```{r}
-rm(A)
-```
-
-* cbind(), rbind()
-```{r}
-df <- cbind(df, var5 = 1:5)
-df
-```
-
-Algunas funciones de uso frecuente
+Muestreo aleatorio
 =======================================================
 
 * sample()
@@ -291,6 +293,7 @@ Algunas funciones de uso frecuente
 ```{r}
 sample(vocales, 3)
 ```
+
 
 * which()
 
@@ -510,7 +513,6 @@ attach(mtcars)
 ggplot(mtcars, aes(wt, mpg)) + geom_point() + geom_smooth(method="lm")
 detach(mtcars)
 ```
-
 
 Gráficos básicos: Gráficos de densidad (Distribuciones)
 =======================================================

@@ -183,11 +183,11 @@ Data frames
 
 ```
   var1 var2  var3   var4
-1    4    a  TRUE -0.307
-2    4    b FALSE  1.019
-3    4    c FALSE -0.523
-4    4    d  TRUE  1.026
-5    4    e FALSE  1.511
+1    4    a  TRUE -0.690
+2    4    b FALSE -0.274
+3    4    c FALSE -0.724
+4    4    d  TRUE -1.959
+5    4    e FALSE  0.126
 ```
 
 Listas
@@ -260,7 +260,7 @@ rnorm(3)
 ```
 
 ```
-[1] -1.60399061  1.68000318 -0.01831694
+[1] -0.7704495 -1.3392520 -0.1159626
 ```
 
 ```r
@@ -295,10 +295,11 @@ vocales
 [1] "a" "e" "i" "o" "u"
 ```
 
-Algunas funciones de uso frecuente
+Modificando los valores de un vector: c()
 =======================================================
 
-* c()
+* `c()` `c`oncatena valores a un vector
+* `c(vector, valores_a_agregar)`
 
 ```r
 A <- 45
@@ -310,7 +311,23 @@ A
 [1] 45 23
 ```
 
+Modificando los valores de un arreglo: cbind
+=======================================================
 
+Limpiando el espacio de trabajo: rm()
+=======================================================
+
+
+
+* rm()
+
+
+```r
+rm(A)
+```
+
+Qué tenemos en el espacio de trabajo?: ls()
+=======================================================
 
 * ls()
 
@@ -319,35 +336,12 @@ ls()
 ```
 
 ```
-[1] "A"       "df"      "matrix"  "myList"  "vocales" "x"      
+ [1] "df"          "diffClasses" "matrix"      "myChar"      "myComplex"  
+ [6] "myInteger"   "myList"      "myLogical"   "myNumeric"   "vocales"    
+[11] "x"          
 ```
 
-Algunas funciones de uso frecuente
-=======================================================
-
-* rm()
-
-```r
-rm(A)
-```
-
-* cbind(), rbind()
-
-```r
-df <- cbind(df, var5 = 1:5)
-df
-```
-
-```
-  var1 var2  var3   var4 var5
-1    4    a  TRUE -0.307    1
-2    4    b FALSE  1.019    2
-3    4    c FALSE -0.523    3
-4    4    d  TRUE  1.026    4
-5    4    e FALSE  1.511    5
-```
-
-Algunas funciones de uso frecuente
+Muestreo aleatorio
 =======================================================
 
 * sample()
@@ -358,54 +352,226 @@ sample(vocales, 3)
 ```
 
 ```
-[1] "a" "e" "o"
+[1] "u" "a" "e"
 ```
+
 
 * which()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```r
+which(vocales =="e")
+```
 
 ```
-processing file: Session1.Rpres
-Quitting from lines 298-299 (Session1.Rpres) 
-Erro em get(sprintf(".%s", hash), envir = knit_global(), mode = mode,  : 
-  objeto '.Session1-cache/unnamed-chunk-13_5584a8aa47aae42b25f481338ec35d5a' de modo 'character'  não foi encontrado
+[1] 2
 ```
+
+Algunas funciones de uso frecuente
+=======================================================
+
+* class()
+
+
+```r
+class(df)
+```
+
+```
+[1] "data.frame"
+```
+
+* length()
+
+
+```r
+length(myList)
+```
+
+```
+[1] 3
+```
+
+
+=======================================================
+# PAQUETERÍA Y POTENCIAL GRÁFICO
+
+¿Qué son los paquetes?
+=======================================================
+
+* Software (i.e., funciones) escritas para llevar a cabo tareas relacionadas
+* TODOS de libre acceso
+* La mayoría escritos en R, pero varios en C, C++ o FORTRAN
+* Nivel pro en R. Si se ha aprendido a programar y se han generado funciones útiles para alguna tarea que valga la pena publicar, tal vez sea buena idea someter un nuevo paquete. La inmensa mayoría de los usuarios jamás llega a este punto
+
+¿Qué son los paquetes?
+=======================================================
+
+* R + 4 paquetes
+![alt text](Session1-figure/navaja4.jpe)
+* R + 6 paquetes
+![alt text](Session1-figure/navaja6.jpe)
+
+***
+
+R + 12 paquetes
+![alt text](Session1-figure/navaja12.jpe)
+* R + montones de paquetes
+![alt text](Session1-figure/navajan.jpe)
+
+¿Dónde se encuentran?
+=======================================================
+
+* En el "Comprehensive R Archive Network", el repositorio oficial de R (http://cran.r-project.org/)
+* R ha evolucionado de manera increíble en cuanto a soporte adicional de paquetería.
+
+![alt text](Session1-figure/cranEvol.png)
+
+Ejemplos de paquetes
+=======================================================
+
+* `ggplot2`. Sistema avanzado de graficación
+* `vegan`. Paquete para análisis ecológicos
+* `ddplyr`. Paquete de herramientas para manipulación de datos
+* `xlsx`. Paquete para importar/exportar datos entre R y MS Excel
+
+Instalación
+=======================================================
+
+* install.packages()
+
+
+```r
+install.packages("vegan") #El nombre del paquete va entre comillas
+```
+
+Cargando paquetes
+=======================================================
+
+* library()
+
+
+```r
+library(vegan) #Al cargar el paquete NO usar comillas
+```
+
+* Los paquetes pueden tener dependencias, es decir, requerir paquetes adicionales para funcionar. Siempre descargar e instalar el paquete Y sus dependencias
+* Una vez cargado el paquete, se puede hacer uso de sus funciones
+* En este ejemplo, la función `specaccum()` del paquete `vegan`, solo funcionará después de cargar el paquete
+
+Gráficos en `R`
+=======================================================
+
+* R tiene opciones extensas de graficación, desde sistemas sencillos como `base` a algunos más sofisticados como `lattice` o `ggplot2`
+* Cada sistema de gráficos de `R` tiene sus pros y sus contras, y trabaja mejor bajo condiciones específicas
+* La graficación en `R` es un arte complejo y requiere mucho esfuerzo para ser dominado. Cada tipo de gráfica puede requerir un sistema gráfico diferente
+
+Gráficos en `R`
+=======================================================
+
+* Hay dos pasos básicos que son más evidentes en `base`: Generación del gráfico y anotación. EL sistema `lattice` es diferente pues el gráfico se genera con una sola llamada de función. 
+* En contraste, `ggplot2` es un sistema que funciona con ambos procedimientos, generación de gráficos y anotación, pero también puede generar un gráfico completo con una sola llamada de función como `lattice`.
+
+Gráficos en R: `base`
+=======================================================
+
+
+
+
+```r
+plot(Y ~ X, data = datos) # Gráfico básico
+```
+
+![plot of chunk unnamed-chunk-18](Session1-figure/unnamed-chunk-18-1.png) 
+
+***
+
+
+```r
+par(lty = 2, pch = 2)
+plot(Y ~ X, data = datos, main = "Gráfico", xlab = "Var1", ylab = "Var2")
+abline(lmod)
+```
+
+![plot of chunk unnamed-chunk-19](Session1-figure/unnamed-chunk-19-1.png) 
+
+Gráficos en R: `lattice`
+=======================================================
+
+
+```r
+library(lattice)
+cloud(mpg~wt*qsec|cyl.f, main="3D Scatterplot by Cylinders")
+```
+
+![plot of chunk unnamed-chunk-21](Session1-figure/unnamed-chunk-21-1.png) 
+
+Gráficos en R: `ggplot2`
+=======================================================
+
+
+
+
+```r
+library(ggplot2)
+attach(mtcars)
+qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"), method="lm", formula=y~x, color=cyl, main="Regression of MPG on Weight", xlab="Weight", ylab="Miles per Gallon")
+```
+
+![plot of chunk unnamed-chunk-23](Session1-figure/unnamed-chunk-23-1.png) 
+
+```r
+detach(mtcars)
+```
+
+Gráficos en R: `ggplot2`
+=======================================================
+
+```r
+# Creación del objeto que alojará las capas del gráfico
+p <- qplot(hp, mpg, data=mtcars, shape=am, color=am, facets=gear~cyl, main="Scatterplots of MPG vs. Horsepower", xlab="Horsepower", ylab="Miles per Gallon")
+
+# Adición de fondo blanco y líneas de separación negras
+p + theme_bw()
+
+# Cambios en el color y el tamanho de los rótulos, adición de leyenda
+p + theme(axis.title=element_text(face="bold.italic",
+   size="12", color="brown"), legend.position="top") 
+```
+
+Gráficos básicos: Histograma
+=======================================================
+
+![plot of chunk unnamed-chunk-25](Session1-figure/unnamed-chunk-25-1.png) 
+
+
+Gráficos básicos: Boxplot
+=======================================================
+
+![plot of chunk unnamed-chunk-26](Session1-figure/unnamed-chunk-26-1.png) 
+
+Gráficos básicos: Diagrama de barras
+=======================================================
+
+![plot of chunk unnamed-chunk-27](Session1-figure/unnamed-chunk-27-1.png) 
+
+Gráficos básicos: Diagrama de dispersión + Regresión
+=======================================================
+
+![plot of chunk unnamed-chunk-28](Session1-figure/unnamed-chunk-28-1.png) 
+
+Gráficos básicos: Gráficos de densidad (Distribuciones)
+=======================================================
+
+![plot of chunk unnamed-chunk-29](Session1-figure/unnamed-chunk-29-1.png) 
+
+Gráficos básicos: Dendrogramas
+=======================================================
+
+![plot of chunk unnamed-chunk-30](Session1-figure/unnamed-chunk-30-1.png) 
+
+
+Gráficos básicos: Heatmaps
+=======================================================
+
+![plot of chunk unnamed-chunk-31](Session1-figure/unnamed-chunk-31-1.png) 
