@@ -1,5 +1,15 @@
-# Intro2R
+# Intro2R ACTUALIZAR LOS LINKS ANTES DE FINALIZAR!!!!
 Repo for the Leticia course on Intro to R programming and data analysis
+
+En este repositorio encontrará información relevante para el curso *Introducción al manejo de datos y programación en R*. Para ir a la sección de interés dar click en alguno de los links abajo. Para información sobre la estructura del curso seguir leyendo en esta sección.
+
+# Información precurso
+* Dar click [aquí](https://github.com/gaballench/Intro2R/) para obtener información introductoria e instrucciones para instalar el software necesario para el desarrollo del curso (i.e., `R` y `RStudio`)
+
+* Dar click [aquí](https://github.com/gaballench/Intro2R/blob/testing/Session1.md) para ir a la presentación de la sessión 1
+
+* Dar click [aquí](https://github.com/gaballench/Intro2R/blob/master/Session1Practice.md) para ir a la práctica de la sesión 1
+
 
 ## Introducción
 
