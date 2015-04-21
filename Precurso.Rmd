@@ -1,0 +1,132 @@
+---
+title: "Preparando todo para el curso"
+author: "Gustavo A. Ballen"
+date: "21-04-2015"
+output: html_document
+---
+
+# Eligiendo el sistema operativo
+
+El sistema operativo es el software que nos permite comunicarnos con la computadora, se encarga de manejar los archivos, y responde a nuestras solicitudes. En conclusión, es el software que maneja el hardware, es decir, la estructura física de la computadora. Esta elección sigue nuestra motivación e intereses para usar una computadora en primer lugar.
+
+Si no queremos tener mucho control sobre lo que pasa tras bambalinas, es probable que queramos usar Windows u OSX, o para más control y tal vez exigencia (no siempre) una distribución Linux. En este último caso, algunas de las distribuciones más populares son Ubuntu, Fedora, Mint o Manjaro. Para todas ellas hay manera de instalar R, por lo que se le cosidera un programa multiplataforma (i.e., multi-sistema-operativo).
+
+# ¿En qué sistemas operativos corre `R`?
+
+* MS Windows
+* Mac OSX
+* Cualquier distribución popular de linux (e.g., Ubuntu, Fedora, Mandriva, Mint, Manjaro, Archlinux...)
+* ¡Aún en un PlayStation3!
+
+![alt text](Session1-figure/os.jpg)
+
+# ¿Qué necesito para usar `R`?
+
+* Depende de la cantidad de datos a analizar y de la RAM y procesador disponibles
+* Desde una computadora personal para arriba
+* No hay una descripción de hardware mínima específica ofrecida por R project
+* (opcional) conexión a la internet (al menos para instalar paquetes de manera fácil)
+
+
+# Instalando R
+
+[CRAN](http://cran.r-project.org/) es el repositorio oficial de software de R. Contiene desde los archivos de instalación básica hasta el código fuente usado para programarlo.
+
+![alt text](Precurso-figure/installRCran.png)
+
+## R en Windows
+
+Para instalar R en windows tenemos que visitar CRAN, dar click en [Download for Windows](http://cran.r-project.org/bin/windows/), dspués [install R for the first time](http://cran.r-project.org/bin/windows/base/) y después [Download R-version for windows](http://cran.r-project.org/bin/windows/base/R-3.2.0-win.exe). En vez de "version" veremos un número (en este momento 3.2.0) que corresponde con la última versión estable de R. Estos pasos nos llevarán a descargar un archivo ejecutable, el instalador de R. Al ejecutarlo abrirá un wizard que nos irá preguntando cosas sobre la instalación.
+
+![alt text](Precurso-figure/win1.png)
+![alt text](Precurso-figure/win2.png)
+
+## R en OSX
+
+Para instalar R en OSX debemos visitar CRAN, ir a la sección [Download R for (Mac) OS X](http://cran.r-project.org/bin/macosx/), y dar click en el archivo con extensión .pkg (en este caso [|R-version.pkg](http://cran.r-project.org/bin/macosx/R-3.2.0.pkg)). El siguiente [video](https://www.youtube.com/watch?v=ICGkG7Gg6j0) contiene el proceso completo.
+
+Tal vez sea necesario instalar gfortran y tcltk, disponibles en el link [tools](http://cran.r-project.org/bin/macosx/tools) allí mismo en CRAN. Por qué es necesario instalar gfortran y tcltk? El primero es un compilador para código FORTRAN, un lenguaje de programacion en el que algunos de los paquetes de R están esritos. Si no contamos con dicho compilador, R será incapaz de instalar paquetes que contienen código FORTRAN.Tcl/Tk es necesario para hacer uso del paquete tcktl, que es necesario en algunos paquetes con interfaz gráfica, por ejemplo, RCommandery vegan.
+
+![alt text](Precurso-figure/osx1.png)
+
+## R en Linux: Linea de comandos y package managers
+
+### Debian 
+Ver instrucciones [aquí](http://cran.r-project.org/bin/linux/debian/). Puede ser necesario completar algunos pasos como incluir CRAN dentro de la lista de repositorios en `/etc/apt/sources.list`.
+
+En ocasiones es necesario además agregar la clave apt (ver SECURE APT) en aquella página.
+
+Cuando todo esté listo para obtener la versión más actualizada, basta usar `apt-get` en la línea de comandos
+
+```
+apt-get update
+apt-get install r-base r-base-dev
+```
+
+### Ubuntu
+Ver instrucciones [aquí](http://cran.r-project.org/bin/linux/ubuntu/). Dado que Ubuntu (y también Mint) son distribuciones basadas en Debian, el proceso es muy similar y tal vez sea necesario incluir CRAN dentro de la lista de repositorios para obtener las versiones más actualizadas de R conforme vayan saliendo.
+
+En ocasiones es necesario además agregar la clave apt (ver SECURE APT) en aquella página.
+
+Cuando todo esté listo para obtener la versión más actualizada, basta usar `apt-get` en la línea de comandos
+
+```
+sudo apt-get update
+sudo apt-get install r-base
+```
+
+### openSUSE
+
+Como super usuario (`su`) en la línea de comandos obtener la información de la versión instalada de openSUSE
+```
+VERSION=$(grep VERSION /etc/SuSE-release | sed -e 's/VERSION = //')
+zypper addrepo -f \ 
+http://download.opensuse.org/repositories/devel\:languages\:R\:patched/openSUSE_$VERSION/ \
+R-patched
+```
+Posteriormente instalar R con
+```
+zypper install R-patched R-patched-devel
+```
+Para mantener R actualizado usar el siguiente comando
+```
+zypper install R-patched R-patched-devel
+```
+
+### Fedora
+
+Estas instrucciones fueron obtenidas en el siguiente [link](http://forums.fedoraforum.org/showthread.php?t=254467). Puede ser necesario realizar estas acciones como super usuario.
+
+```
+yum list R # Esto nos brinda información sobre la versión de R disponible con yum
+yum install R # Esta línea instala R
+```
+
+### Arch-based linux (Arch, Manjaro)
+
+La versión más actualizada de R llega a los repositorios oficiales de Arch con relativa celeridad, por lo que bastará con usar pacman en la línea de comandos (como super usuario) para instalarlo
+
+```
+sudo pacman -S r
+```
+
+## Instalación usando los package managers
+
+Generalmente `R` se llama `r` en estos repositorios, aunque en distribuciones basadas en debian (e.g., ubuntu y mint) se llama `r-base`, en openSUSE se llama `R-patched` y en Arch/Manjaro simplemente `r`. En el package manager de su sistema operativo puede buscar R como `r` o usar el nombre específico del repositorio de sus sistema (e.g., `r-base` en el caso de Ubuntu).
+
+### Ubuntu: Ubuntu software center
+
+![alt text](Precurso-figure/ubuntu-software-center.png)
+
+### Fedora: Package manager
+
+![alt text](Precurso-figure/fedora-package-manager.png)
+
+### Arch/Manjaro: Package manager (Pacman)
+
+![alt text](Precurso-figure/pacman.png)
+
+# Corriendo R
+
+* Sistemas de interfaz gráfica: Doble click en el logo
+* Linea de comandos: Depende del nombre (e.g., r-base, r, R, etc.)

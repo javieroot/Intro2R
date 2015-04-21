@@ -97,7 +97,7 @@ Desventajas de `R`
 
 * MS Windows
 * Mac OSX
-* Cualquier distribución popular de linux (e.g., Ubuntu, Fedora, Mandriva, Cinnamon, Manjaro, Archlinux...)
+* Cualquier distribución popular de linux (e.g., Ubuntu, Fedora, Mandriva, Mint, Manjaro, Archlinux...)
 * ¡Aún en un PlayStation3!
 
 ![alt text](Session1-figure/os.jpg)
@@ -116,11 +116,11 @@ Desventajas de `R`
 Objetos básicos
 =======================================================
 
-* Los objetos básicos son vectores, matrices, data frames, listas y funciones
+* Los objetos básicos son vectores, matrices, data frames, arrays, listas y funciones
 * Objetos secundarios (o dependientes de funciones) en general son listas con metadatos
 * Todo objeto es considerado una variable, pues puede contener "cualquier" valor definido por el usuario
 
-Vectores
+Vectores: Generalidades
 =======================================================
 
 * Son arreglos unidimensionales, análogos a los vectores matemáticos. 
@@ -154,7 +154,7 @@ Vectores
 [1] "4"          "0.1"        "TRUE"       "Characidae"
 ```
 
-Matrices
+Matrices: Generalidades
 =======================================================
 
 * Son arreglos bidimensionales
@@ -171,7 +171,7 @@ Matrices
 [3,]    3    6    9
 ```
 
-Data frames
+Data frames: Generalidades
 =======================================================
 
 * Al igual que las matrices, son arreglos bidimensionales
@@ -190,7 +190,7 @@ Data frames
 5    4    e FALSE  0.126
 ```
 
-Listas
+Listas: Generalidades
 =======================================================
 
 * Son colecciones de objetos
@@ -237,14 +237,7 @@ Uso de los operadores de asignación y funciones útiles para generar datos
 * c() junta los valores separados entre sí por comas (e.g., `c(elemento1, elemento2, elemento3, ...,  elementoN)`)
 * `:` genera series de números enteros (e.g., `primer:último`; 1:10 son los enteros del 1 al 10)
 
-Operadores
-=======================================================
-
-* `cbind()` une vectores como columnas en un arreglo de tipo `matrix` o `data frame`
-* `rbind()` une vectores como filas en un arreglo de tipo `matrix` o `data frame`
-* Solo una condición: Los vectores a unir DEBEN ser de la misma longitud
-
-Funciones (generalidades)
+Funciones: Generalidades
 =======================================================
 
 * Son instrucciones automatizadas que realizan tareas específicas
@@ -312,6 +305,9 @@ A
 ```
 
 Modificando los valores de un arreglo: cbind
+=======================================================
+
+Modificando los valores de un arreglo: rbind
 =======================================================
 
 Limpiando el espacio de trabajo: rm()
