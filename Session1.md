@@ -3,6 +3,7 @@
 INTRODUCCIÓN AL MANEJO DE DATOS Y PROGRAMACIÓN EN R
 ========================================================
 font-family: 'Serif'
+transition: rotate
 author: Gustavo A. Ballen
 Museu de Zoologia da Universidade de São Paulo
 gaballench@gmail.com
