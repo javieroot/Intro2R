@@ -28,7 +28,9 @@ La importancia de `R`/ciencia de datos en la vida laboral
 =======================================================
 
 Diferentes herramientas informáticas requeridas por empleadores (Fuente: O'Really Strata Survey)
-![alt text](Session1-figure/randjob.jpg)
+
+<center><img src="Session1-figure/randjob.jpg"
+        height="350px"/></center>
 
 Historia y contexto
 =======================================================
