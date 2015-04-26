@@ -186,11 +186,11 @@ Data frames: Generalidades
 
 ```
   var1 var2  var3   var4
-1    4    a  TRUE -0.690
-2    4    b FALSE -0.274
-3    4    c FALSE -0.724
-4    4    d  TRUE -1.959
-5    4    e FALSE  0.126
+1    4    a  TRUE  0.480
+2    4    b FALSE -0.159
+3    4    c FALSE  0.116
+4    4    d  TRUE  0.412
+5    4    e FALSE -0.036
 ```
 
 Listas: Generalidades
@@ -256,7 +256,7 @@ rnorm(3)
 ```
 
 ```
-[1] -0.7704495 -1.3392520 -0.1159626
+[1] -0.4743496 -0.5351494  0.4654007
 ```
 
 ```r
@@ -335,9 +335,7 @@ ls()
 ```
 
 ```
- [1] "df"          "diffClasses" "matrix"      "myChar"      "myComplex"  
- [6] "myInteger"   "myList"      "myLogical"   "myNumeric"   "vocales"    
-[11] "x"          
+[1] "df"      "matrix"  "myList"  "vocales" "x"      
 ```
 
 Muestreo aleatorio
@@ -351,7 +349,7 @@ sample(vocales, 3)
 ```
 
 ```
-[1] "u" "a" "e"
+[1] "e" "a" "o"
 ```
 
 
@@ -413,7 +411,7 @@ length(myList)
 
 ***
 
-R + 12 paquetes
+* R + 12 paquetes
 ![alt text](Session1-figure/navaja12.jpe)
 * R + montones de paquetes
 ![alt text](Session1-figure/navajan.jpe)
