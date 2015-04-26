@@ -127,7 +127,7 @@ Vectores: Generalidades
 =======================================================
 
 * Son arreglos unidimensionales, análogos a los vectores matemáticos. 
-* Pueden contener diferentes clases de valores, pero solo una por vector (e.g., todos `character`)
+* Cada vector contiene una sola clase (e.g., solo elementos de clase `character`)
 * Pueden concatenarse en vectores multidimensionales (e.g., un data frame es una colección de vectores)
 
 ***
@@ -186,12 +186,46 @@ Data frames: Generalidades
 
 ```
   var1 var2  var3   var4
-1    4    a  TRUE  0.480
-2    4    b FALSE -0.159
-3    4    c FALSE  0.116
-4    4    d  TRUE  0.412
-5    4    e FALSE -0.036
+1    4    a  TRUE -0.462
+2    4    b FALSE  1.423
+3    4    c FALSE  0.193
+4    4    d  TRUE -0.754
+5    4    e FALSE  1.471
 ```
+
+Arreglos multidimensionales: Generalidades
+=======================================================
+
+* Sus dimensiones son mayores a 2
+* Su comportamiento es igual al de una matriz de tres o más dimensiones
+* Su modificación requiere tener mucho cuidado con las dimensiones a modificar
+
+Arreglos multidimensionales: Generalidades
+=======================================================
+
+
+```r
+arr <- array(data = 1:8, dim = c(2, 2, 2))
+arr
+```
+
+```
+, , 1
+
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+
+, , 2
+
+     [,1] [,2]
+[1,]    5    7
+[2,]    6    8
+```
+
+***
+
+![alt text](Session1-figure/cubeArray.jpe)
 
 Listas: Generalidades
 =======================================================
@@ -215,6 +249,30 @@ Listas: Generalidades
 [1,]    1    4    7
 [2,]    2    5    8
 [3,]    3    6    9
+```
+
+```r
+class(myList[[1]])
+```
+
+```
+[1] "numeric"
+```
+
+```r
+class(myList[[2]])
+```
+
+```
+[1] "character"
+```
+
+```r
+class(myList[[3]])
+```
+
+```
+[1] "matrix"
 ```
 
 Operadores
@@ -256,7 +314,7 @@ rnorm(3)
 ```
 
 ```
-[1] -0.4743496 -0.5351494  0.4654007
+[1]  0.5398719  0.2887610 -0.3314981
 ```
 
 ```r
@@ -290,6 +348,24 @@ vocales
 ```
 [1] "a" "e" "i" "o" "u"
 ```
+
+Modificación matemática de un vector
+=======================================================
+
+* Se pueden modificar todos los valores de un vector a la vez tal como operan los escalares en vectores matemáticos
+
+
+```r
+k <- 3
+V <- c(1, 2, 3, 4, 5)
+k*V # xV = {kV1, kV2, kV3, kV4, kV5} = 3*1, 3*2, ..., 3*5
+```
+
+```
+[1]  3  6  9 12 15
+```
+
+* El ejemplo de arriba usó la multiplicación, pero se puede realizar cualquier operación matemática con este mismo principio.
 
 Modificando los valores de un vector: c()
 =======================================================
@@ -335,7 +411,8 @@ ls()
 ```
 
 ```
-[1] "df"      "matrix"  "myList"  "vocales" "x"      
+[1] "arr"     "df"      "k"       "matrix"  "myList"  "V"       "vocales"
+[8] "x"      
 ```
 
 Muestreo aleatorio
@@ -349,7 +426,7 @@ sample(vocales, 3)
 ```
 
 ```
-[1] "e" "a" "o"
+[1] "u" "i" "e"
 ```
 
 
@@ -479,7 +556,7 @@ Gráficos en R: `base`
 plot(Y ~ X, data = datos) # Gráfico básico
 ```
 
-![plot of chunk unnamed-chunk-18](Session1-figure/unnamed-chunk-18-1.png) 
+![plot of chunk unnamed-chunk-21](Session1-figure/unnamed-chunk-21-1.png) 
 
 ***
 
@@ -490,7 +567,7 @@ plot(Y ~ X, data = datos, main = "Gráfico", xlab = "Var1", ylab = "Var2")
 abline(lmod)
 ```
 
-![plot of chunk unnamed-chunk-19](Session1-figure/unnamed-chunk-19-1.png) 
+![plot of chunk unnamed-chunk-22](Session1-figure/unnamed-chunk-22-1.png) 
 
 Gráficos en R: `lattice`
 =======================================================
@@ -501,7 +578,7 @@ library(lattice)
 cloud(mpg~wt*qsec|cyl.f, main="3D Scatterplot by Cylinders")
 ```
 
-![plot of chunk unnamed-chunk-21](Session1-figure/unnamed-chunk-21-1.png) 
+![plot of chunk unnamed-chunk-24](Session1-figure/unnamed-chunk-24-1.png) 
 
 Gráficos en R: `ggplot2`
 =======================================================
@@ -515,7 +592,7 @@ attach(mtcars)
 qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"), method="lm", formula=y~x, color=cyl, main="Regression of MPG on Weight", xlab="Weight", ylab="Miles per Gallon")
 ```
 
-![plot of chunk unnamed-chunk-23](Session1-figure/unnamed-chunk-23-1.png) 
+![plot of chunk unnamed-chunk-26](Session1-figure/unnamed-chunk-26-1.png) 
 
 ```r
 detach(mtcars)
@@ -539,36 +616,36 @@ p + theme(axis.title=element_text(face="bold.italic",
 Gráficos básicos: Histograma
 =======================================================
 
-![plot of chunk unnamed-chunk-25](Session1-figure/unnamed-chunk-25-1.png) 
+![plot of chunk unnamed-chunk-28](Session1-figure/unnamed-chunk-28-1.png) 
 
 
 Gráficos básicos: Boxplot
 =======================================================
 
-![plot of chunk unnamed-chunk-26](Session1-figure/unnamed-chunk-26-1.png) 
+![plot of chunk unnamed-chunk-29](Session1-figure/unnamed-chunk-29-1.png) 
 
 Gráficos básicos: Diagrama de barras
 =======================================================
 
-![plot of chunk unnamed-chunk-27](Session1-figure/unnamed-chunk-27-1.png) 
+![plot of chunk unnamed-chunk-30](Session1-figure/unnamed-chunk-30-1.png) 
 
 Gráficos básicos: Diagrama de dispersión + Regresión
 =======================================================
 
-![plot of chunk unnamed-chunk-28](Session1-figure/unnamed-chunk-28-1.png) 
+![plot of chunk unnamed-chunk-31](Session1-figure/unnamed-chunk-31-1.png) 
 
 Gráficos básicos: Gráficos de densidad (Distribuciones)
 =======================================================
 
-![plot of chunk unnamed-chunk-29](Session1-figure/unnamed-chunk-29-1.png) 
+![plot of chunk unnamed-chunk-32](Session1-figure/unnamed-chunk-32-1.png) 
 
 Gráficos básicos: Dendrogramas
 =======================================================
 
-![plot of chunk unnamed-chunk-30](Session1-figure/unnamed-chunk-30-1.png) 
+![plot of chunk unnamed-chunk-33](Session1-figure/unnamed-chunk-33-1.png) 
 
 
 Gráficos básicos: Heatmaps
 =======================================================
 
-![plot of chunk unnamed-chunk-31](Session1-figure/unnamed-chunk-31-1.png) 
+![plot of chunk unnamed-chunk-34](Session1-figure/unnamed-chunk-34-1.png) 

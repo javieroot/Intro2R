@@ -131,7 +131,7 @@ Vectores: Generalidades
 =======================================================
 
 * Son arreglos unidimensionales, análogos a los vectores matemáticos. 
-* Pueden contener diferentes clases de valores, pero solo una por vector (e.g., todos `character`)
+* Cada vector contiene una sola clase (e.g., solo elementos de clase `character`)
 * Pueden concatenarse en vectores multidimensionales (e.g., un data frame es una colección de vectores)
 
 ***
@@ -182,6 +182,25 @@ df$var4 <- round(df$var4, 3)
 df
 ```
 
+Arreglos multidimensionales: Generalidades
+=======================================================
+
+* Sus dimensiones son mayores a 2
+* Su comportamiento es igual al de una matriz de tres o más dimensiones
+* Su modificación requiere tener mucho cuidado con las dimensiones a modificar
+
+Arreglos multidimensionales: Generalidades
+=======================================================
+
+```{r}
+arr <- array(data = 1:8, dim = c(2, 2, 2))
+arr
+```
+
+***
+
+![alt text](Session1-figure/cubeArray.jpe)
+
 Listas: Generalidades
 =======================================================
 
@@ -194,6 +213,11 @@ Listas: Generalidades
 ```{r, eval=TRUE, echo=FALSE, width=0.5}
 myList <- list(myInteger, myChar, matrix)
 myList
+```
+```{r}
+class(myList[[1]])
+class(myList[[2]])
+class(myList[[3]])
 ```
 
 Operadores
@@ -245,6 +269,19 @@ x
 vocales <- c("a", "e", "i", "o", "u")
 vocales
 ```
+
+Modificación matemática de un vector
+=======================================================
+
+* Se pueden modificar todos los valores de un vector a la vez tal como operan los escalares en vectores matemáticos
+
+```{r}
+k <- 3
+V <- c(1, 2, 3, 4, 5)
+k*V # xV = {kV1, kV2, kV3, kV4, kV5} = 3*1, 3*2, ..., 3*5
+```
+
+* El ejemplo de arriba usó la multiplicación, pero se puede realizar cualquier operación matemática con este mismo principio.
 
 Modificando los valores de un vector: c()
 =======================================================
