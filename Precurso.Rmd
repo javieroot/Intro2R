@@ -130,3 +130,13 @@ Generalmente `R` se llama `r` en estos repositorios, aunque en distribuciones ba
 
 * Sistemas de interfaz gráfica: Doble click en el logo
 * Linea de comandos: Depende del nombre (e.g., r-base, r, R, etc.)
+
+# Ahora... Cómo empiezo?
+
+Este curso no tiene prerrequisitos per se, pero dado que la meta es aprender las bases de programación y análisis de datos en R en dos días de curso precongreso, más nos vale ser ñoños y adelantar algo de trabajo. El siguiente link contiene un curso online gratuito que los estudiantes deberán completar antes de llegar a las sesiones de Leticia. No importa si parte del material no se entendió, el hecho de realizarlo generará familiaridad con R, lo que agilizará el trabajo.
+
+[Try R](tryr.codeschool.com/)
+
+Una vez terminado ese cursillo introductorio y obtenido el último 'badge', tomar un pantallazo y enviarlo por correo electrónico a gaballench /arroba/ gmail /punto/ com.
+
+

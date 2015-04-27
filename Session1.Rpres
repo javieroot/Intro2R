@@ -6,11 +6,13 @@ library(lattice)
 
 INTRODUCCIÓN AL MANEJO DE DATOS Y PROGRAMACIÓN EN R
 ========================================================
+width: 1366
+height: 768
 font-family: 'Serif'
-transition: rotate
 author: Gustavo A. Ballen
 Museu de Zoologia da Universidade de São Paulo
 gaballench@gmail.com
+
 
 
 ========================================================
@@ -23,6 +25,7 @@ Acerca de programación/R
 * "La mayoría de los buenos programadores programan no porque esperan pago por ello o para ser adulados por el público, sino porque es divertido programar." -Linus Torvalds
 * "Programar es como conducir un auto, cuando no se sabe lo que se hace, no anda." 
 * "Usar `R` sin aprender su gramática es como tratar de identificar carácidos; si no se sabe lo básico, solo vemos una mezcla de cosas desorganizadas con la cual no sabemos por dónde empezar."
+* "There are only two kinds of languages: the ones people complain about and the ones nobody uses" -Bjarne Stroustrup
 
 Programación según Bob Ross
 =======================================================
@@ -199,7 +202,7 @@ arr
 
 ***
 
-![alt text](Session1-figure/cubeArray.jpe)
+![alt text](Session1-figure/cubeArray.jpg)
 
 Listas: Generalidades
 =======================================================
@@ -283,7 +286,7 @@ k*V # xV = {kV1, kV2, kV3, kV4, kV5} = 3*1, 3*2, ..., 3*5
 
 * El ejemplo de arriba usó la multiplicación, pero se puede realizar cualquier operación matemática con este mismo principio.
 
-Modificando los valores de un vector: c()
+Agregando valores de un vector: c()
 =======================================================
 
 * `c()` `c`oncatena valores a un vector
@@ -352,6 +355,72 @@ class(df)
 length(myList)
 ```
 
+=======================================================
+# APENDICE: COERCIÓN
+
+Qué es coerción?
+=======================================================
+
+* Conversión entre clases atómicas (e.g., entre `character` y `factor`, entre `numeric` e `integer`, etc.)
+* El objetivo es preservar el símbolo/contenido, pero permitir otro tipo de operaciones con el cambio de clase
+* Existen dos tipos: Implícita y explícita. La primera, declarada por el usuario, la segunda, llevaga a cabo por el sistema
+
+Coerción explícita
+=======================================================
+
+* Se logra por medio de las funciones `as.CLASS()`, siendo CLASS cualquiera de las clases atómicas ya conocidas.
+* Generalmente útil cuando los métodos aplicados a objetos solo soportan alguna clase particular, pero pueden operar sobre los mismos símbolos.
+* El símbolo NO necesariamente lleva una clase explícita. Por ejempĺo, el número `1` puede ser de cualquier clase, aún `logical`:
+
+Coerción explícita: Entre `numeric` e `integer`
+=======================================================
+
+```{r}
+float <- 5
+print(float)
+class(float) # Qué clase tiene el objeto float?
+integer <- as.integer(float) # Coerción de clase numeric a integer
+print(integer)
+class(integer) # Qué clase tiene el objeto integer?
+```
+
+Coerción explícita: Entre `character` y `factor`
+=======================================================
+
+```{r, tidy = TRUE}
+string <- c('a', 'b', 'b', 'b', 'a', 'c', 'd', 'c', 'a', 'e')
+print(string)
+class(string)
+```
+
+***
+
+```{r, tidy = TRUE}
+fact <- as.factor(string)
+print(fact)
+class(fact)
+```
+
+Coerción explícita: En general...
+=======================================================
+
+Cuando tiene sentido...
+```{r, tidy = TRUE}
+numeros <- 0:3
+as.numeric(numeros)
+as.logical(numeros)
+as.character(numeros)
+```
+
+***
+
+Cuando no tiene sentido...
+```{r}
+letras <- c('a', 'b', 'c')
+as.numeric(letras)
+as.logical(letras)
+as.complex(letras)
+```
 
 =======================================================
 # PAQUETERÍA Y POTENCIAL GRÁFICO
@@ -376,7 +445,7 @@ length(myList)
 
 * R + 12 paquetes
 ![alt text](Session1-figure/navaja12.jpe)
-* R + montones de paquetes
+* R + N paquetes
 ![alt text](Session1-figure/navajan.jpe)
 
 ¿Dónde se encuentran?
