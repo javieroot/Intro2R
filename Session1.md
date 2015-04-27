@@ -22,7 +22,7 @@ Acerca de programación/R
 
 * "La mayoría de los buenos programadores programan no porque esperan pago por ello o para ser adulados por el público, sino porque es divertido programar." -Linus Torvalds
 * "Programar es como conducir un auto, cuando no se sabe lo que se hace, no anda." 
-* "Usar `R` sin aprender su gramática es como tratar de identificar carácidos; si no se sabe lo básico, solo vemos una mezcla de cosas desorganizadas con la cual no sabemos por dónde empezar."
+* "Usar R sin aprender su gramática es como tratar de identificar carácidos; si no se sabe lo básico, solo vemos una mezcla de cosas desorganizadas con la cual no sabemos por dónde empezar."
 * "There are only two kinds of languages: the ones people complain about and the ones nobody uses" -Bjarne Stroustrup
 
 Programación según Bob Ross
@@ -30,7 +30,7 @@ Programación según Bob Ross
 
 ![alt text](Session1-figure/bobross.png)
 
-La importancia de `R`/ciencia de datos en la vida laboral
+La importancia de R/ciencia de datos en la vida laboral
 =======================================================
 
 Diferentes herramientas informáticas requeridas por empleadores (Fuente: O'Really Strata Survey)
@@ -50,12 +50,12 @@ Historia y contexto
 
 ![alt text](Session1-figure/evoprog.jpg)
 
-¿Qué es `R`?
+¿Qué es R?
 =======================================================
 
 ![alt text](Session1-figure/whatsr.png)
 
-¿Qué es `R`?
+¿Qué es R?
 =======================================================
 
 * Un programa para análisis estadísticos
@@ -65,17 +65,17 @@ Historia y contexto
 * Una herramienta de SIG
 * Una herramienta de simulación
 
-`R` en comparación con otras herramientas de análisis de datos
+R en comparación con otras herramientas de análisis de datos
 =======================================================
 
 ![alt text](Session1-figure/rvsweak.png)
 
-`R` en comparación con otras herramientas de análisis de datos
+R en comparación con otras herramientas de análisis de datos
 =======================================================
 
 ![alt text](Session1-figure/rvsstrong.png)
 
-Ventajas de `R`
+Ventajas de R
 =======================================================
 
 * Libre acceso
@@ -88,7 +88,7 @@ Ventajas de `R`
 * Potente generador de sumarios y gráficas
 * Permite la investigación reproducible
 
-Desventajas de `R`
+Desventajas de R
 =======================================================
 
 * Curva de aprendizaje relativamente suave
@@ -100,7 +100,7 @@ Desventajas de `R`
 * No me prepara el café
 * No identifica mis peces o mis fósiles (pero ayuda en ello)
 
-¿En qué sistemas operativos corre `R`?
+¿En qué sistemas operativos corre R?
 =======================================================
 
 * MS Windows
@@ -110,7 +110,7 @@ Desventajas de `R`
 
 ![alt text](Session1-figure/os.jpg)
 
-¿Qué necesito para usar `R`?
+¿Qué necesito para usar R?
 =======================================================
 
 * Depende de la cantidad de datos a analizar y de la RAM y procesador disponibles
@@ -166,7 +166,7 @@ Matrices: Generalidades
 =======================================================
 
 * Son arreglos bidimensionales
-* Deben contener objetos de __la misma__ clase
+* Deben contener objetos de _la misma_ clase
 * Sus dimensiones son líneas * columnas
 
 ***
@@ -191,11 +191,11 @@ Data frames: Generalidades
 
 ```
   var1 var2  var3   var4
-1    4    a  TRUE -0.462
-2    4    b FALSE  1.423
-3    4    c FALSE  0.193
-4    4    d  TRUE -0.754
-5    4    e FALSE  1.471
+1    4    a  TRUE -1.708
+2    4    b FALSE -1.330
+3    4    c FALSE  1.248
+4    4    d  TRUE  0.529
+5    4    e FALSE  0.935
 ```
 
 Arreglos multidimensionales: Generalidades
@@ -298,9 +298,9 @@ Operadores de asignación
 
 Uso de los operadores de asignación y funciones útiles para generar datos
 
-*  `<-` asigna un valor (o valores) a una variable global (u objeto) (e.g., `variable1  <- valor`). SIEMPRE PARA VALORES!
+* `<-` asigna un valor (o valores) a una variable global (u objeto) (e.g., `variable1  <- valor`). SIEMPRE PARA VARIABLES!
 * `=` asigna un valor (o valores) a una variable local (e.g., argumento x de una función es igual a `TRUE`; más sobre esto después). NUNCA PARA VALORES!
-* `<<-` es un asignador que funciona entre ambientes 
+* `<<-` es un asignador que funciona entre ambientes. Casi nunca se usa, solo en funciones donde se requiere alterar el valor de una variable fuera del ambiente de la función de interés. Puede pensarse en este operador como un mega-asignador que busca la variable en todos los ambientes disponibles y la modifica. USAR CON EXTREMA PRECAUCIÓN!
 
 Funciones: Generalidades
 =======================================================
@@ -309,27 +309,37 @@ Funciones: Generalidades
 * Pueden operar sobre objetos, pero no es obligatorio  (e.g., `dir()`)
 * Contienen opciones llamadas argumentos
 * Sucedidos por paréntesis (e.g., `c()`, `nrow()`, `sd()`, `lm()`)
+* Presentan dos partes principales: Nombre y argumentos
+* Morfología general: `funcion(arg1, arg2, arg3, ..., argN)`
 
 ***
 
 
 ```r
-rnorm(3)
+rnorm(n = 3) # Nombre rnorm, argumento n
 ```
 
 ```
-[1]  0.5398719  0.2887610 -0.3314981
+[1] -0.9038215 -0.3792643 -0.0610327
 ```
 
 ```r
-rep("GAB", 5)
+rep(x = "GAB", times = 5) # Nombre rep, argumentos x, times
 ```
 
 ```
 [1] "GAB" "GAB" "GAB" "GAB" "GAB"
 ```
 
-Asignando nuestros primeros valores a una variable
+```r
+Sys.time() # Nombre System.time, sin argumentos 
+```
+
+```
+[1] "2015-04-27 16:49:13 BRT"
+```
+
+Creando nuestros primeros objetos: Operadores de asignación
 =======================================================
 
 * Usar el operador `<-` para asignar el valor `2015` a la variable `x` y la función `c()` para asignar las vocales a la variable `vocales`
@@ -356,6 +366,7 @@ vocales
 Asignando nuestros primeros valores a una variable: Secuencias
 =======================================================
 
+* La función `rep(x, n)` repite el valor `x` de interés un `n` numero de veces
 * El operdador `:` genera secuencias de enteros entre `inicio:final` (e.g., `1:7`)
 * La función `seq(from, to, by)` genera una secuencia de números entre `from` y `to`, cada `by` unidades (e.g., `from = 1`, `to = 10`, `by = 0.5`) números del 1 al 10 cada 0.5
 * La función `seq_along(object)` toma la longitud del objeto, y genera una secuencia de números entre 1 y el número total de elementos en `object`. Útil en for loops.
@@ -364,6 +375,14 @@ Asignando nuestros primeros valores a una variable: Secuencias
 Secuencias
 =======================================================
 
+
+```r
+rep(4, 5)
+```
+
+```
+[1] 4 4 4 4 4
+```
 
 ```r
 sec <- 11:20
@@ -382,8 +401,19 @@ seq(from = 0, to = 10, by = 2)
 [1]  0  2  4  6  8 10
 ```
 
+***
+
+
 ```r
-seq_along(sec)
+length(sec)
+```
+
+```
+[1] 10
+```
+
+```r
+seq_along(sec) # secuencia a lo largo del número de elementos de `sec`
 ```
 
 ```
@@ -391,14 +421,14 @@ seq_along(sec)
 ```
 
 ```r
-seq_len(20)
+seq_len(5) # seq_len(10) == seq(from=1, to=10, by=1)
 ```
 
 ```
- [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+[1] 1 2 3 4 5
 ```
 
-Modificación matemática de un vector
+Operaciones vectorizadas
 =======================================================
 
 * Se pueden modificar todos los valores de un vector a la vez tal como operan los escalares en vectores matemáticos
@@ -416,6 +446,29 @@ k*V # xV = {kV1, kV2, kV3, kV4, kV5} = 3*1, 3*2, ..., 3*5
 
 * El ejemplo de arriba usó la multiplicación, pero se puede realizar cualquier operación matemática con este mismo principio.
 
+Operaciones vectorizadas: Reciclaje
+=======================================================
+
+* Qué sucede cuando tratamos de aplicar una operación vectorizada en elementos de diferente longitud?
+
+
+```r
+x <- 1:3
+y <- 4:10
+x*y # 1*4, 2*5, 3*6, [1*7, 2*8, 3*9, 1*10] entre [], 1, 2, 3, y 1 son reciclados
+```
+
+```
+Warning in x * y: comprimento do objeto maior não é múltiplo do
+comprimento do objeto menor
+```
+
+```
+[1]  4 10 18  7 16 27 10
+```
+
+* Esto indica que R recicla los elementos del vector menor repitiéndolos hasta completar el número de elementos necesario para llevar a cabo la operación vectorizada
+
 Agregando valores de un vector: c()
 =======================================================
 
@@ -432,11 +485,286 @@ A
 [1] 45 23
 ```
 
+Creación de arreglos multidimensionales: matrix(), data.frame(), array()
+
+Matrices
+=======================================================
+
+* La función matrix(data, nrow, ncol, byrow, dimnames) crea una matriz con los datos data, número de hileras y columnas nrow y ncol respectivamente, llena la matriz por columa o por hilera, y tiene los nombres de sus dimensiones dimnames
+
+
+```r
+mat <- matrix(data = 1:9, nrow = 3, ncol = 3, byrow = TRUE, 
+              dimnames = list(c('r1', 'r2', 'r3'), c('c1', 'c2', 'c3')))
+mat
+```
+
+```
+   c1 c2 c3
+r1  1  2  3
+r2  4  5  6
+r3  7  8  9
+```
+
+Data frames
+=======================================================
+
+* La función data.frame(..., row.names, colnames, stringsAsFactors) genera un arreglo por columnas, donde cada columna puede contener una clase diferente (e.g., col1 tiene elementos integer, col2 numeric, col3 logical, col4 character)
+* Los puntos suspensivos contienen argumentos que identifican los grupos. Cualquier argumento conteniendo datos que no sea uno de los argumentos contenidos en la función entran a hacer parte de los datos
+* row.names indica los nombres de cada hilera (no necesario pero útil)
+* colnames especifica los nombres de columna
+* stringsAsFactors determina si los elementos de clase character deben ser convertidos en factor automáticamente.
+
+Data frames
+=======================================================
+
+
+```r
+dfr <- data.frame(a = 1:5, b = rep('a', 5),
+                  stringsAsFactors = FALSE)
+dfr
+```
+
+```
+  a b
+1 1 a
+2 2 a
+3 3 a
+4 4 a
+5 5 a
+```
+
+***
+
+
+```r
+rownames(dfr) <- c('r1', 'r2', 'r3', 'r4', 'r5')
+colnames(dfr) <- c('col1', 'col2')
+dfr
+```
+
+```
+   col1 col2
+r1    1    a
+r2    2    a
+r3    3    a
+r4    4    a
+r5    5    a
+```
+
+Arrays
+=======================================================
+
+* Creados con la función array(data, dim, dimnames)
+* data determina los valores con los que vamos a llenar el arreglo
+* dim representa el número de dimensiones (e.g., "Alto * Ancho * Profundo")
+* dimnames identifica los nombres de las dimensiones
+
+Arrays
+=======================================================
+
+
+```r
+arr <- array(data = 1:8, dim = c(2, 2, 2))
+arr
+```
+
+```
+, , 1
+
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+
+, , 2
+
+     [,1] [,2]
+[1,]    5    7
+[2,]    6    8
+```
+
+```r
+dim(arr)
+```
+
+```
+[1] 2 2 2
+```
+
+***
+
+* Creamos el arreglo `arr` con dos hileras, dos columnas, y dos valores adicionales en la tercera dimensión 
+* Estos valores fueron creados llenando las columnas, es decir, primero llenando la primera columna de la cara anterior, luego la segunda, luego la primera columhna de la cara posterior, finalmente la segunda de la cara posterior
+* El arreglo tiene entonces tres dimensiones, como podemos verlo usando la función `dim()`
+
+Listas
+=======================================================
+
+* Creadas con la función list(...) donde los puntos suspensivos representan objetos a ser incluidos en la lista, con o sin nombres
+
+***
+
+
+```r
+m <- c(1, 2, 3)
+n <- data.frame(a = 1:2, b = rep('a', 2))
+o <- matrix(data = 1:4, nrow = 2, ncol = 2, byrow = TRUE)
+lst <- list(m, n, o)
+lst
+```
+
+```
+[[1]]
+[1] 1 2 3
+
+[[2]]
+  a b
+1 1 a
+2 2 a
+
+[[3]]
+     [,1] [,2]
+[1,]    1    2
+[2,]    3    4
+```
+
+Listas
+=======================================================
+
+
+```
+[[1]]
+[1] 1 2 3
+
+[[2]]
+  a b
+1 1 a
+2 2 a
+
+[[3]]
+     [,1] [,2]
+[1,]    1    2
+[2,]    3    4
+```
+
+***
+
+
+```r
+class(lst)
+```
+
+```
+[1] "list"
+```
+
+```r
+class(lst[[1]])
+```
+
+```
+[1] "numeric"
+```
+
+```r
+class(lst[[2]])
+```
+
+```
+[1] "data.frame"
+```
+
+```r
+class(lst[[3]])
+```
+
+```
+[1] "matrix"
+```
+
 Modificando los valores de un arreglo: cbind
 =======================================================
 
+* Las funciones D-bind() (D- por dimensión) agregan vectores como líneas o columnas a un arreglo preexistente. Operan sobre hileras o columnas 
+* cbind agrega columnas (c por column) al primer argumento de la función.
+* El número de elementos en las columnas a agregar debe ser del mismo número de hileras que el arreglo al que se pegan, o generarán reciclaje por default.
+* Trabaja en arreglos bidimensionales (matrix o data frame), siempre que se respete la condición de homogeneidad de clase
+
+Modificando los valores de un arreglo: cbind
+=======================================================
+
+
+```r
+dfr <- data.frame(a = c(1:5), b = rep('a', 5))
+dfr
+```
+
+```
+  a b
+1 1 a
+2 2 a
+3 3 a
+4 4 a
+5 5 a
+```
+
+***
+
+
+```r
+cbind(dfr, c = c(T, F, F, T, T))
+```
+
+```
+  a b     c
+1 1 a  TRUE
+2 2 a FALSE
+3 3 a FALSE
+4 4 a  TRUE
+5 5 a  TRUE
+```
+
 Modificando los valores de un arreglo: rbind
 =======================================================
+
+* rbind agrega columnas (r por column) al primer argumento de la función.
+* El número de elementos en las columnas a agregar debe ser del mismo número de hileras que el arreglo al que se pegan, o generarán reciclaje por default.
+* Trabaja en arreglos bidimensionales (matrix o data frame), siempre que se respete la condición de homogeneidad de clase _por columna_
+
+Modificando los valores de un arreglo: rbind
+=======================================================
+
+
+```r
+dfr <- data.frame(a = c(1:5), b = as.character(rep('a', 5)))
+dfr
+```
+
+```
+  a b
+1 1 a
+2 2 a
+3 3 a
+4 4 a
+5 5 a
+```
+
+***
+
+
+```r
+rbind(dfr, c(6, 'b'))
+```
+
+```
+  a b
+1 1 a
+2 2 a
+3 3 a
+4 4 a
+5 5 a
+6 6 b
+```
 
 Limpiando el espacio de trabajo: rm()
 =======================================================
@@ -447,7 +775,27 @@ Limpiando el espacio de trabajo: rm()
 
 
 ```r
-rm(A)
+ls()
+```
+
+```
+ [1] "A"           "arr"         "df"          "dfr"         "diffClasses"
+ [6] "k"           "lst"         "m"           "mat"         "matrix"     
+[11] "myChar"      "myComplex"   "myInteger"   "myList"      "myLogical"  
+[16] "myNumeric"   "n"           "o"           "sec"         "V"          
+[21] "vocales"     "x"           "y"          
+```
+
+```r
+rm(A, x, y)
+ls()
+```
+
+```
+ [1] "arr"         "df"          "dfr"         "diffClasses" "k"          
+ [6] "lst"         "m"           "mat"         "matrix"      "myChar"     
+[11] "myComplex"   "myInteger"   "myList"      "myLogical"   "myNumeric"  
+[16] "n"           "o"           "sec"         "V"           "vocales"    
 ```
 
 Qué tenemos en el espacio de trabajo?: ls()
@@ -460,8 +808,9 @@ ls()
 ```
 
 ```
-[1] "arr"     "df"      "k"       "matrix"  "myList"  "sec"     "V"      
-[8] "vocales" "x"      
+ [1] "arr"     "df"      "dfr"     "k"       "lst"     "m"       "mat"    
+ [8] "matrix"  "myList"  "n"       "o"       "sec"     "V"       "vocales"
+[15] "x"       "y"      
 ```
 
 Muestreo aleatorio
@@ -475,9 +824,11 @@ sample(vocales, 3)
 ```
 
 ```
-[1] "u" "i" "e"
+[1] "u" "o" "a"
 ```
 
+Quién es quién dentro de un objeto?
+=======================================================
 
 * which()
 
@@ -516,14 +867,14 @@ length(myList)
 ```
 
 =======================================================
-# APENDICE: COERCIÓN
+# APENDICE 1: COERCIÓN
 
 Qué es coerción?
 =======================================================
 
 * Conversión entre clases atómicas (e.g., entre `character` y `factor`, entre `numeric` e `integer`, etc.)
 * El objetivo es preservar el símbolo/contenido, pero permitir otro tipo de operaciones con el cambio de clase
-* Existen dos tipos: Implícita y explícita. La primera, declarada por el usuario, la segunda, llevaga a cabo por el sistema
+* Existen dos tipos: Implícita y explícita. La primera, llevada a cabo por el sistema, y la segunda, declarada por el usuario
 
 Coerción explícita
 =======================================================
@@ -531,6 +882,42 @@ Coerción explícita
 * Se logra por medio de las funciones `as.CLASS()`, siendo CLASS cualquiera de las clases atómicas ya conocidas.
 * Generalmente útil cuando los métodos aplicados a objetos solo soportan alguna clase particular, pero pueden operar sobre los mismos símbolos.
 * El símbolo NO necesariamente lleva una clase explícita. Por ejempĺo, el número `1` puede ser de cualquier clase, aún `logical`:
+
+***
+
+
+```r
+cla <- 1
+as.character(cla)
+```
+
+```
+[1] "1"
+```
+
+```r
+as.integer(cla)
+```
+
+```
+[1] 1
+```
+
+```r
+as.numeric(cla)
+```
+
+```
+[1] 1
+```
+
+```r
+as.logical(cla)
+```
+
+```
+[1] TRUE
+```
 
 Coerción explícita: Entre `numeric` e `integer`
 =======================================================
@@ -674,6 +1061,33 @@ as.complex(letras)
 [1] NA NA NA
 ```
 
+Coerción implícita
+=======================================================
+
+* Ocurre cuando mezclamos objetos de diferentes clases en un objeto que solo puede contener elementos de la misma clase. Por ejemplo, si aplicamos c() sobre elementos de clase character y numeric, cuál es la clase del vector resultante?
+
+
+```r
+difcl <- c(1, 2, 'tres', 'cuatro', 5, 'seis')
+class(difcl)
+```
+
+```
+[1] "character"
+```
+
+```r
+as.numeric(c('b', 'c', 4, 'd'))
+```
+
+```
+Warning: NAs introduzidos por coerção
+```
+
+```
+[1] NA NA  4 NA
+```
+
 =======================================================
 # PAQUETERÍA Y POTENCIAL GRÁFICO
 
@@ -740,14 +1154,14 @@ library(vegan) #Al cargar el paquete NO usar comillas
 * Una vez cargado el paquete, se puede hacer uso de sus funciones
 * En este ejemplo, la función `specaccum()` del paquete `vegan`, solo funcionará después de cargar el paquete
 
-Gráficos en `R`
+Gráficos en R
 =======================================================
 
 * R tiene opciones extensas de graficación, desde sistemas sencillos como `base` a algunos más sofisticados como `lattice` o `ggplot2`
-* Cada sistema de gráficos de `R` tiene sus pros y sus contras, y trabaja mejor bajo condiciones específicas
-* La graficación en `R` es un arte complejo y requiere mucho esfuerzo para ser dominado. Cada tipo de gráfica puede requerir un sistema gráfico diferente
+* Cada sistema de gráficos de R tiene sus pros y sus contras, y trabaja mejor bajo condiciones específicas
+* La graficación en R es un arte complejo y requiere mucho esfuerzo para ser dominado. Cada tipo de gráfica puede requerir un sistema gráfico diferente
 
-Gráficos en `R`
+Gráficos en R
 =======================================================
 
 * Hay dos pasos básicos que son más evidentes en `base`: Generación del gráfico y anotación. EL sistema `lattice` es diferente pues el gráfico se genera con una sola llamada de función. 
@@ -763,7 +1177,7 @@ Gráficos en R: `base`
 plot(Y ~ X, data = datos) # Gráfico básico
 ```
 
-![plot of chunk unnamed-chunk-28](Session1-figure/unnamed-chunk-28-1.png) 
+![plot of chunk unnamed-chunk-43](Session1-figure/unnamed-chunk-43-1.png) 
 
 ***
 
@@ -774,7 +1188,7 @@ plot(Y ~ X, data = datos, main = "Gráfico", xlab = "Var1", ylab = "Var2")
 abline(lmod)
 ```
 
-![plot of chunk unnamed-chunk-29](Session1-figure/unnamed-chunk-29-1.png) 
+![plot of chunk unnamed-chunk-44](Session1-figure/unnamed-chunk-44-1.png) 
 
 Gráficos en R: `lattice`
 =======================================================
@@ -785,7 +1199,7 @@ library(lattice)
 cloud(mpg~wt*qsec|cyl.f, main="3D Scatterplot by Cylinders")
 ```
 
-![plot of chunk unnamed-chunk-31](Session1-figure/unnamed-chunk-31-1.png) 
+![plot of chunk unnamed-chunk-46](Session1-figure/unnamed-chunk-46-1.png) 
 
 Gráficos en R: `ggplot2`
 =======================================================
@@ -795,15 +1209,12 @@ Gráficos en R: `ggplot2`
 
 ```r
 library(ggplot2)
-attach(mtcars)
+
 qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"), method="lm", formula=y~x, color=cyl, main="Regression of MPG on Weight", xlab="Weight", ylab="Miles per Gallon")
 ```
 
-![plot of chunk unnamed-chunk-33](Session1-figure/unnamed-chunk-33-1.png) 
+![plot of chunk unnamed-chunk-48](Session1-figure/unnamed-chunk-48-1.png) 
 
-```r
-detach(mtcars)
-```
 
 Gráficos en R: `ggplot2`
 =======================================================
@@ -823,36 +1234,36 @@ p + theme(axis.title=element_text(face="bold.italic",
 Gráficos básicos: Histograma
 =======================================================
 
-![plot of chunk unnamed-chunk-35](Session1-figure/unnamed-chunk-35-1.png) 
+![plot of chunk unnamed-chunk-51](Session1-figure/unnamed-chunk-51-1.png) 
 
 
 Gráficos básicos: Boxplot
 =======================================================
 
-![plot of chunk unnamed-chunk-36](Session1-figure/unnamed-chunk-36-1.png) 
+![plot of chunk unnamed-chunk-52](Session1-figure/unnamed-chunk-52-1.png) 
 
 Gráficos básicos: Diagrama de barras
 =======================================================
 
-![plot of chunk unnamed-chunk-37](Session1-figure/unnamed-chunk-37-1.png) 
+![plot of chunk unnamed-chunk-53](Session1-figure/unnamed-chunk-53-1.png) 
 
 Gráficos básicos: Diagrama de dispersión + Regresión
 =======================================================
 
-![plot of chunk unnamed-chunk-38](Session1-figure/unnamed-chunk-38-1.png) 
+![plot of chunk unnamed-chunk-54](Session1-figure/unnamed-chunk-54-1.png) 
 
 Gráficos básicos: Gráficos de densidad (Distribuciones)
 =======================================================
 
-![plot of chunk unnamed-chunk-39](Session1-figure/unnamed-chunk-39-1.png) 
+![plot of chunk unnamed-chunk-55](Session1-figure/unnamed-chunk-55-1.png) 
 
 Gráficos básicos: Dendrogramas
 =======================================================
 
-![plot of chunk unnamed-chunk-40](Session1-figure/unnamed-chunk-40-1.png) 
+![plot of chunk unnamed-chunk-56](Session1-figure/unnamed-chunk-56-1.png) 
 
 
 Gráficos básicos: Heatmaps
 =======================================================
 
-![plot of chunk unnamed-chunk-41](Session1-figure/unnamed-chunk-41-1.png) 
+![plot of chunk unnamed-chunk-57](Session1-figure/unnamed-chunk-57-1.png) 
