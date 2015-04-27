@@ -10,7 +10,9 @@ width: 1366
 height: 768
 font-family: 'Serif'
 author: Gustavo A. Ballen
+
 Museu de Zoologia da Universidade de São Paulo
+
 gaballench@gmail.com
 
 
@@ -243,8 +245,7 @@ Uso de los operadores de asignación y funciones útiles para generar datos
 
 *  `<-` asigna un valor (o valores) a una variable global (u objeto) (e.g., `variable1  <- valor`). SIEMPRE PARA VALORES!
 * `=` asigna un valor (o valores) a una variable local (e.g., argumento x de una función es igual a `TRUE`; más sobre esto después). NUNCA PARA VALORES!
-* c() junta los valores separados entre sí por comas (e.g., `c(elemento1, elemento2, elemento3, ...,  elementoN)`)
-* `:` genera series de números enteros (e.g., `primer:último`; 1:10 son los enteros del 1 al 10)
+* `<<-` es un asignador que funciona entre ambientes 
 
 Funciones: Generalidades
 =======================================================
@@ -271,6 +272,25 @@ x <- 2015
 x
 vocales <- c("a", "e", "i", "o", "u")
 vocales
+```
+
+Asignando nuestros primeros valores a una variable: Secuencias
+=======================================================
+
+* El operdador `:` genera secuencias de enteros entre `inicio:final` (e.g., `1:7`)
+* La función `seq(from, to, by)` genera una secuencia de números entre `from` y `to`, cada `by` unidades (e.g., `from = 1`, `to = 10`, `by = 0.5`) números del 1 al 10 cada 0.5
+* La función `seq_along(object)` toma la longitud del objeto, y genera una secuencia de números entre 1 y el número total de elementos en `object`. Útil en for loops.
+* La función `seq_len(desired.length)` genera una secuencia entre 1 y el número `desired.length`.
+
+Secuencias
+=======================================================
+
+```{r}
+sec <- 11:20
+sec
+seq(from = 0, to = 10, by = 2)
+seq_along(sec)
+seq_len(20)
 ```
 
 Modificación matemática de un vector
@@ -379,6 +399,11 @@ Coerción explícita: Entre `numeric` e `integer`
 float <- 5
 print(float)
 class(float) # Qué clase tiene el objeto float?
+```
+
+***
+
+```{r}
 integer <- as.integer(float) # Coerción de clase numeric a integer
 print(integer)
 class(integer) # Qué clase tiene el objeto integer?

@@ -6,7 +6,9 @@ width: 1366
 height: 768
 font-family: 'Serif'
 author: Gustavo A. Ballen
+
 Museu de Zoologia da Universidade de São Paulo
+
 gaballench@gmail.com
 
 
@@ -298,8 +300,7 @@ Uso de los operadores de asignación y funciones útiles para generar datos
 
 *  `<-` asigna un valor (o valores) a una variable global (u objeto) (e.g., `variable1  <- valor`). SIEMPRE PARA VALORES!
 * `=` asigna un valor (o valores) a una variable local (e.g., argumento x de una función es igual a `TRUE`; más sobre esto después). NUNCA PARA VALORES!
-* c() junta los valores separados entre sí por comas (e.g., `c(elemento1, elemento2, elemento3, ...,  elementoN)`)
-* `:` genera series de números enteros (e.g., `primer:último`; 1:10 son los enteros del 1 al 10)
+* `<<-` es un asignador que funciona entre ambientes 
 
 Funciones: Generalidades
 =======================================================
@@ -350,6 +351,51 @@ vocales
 
 ```
 [1] "a" "e" "i" "o" "u"
+```
+
+Asignando nuestros primeros valores a una variable: Secuencias
+=======================================================
+
+* El operdador `:` genera secuencias de enteros entre `inicio:final` (e.g., `1:7`)
+* La función `seq(from, to, by)` genera una secuencia de números entre `from` y `to`, cada `by` unidades (e.g., `from = 1`, `to = 10`, `by = 0.5`) números del 1 al 10 cada 0.5
+* La función `seq_along(object)` toma la longitud del objeto, y genera una secuencia de números entre 1 y el número total de elementos en `object`. Útil en for loops.
+* La función `seq_len(desired.length)` genera una secuencia entre 1 y el número `desired.length`.
+
+Secuencias
+=======================================================
+
+
+```r
+sec <- 11:20
+sec
+```
+
+```
+ [1] 11 12 13 14 15 16 17 18 19 20
+```
+
+```r
+seq(from = 0, to = 10, by = 2)
+```
+
+```
+[1]  0  2  4  6  8 10
+```
+
+```r
+seq_along(sec)
+```
+
+```
+ [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+```r
+seq_len(20)
+```
+
+```
+ [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
 ```
 
 Modificación matemática de un vector
@@ -414,8 +460,8 @@ ls()
 ```
 
 ```
-[1] "arr"     "df"      "k"       "matrix"  "myList"  "V"       "vocales"
-[8] "x"      
+[1] "arr"     "df"      "k"       "matrix"  "myList"  "sec"     "V"      
+[8] "vocales" "x"      
 ```
 
 Muestreo aleatorio
@@ -506,6 +552,9 @@ class(float) # Qué clase tiene el objeto float?
 ```
 [1] "numeric"
 ```
+
+***
+
 
 ```r
 integer <- as.integer(float) # Coerción de clase numeric a integer
@@ -714,7 +763,7 @@ Gráficos en R: `base`
 plot(Y ~ X, data = datos) # Gráfico básico
 ```
 
-![plot of chunk unnamed-chunk-26](Session1-figure/unnamed-chunk-26-1.png) 
+![plot of chunk unnamed-chunk-28](Session1-figure/unnamed-chunk-28-1.png) 
 
 ***
 
@@ -725,7 +774,7 @@ plot(Y ~ X, data = datos, main = "Gráfico", xlab = "Var1", ylab = "Var2")
 abline(lmod)
 ```
 
-![plot of chunk unnamed-chunk-27](Session1-figure/unnamed-chunk-27-1.png) 
+![plot of chunk unnamed-chunk-29](Session1-figure/unnamed-chunk-29-1.png) 
 
 Gráficos en R: `lattice`
 =======================================================
@@ -736,7 +785,7 @@ library(lattice)
 cloud(mpg~wt*qsec|cyl.f, main="3D Scatterplot by Cylinders")
 ```
 
-![plot of chunk unnamed-chunk-29](Session1-figure/unnamed-chunk-29-1.png) 
+![plot of chunk unnamed-chunk-31](Session1-figure/unnamed-chunk-31-1.png) 
 
 Gráficos en R: `ggplot2`
 =======================================================
@@ -750,7 +799,7 @@ attach(mtcars)
 qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"), method="lm", formula=y~x, color=cyl, main="Regression of MPG on Weight", xlab="Weight", ylab="Miles per Gallon")
 ```
 
-![plot of chunk unnamed-chunk-31](Session1-figure/unnamed-chunk-31-1.png) 
+![plot of chunk unnamed-chunk-33](Session1-figure/unnamed-chunk-33-1.png) 
 
 ```r
 detach(mtcars)
@@ -774,36 +823,36 @@ p + theme(axis.title=element_text(face="bold.italic",
 Gráficos básicos: Histograma
 =======================================================
 
-![plot of chunk unnamed-chunk-33](Session1-figure/unnamed-chunk-33-1.png) 
+![plot of chunk unnamed-chunk-35](Session1-figure/unnamed-chunk-35-1.png) 
 
 
 Gráficos básicos: Boxplot
 =======================================================
 
-![plot of chunk unnamed-chunk-34](Session1-figure/unnamed-chunk-34-1.png) 
+![plot of chunk unnamed-chunk-36](Session1-figure/unnamed-chunk-36-1.png) 
 
 Gráficos básicos: Diagrama de barras
 =======================================================
 
-![plot of chunk unnamed-chunk-35](Session1-figure/unnamed-chunk-35-1.png) 
+![plot of chunk unnamed-chunk-37](Session1-figure/unnamed-chunk-37-1.png) 
 
 Gráficos básicos: Diagrama de dispersión + Regresión
 =======================================================
 
-![plot of chunk unnamed-chunk-36](Session1-figure/unnamed-chunk-36-1.png) 
+![plot of chunk unnamed-chunk-38](Session1-figure/unnamed-chunk-38-1.png) 
 
 Gráficos básicos: Gráficos de densidad (Distribuciones)
 =======================================================
 
-![plot of chunk unnamed-chunk-37](Session1-figure/unnamed-chunk-37-1.png) 
+![plot of chunk unnamed-chunk-39](Session1-figure/unnamed-chunk-39-1.png) 
 
 Gráficos básicos: Dendrogramas
 =======================================================
 
-![plot of chunk unnamed-chunk-38](Session1-figure/unnamed-chunk-38-1.png) 
+![plot of chunk unnamed-chunk-40](Session1-figure/unnamed-chunk-40-1.png) 
 
 
 Gráficos básicos: Heatmaps
 =======================================================
 
-![plot of chunk unnamed-chunk-39](Session1-figure/unnamed-chunk-39-1.png) 
+![plot of chunk unnamed-chunk-41](Session1-figure/unnamed-chunk-41-1.png) 

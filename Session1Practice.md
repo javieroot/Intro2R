@@ -3,6 +3,8 @@
 INTRODUCCIÓN AL MANEJO DE DATOS Y PROGRAMACIÓN EN R: PRÁCTICA 1
 ========================================================
 font-family: 'Serif'
+width: 1366
+height: 768
 author: Gustavo A. Ballen
 Museu de Zoologia da Universidade de São Paulo
 gaballench@gmail.com
@@ -81,11 +83,16 @@ Práctica 1: Temas 1-3
 
 =======================================================
 
+* Genere una tabla cruzada de coerción pára las clases `integer`, `numeric`, `logical`, `character`, `factor`. Dicha tabla debe contener los siguientes resultados: `Si` (Si la coerción es posible), `NA` (coerción genera NA porque es ilógico realizarlo)
 
 
-
-=======================================================
-
+Clase | integer | numeric | logical | character | factor 
+----------|---------|---------|---------|-----------|--------
+integer   |         |         |         |           |        
+numeric   |         |         |         |           |        
+logical   |         |         |         |           |        
+character |         |         |         |           |        
+factor    |         |         |         |           |        
 
 
 
