@@ -256,12 +256,13 @@ Listas: Generalidades
 * Sus componentes pueden ser de cualquier clase
 * Sus componentes puede tener cualquier cantidad de dimensiones
 
-***
-
-```{r, eval=TRUE, echo=FALSE, width=0.5}
+```{r, eval=TRUE, echo=FALSE}
 myList <- list(myInteger, myChar, matrix)
 myList
 ```
+
+***
+
 ```{r}
 class(myList[[1]])
 class(myList[[2]])
@@ -297,7 +298,7 @@ Funciones: Generalidades
 * Pueden operar sobre objetos, pero no es obligatorio  (e.g., `dir()`)
 * Contienen opciones llamadas argumentos
 * Sucedidos por paréntesis (e.g., `c()`, `nrow()`, `sd()`, `lm()`)
-* Presentan dos partes principales: Nombre y argumentos
+* Presentan tres partes principales: Formales (argumentos), cuerpo y ambiente (más sobre esto luego).
 * Morfología general: `funcion(arg1, arg2, arg3, ..., argN)`
 
 ***
@@ -542,30 +543,91 @@ ls()
 Qué tenemos en el espacio de trabajo?: ls()
 =======================================================
 
-* ls()
+* La función `ls()` genera un listado de los objetos en la memoria
+
 ```{r}
 ls()
 ```
 
-Muestreo aleatorio
+* Recuerdan la función `rm()`? Bueno, usandola en conjunto con la función `ls()` y el argumento `list` en la primera, podemos limpiar el espacio de trabajo de un solo tacazo
+
+```{r, eval=FALSE}
+rm(list = ls()) # Remover una lista de los objetos encontrado con ls()
+```
+
+Cómo generar un muestreo aleatorio?
 =======================================================
 
-* sample()
+* Uno podría pensar que las funciones rDIST (e.g., rnorm, rpois, runif) permitirían obtener dicho resultado. Sin embargo, cuando queremos elegir elementos de manera aleatoria la forma correcta es usando sample() y no runif (random uniforms), pues la primera opera sobre conjuntos de elementos, mientras que la segunda obtiene de una distribución uniforme continua dichos valores.
+
+*** 
 
 ```{r}
 sample(vocales, 3)
+sample(x = 1:100, size = 5, replace = FALSE)
+runif(n = 5, min = 1, max = 100)
 ```
+
+Cómo generar un muestreo aleatorio?
+=======================================================
+
+* Pero y si redondeamos la primera cifra de cada número obtenido con runif???
+
+```{r}
+unifs <- round(runif(min = 1, max = 10, n = 7), 0)
+unifs # Con un vector pequeño de siete elementos podemos ver que hay duplicados, pero y si contuviese 100 números aleatorios?
+unifs[duplicated(unifs)] # Ponchados! el número 5 aparece dos veces
+```
+
+***
+
+```{r}
+muestreo <- sample(1:10, 7, replace = FALSE)
+muestreo # Con un vector pequeño de siete elementos podemos ver que hay duplicados, pero y si contuviese 100 números aleatorios el argumento replace = FALSE asegura que no existirán duplicados
+muestreo[duplicated(muestreo)] # integer(0) y manito arriba si no hay duplicados
+```
+
+Números aleatorios y dist. de probabilidad
+=======================================================
+
+* Cada una de las distribuciones probabilisticas más importantes tiene un conjunto de funciones ya incorporadas en R, listas para usar. COn ellas podemos obtener:
+
+        + Densidad (dDIST) F(x) dado un valor de x
+        + Probabilidad (pDIST) dado un cuantil
+        + Cuantiles (qDIST) data una probabilidad
+        + Números aleatorios (rDIST)
+
+***
+<small style="font-size:.7em">
+```{r}
+dnorm(3, mean = 0, sd = 1) # A qué valor en y corresponde x = 3 en la función de densidad?
+pnorm(1.65, mean = 0, sd = 1) # Qué probabilidad le corresponde al cuantil 1.65?
+qnorm(0.95, mean = 0, sd = 1) # A qué cuantil corresponde una probabilidad de 0.95?
+rnorm(5, mean = 0, sd = 1) # Genere cinco números aleatorios a partir de una distribución normal
+```
+</small>
 
 Quién es quién dentro de un objeto?
 =======================================================
 
-* which()
+* Puede pensarse en which() como una función que responde a un postulado lógico y da como respuesta quiénes cumplen con tal condición en un objeto
+
+<small style="font-size:.65em">
+```{r}
+which(vocales =="e") # Cuál de los elementos del vector vocales es igual a e?
+which(1:10 <= 6) # Cuál de los enteros del uno al 10 es menor o igual a 6?
+which(ls() == "lst") # Cuál de los elementos de nuestro espacio de trabajo es llamado lst?
+```
+</small>
+***
 
 ```{r}
-which(vocales =="e")
+which(ls() == "lst") # Quién es "lst"? Ok, es siete
+ls()[7] # El séptimo elemento de ls() es... voilà, "lst"
+ls()[which(ls() == "lst")] # Versión anidada que da el mismo resultado en una sola linea de código
 ```
 
-Algunas funciones de uso frecuente
+Obteniendo información de los objetos
 =======================================================
 
 * class()
@@ -579,6 +641,8 @@ class(df)
 ```{r}
 length(myList)
 ```
+
+
 
 =======================================================
 # APENDICE 1: COERCIÓN

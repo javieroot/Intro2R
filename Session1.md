@@ -280,8 +280,6 @@ Listas: Generalidades
 * Sus componentes pueden ser de cualquier clase
 * Sus componentes puede tener cualquier cantidad de dimensiones
 
-***
-
 
 ```
 [[1]]
@@ -296,6 +294,9 @@ Listas: Generalidades
 [2,]    2    5    8
 [3,]    3    6    9
 ```
+
+***
+
 
 ```r
 class(myList[[1]])
@@ -350,7 +351,7 @@ Funciones: Generalidades
 * Pueden operar sobre objetos, pero no es obligatorio  (e.g., `dir()`)
 * Contienen opciones llamadas argumentos
 * Sucedidos por paréntesis (e.g., `c()`, `nrow()`, `sd()`, `lm()`)
-* Presentan dos partes principales: Nombre y argumentos
+* Presentan tres partes principales: Formales (argumentos), cuerpo y ambiente (más sobre esto luego).
 * Morfología general: `funcion(arg1, arg2, arg3, ..., argN)`
 
 ***
@@ -838,7 +839,8 @@ ls()
 Qué tenemos en el espacio de trabajo?: ls()
 =======================================================
 
-* ls()
+* La función `ls()` genera un listado de los objetos en la memoria
+
 
 ```r
 ls()
@@ -849,10 +851,19 @@ ls()
  [8] "matrix"  "myList"  "n"       "o"       "sec"     "V"       "vocales"
 ```
 
-Muestreo aleatorio
+* Recuerdan la función `rm()`? Bueno, usandola en conjunto con la función `ls()` y el argumento `list` en la primera, podemos limpiar el espacio de trabajo de un solo tacazo
+
+
+```r
+rm(list = ls()) # Remover una lista de los objetos encontrado con ls()
+```
+
+Cómo generar un muestreo aleatorio?
 =======================================================
 
-* sample()
+* Uno podría pensar que las funciones rDIST (e.g., rnorm, rpois, runif) permitirían obtener dicho resultado. Sin embargo, cuando queremos elegir elementos de manera aleatoria la forma correcta es usando sample() y no runif (random uniforms), pues la primera opera sobre conjuntos de elementos, mientras que la segunda obtiene de una distribución uniforme continua dichos valores.
+
+*** 
 
 
 ```r
@@ -860,24 +871,173 @@ sample(vocales, 3)
 ```
 
 ```
-[1] "e" "u" "a"
+[1] "a" "e" "u"
 ```
+
+```r
+sample(x = 1:100, size = 5, replace = FALSE)
+```
+
+```
+[1] 92 19 77  3 49
+```
+
+```r
+runif(n = 5, min = 1, max = 100)
+```
+
+```
+[1] 80.31305 12.52780 50.40860 71.63072 48.30084
+```
+
+Cómo generar un muestreo aleatorio?
+=======================================================
+
+* Pero y si redondeamos la primera cifra de cada número obtenido con runif???
+
+
+```r
+unifs <- round(runif(min = 1, max = 10, n = 7), 0)
+unifs # Con un vector pequeño de siete elementos podemos ver que hay duplicados, pero y si contuviese 100 números aleatorios?
+```
+
+```
+[1] 5 7 5 2 8 5 9
+```
+
+```r
+unifs[duplicated(unifs)] # Ponchados! el número 5 aparece dos veces
+```
+
+```
+[1] 5 5
+```
+
+***
+
+
+```r
+muestreo <- sample(1:10, 7, replace = FALSE)
+muestreo # Con un vector pequeño de siete elementos podemos ver que hay duplicados, pero y si contuviese 100 números aleatorios el argumento replace = FALSE asegura que no existirán duplicados
+```
+
+```
+[1] 9 6 4 7 5 1 3
+```
+
+```r
+muestreo[duplicated(muestreo)] # integer(0) y manito arriba si no hay duplicados
+```
+
+```
+integer(0)
+```
+
+Números aleatorios y dist. de probabilidad
+=======================================================
+
+* Cada una de las distribuciones probabilisticas más importantes tiene un conjunto de funciones ya incorporadas en R, listas para usar. COn ellas podemos obtener:
+
+        + Densidad (dDIST) F(x) dado un valor de x
+        + Probabilidad (pDIST) dado un cuantil
+        + Cuantiles (qDIST) data una probabilidad
+        + Números aleatorios (rDIST)
+
+***
+<small style="font-size:.7em">
+
+```r
+dnorm(3, mean = 0, sd = 1) # A qué valor en y corresponde x = 3 en la función de densidad?
+```
+
+```
+[1] 0.004431848
+```
+
+```r
+pnorm(1.65, mean = 0, sd = 1) # Qué probabilidad le corresponde al cuantil 1.65?
+```
+
+```
+[1] 0.9505285
+```
+
+```r
+qnorm(0.95, mean = 0, sd = 1) # A qué cuantil corresponde una probabilidad de 0.95?
+```
+
+```
+[1] 1.644854
+```
+
+```r
+rnorm(5, mean = 0, sd = 1) # Genere cinco números aleatorios a partir de una distribución normal
+```
+
+```
+[1]  0.7991081  0.5842808 -0.7512239 -0.5794803 -0.9025590
+```
+</small>
 
 Quién es quién dentro de un objeto?
 =======================================================
 
-* which()
+* Puede pensarse en which() como una función que responde a un postulado lógico y da como respuesta quiénes cumplen con tal condición en un objeto
 
+<small style="font-size:.65em">
 
 ```r
-which(vocales =="e")
+which(vocales =="e") # Cuál de los elementos del vector vocales es igual a e?
 ```
 
 ```
 [1] 2
 ```
 
-Algunas funciones de uso frecuente
+```r
+which(1:10 <= 6) # Cuál de los enteros del uno al 10 es menor o igual a 6?
+```
+
+```
+[1] 1 2 3 4 5 6
+```
+
+```r
+which(ls() == "lst") # Cuál de los elementos de nuestro espacio de trabajo es llamado lst?
+```
+
+```
+[1] 7
+```
+</small>
+***
+
+
+```r
+which(ls() == "lst") # Quién es "lst"? Ok, es siete
+```
+
+```
+[1] 7
+```
+
+```r
+ls()[7] # El séptimo elemento de ls() es... voilà, "lst"
+```
+
+```
+[1] "lst"
+```
+
+```r
+ls()[which(ls() == "lst")] # Versión anidada que da el mismo resultado en una sola linea de código
+```
+
+```
+[1] "lst"
+```
+
+Obteniendo información de los objetos
 =======================================================
 
 * class()
@@ -901,6 +1061,8 @@ length(myList)
 ```
 [1] 3
 ```
+
+
 
 =======================================================
 # APENDICE 1: COERCIÓN
@@ -1213,7 +1375,7 @@ Gráficos en R: `base`
 plot(Y ~ X, data = datos) # Gráfico básico
 ```
 
-![plot of chunk unnamed-chunk-44](Session1-figure/unnamed-chunk-44-1.png) 
+![plot of chunk unnamed-chunk-49](Session1-figure/unnamed-chunk-49-1.png) 
 
 ***
 
@@ -1224,7 +1386,7 @@ plot(Y ~ X, data = datos, main = "Gráfico", xlab = "Var1", ylab = "Var2")
 abline(lmod)
 ```
 
-![plot of chunk unnamed-chunk-45](Session1-figure/unnamed-chunk-45-1.png) 
+![plot of chunk unnamed-chunk-50](Session1-figure/unnamed-chunk-50-1.png) 
 
 Gráficos en R: `lattice`
 =======================================================
@@ -1235,7 +1397,7 @@ library(lattice)
 cloud(mpg~wt*qsec|cyl.f, main="3D Scatterplot by Cylinders")
 ```
 
-![plot of chunk unnamed-chunk-47](Session1-figure/unnamed-chunk-47-1.png) 
+![plot of chunk unnamed-chunk-52](Session1-figure/unnamed-chunk-52-1.png) 
 
 Gráficos en R: `ggplot2`
 =======================================================
@@ -1249,7 +1411,7 @@ library(ggplot2)
 qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"), method="lm", formula=y~x, color=cyl, main="Regression of MPG on Weight", xlab="Weight", ylab="Miles per Gallon")
 ```
 
-![plot of chunk unnamed-chunk-49](Session1-figure/unnamed-chunk-49-1.png) 
+![plot of chunk unnamed-chunk-54](Session1-figure/unnamed-chunk-54-1.png) 
 
 
 Gráficos en R: `ggplot2`
@@ -1270,36 +1432,36 @@ p + theme(axis.title=element_text(face="bold.italic",
 Gráficos básicos: Histograma
 =======================================================
 
-![plot of chunk unnamed-chunk-52](Session1-figure/unnamed-chunk-52-1.png) 
+![plot of chunk unnamed-chunk-57](Session1-figure/unnamed-chunk-57-1.png) 
 
 
 Gráficos básicos: Boxplot
 =======================================================
 
-![plot of chunk unnamed-chunk-53](Session1-figure/unnamed-chunk-53-1.png) 
+![plot of chunk unnamed-chunk-58](Session1-figure/unnamed-chunk-58-1.png) 
 
 Gráficos básicos: Diagrama de barras
 =======================================================
 
-![plot of chunk unnamed-chunk-54](Session1-figure/unnamed-chunk-54-1.png) 
+![plot of chunk unnamed-chunk-59](Session1-figure/unnamed-chunk-59-1.png) 
 
 Gráficos básicos: Diagrama de dispersión + Regresión
 =======================================================
 
-![plot of chunk unnamed-chunk-55](Session1-figure/unnamed-chunk-55-1.png) 
+![plot of chunk unnamed-chunk-60](Session1-figure/unnamed-chunk-60-1.png) 
 
 Gráficos básicos: Gráficos de densidad (Distribuciones)
 =======================================================
 
-![plot of chunk unnamed-chunk-56](Session1-figure/unnamed-chunk-56-1.png) 
+![plot of chunk unnamed-chunk-61](Session1-figure/unnamed-chunk-61-1.png) 
 
 Gráficos básicos: Dendrogramas
 =======================================================
 
-![plot of chunk unnamed-chunk-57](Session1-figure/unnamed-chunk-57-1.png) 
+![plot of chunk unnamed-chunk-62](Session1-figure/unnamed-chunk-62-1.png) 
 
 
 Gráficos básicos: Heatmaps
 =======================================================
 
-![plot of chunk unnamed-chunk-58](Session1-figure/unnamed-chunk-58-1.png) 
+![plot of chunk unnamed-chunk-63](Session1-figure/unnamed-chunk-63-1.png) 
