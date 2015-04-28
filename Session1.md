@@ -64,6 +64,47 @@ Historia y contexto
 * Una calculadora de escritorio
 * Una herramienta de SIG
 * Una herramienta de simulación
+* Un generador de memes
+
+¿Qué es R?
+=======================================================
+<small style="font-size:.5em">
+
+```r
+MEME.GENERATOR <- 
+function(name.file.read.png, name.file.write.png, over.text, under.text, ps=12, height = 500, vertical.margin=20)
+{
+#read file
+img<-readPNG(name.file.read.png)
+ 
+#get size
+w<-dim(img)[2]
+ 
+#open new file for output
+png(name.file.write.png, width=w, height=height, bg="#000000", pointsize = ps)
+par(mar=c(vertical.margin,0,vertical.margin,0), xpd=NA, mgp=c(0,0,0), oma=c(0,0,0,0), ann=F)
+plot.new()
+plot.window(0:1, 0:1)
+ 
+#fill plot with image
+usr<-par("usr")    
+rasterImage(img, usr[1], usr[3], usr[2], usr[4])
+ 
+#add text
+text(.5,1.05, over.text, cex=5, col="#ffffff", pos=3)
+#add text
+text(.5, -.05, under.text, cex=5, col="#ffffff", pos=1)
+ 
+#close image
+dev.off()
+}
+
+MEME.GENERATOR("trollface.png", "meme-R.png", "algunos hacen\n estadística en R", "yo hago memes", ps=5, height=450)
+```
+</small>
+***
+
+![alt image](Session1-figure/meme.png)
 
 R en comparación con otras herramientas de análisis de datos
 =======================================================
@@ -191,11 +232,11 @@ Data frames: Generalidades
 
 ```
   var1 var2  var3   var4
-1    4    a  TRUE  0.867
-2    4    b FALSE -1.605
-3    4    c FALSE  0.786
-4    4    d  TRUE  2.475
-5    4    e FALSE -0.993
+1    4    a  TRUE  0.441
+2    4    b FALSE  1.285
+3    4    c FALSE -1.556
+4    4    d  TRUE -1.470
+5    4    e FALSE  1.993
 ```
 
 Arreglos multidimensionales: Generalidades
@@ -320,7 +361,7 @@ rnorm(n = 3) # Nombre rnorm, argumento n
 ```
 
 ```
-[1]  0.31220688 -1.81784477  0.04150485
+[1]  0.8143934  1.6213108 -1.0109143
 ```
 
 ```r
@@ -336,7 +377,7 @@ Sys.time() # Nombre System.time, sin argumentos
 ```
 
 ```
-[1] "2015-04-27 20:45:18 BRT"
+[1] "2015-04-28 01:30:47 BRT"
 ```
 
 Creando nuestros primeros objetos: Operadores de asignación
@@ -819,7 +860,7 @@ sample(vocales, 3)
 ```
 
 ```
-[1] "u" "o" "e"
+[1] "e" "u" "a"
 ```
 
 Quién es quién dentro de un objeto?
@@ -1172,7 +1213,7 @@ Gráficos en R: `base`
 plot(Y ~ X, data = datos) # Gráfico básico
 ```
 
-![plot of chunk unnamed-chunk-43](Session1-figure/unnamed-chunk-43-1.png) 
+![plot of chunk unnamed-chunk-44](Session1-figure/unnamed-chunk-44-1.png) 
 
 ***
 
@@ -1183,7 +1224,7 @@ plot(Y ~ X, data = datos, main = "Gráfico", xlab = "Var1", ylab = "Var2")
 abline(lmod)
 ```
 
-![plot of chunk unnamed-chunk-44](Session1-figure/unnamed-chunk-44-1.png) 
+![plot of chunk unnamed-chunk-45](Session1-figure/unnamed-chunk-45-1.png) 
 
 Gráficos en R: `lattice`
 =======================================================
@@ -1194,7 +1235,7 @@ library(lattice)
 cloud(mpg~wt*qsec|cyl.f, main="3D Scatterplot by Cylinders")
 ```
 
-![plot of chunk unnamed-chunk-46](Session1-figure/unnamed-chunk-46-1.png) 
+![plot of chunk unnamed-chunk-47](Session1-figure/unnamed-chunk-47-1.png) 
 
 Gráficos en R: `ggplot2`
 =======================================================
@@ -1208,7 +1249,7 @@ library(ggplot2)
 qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"), method="lm", formula=y~x, color=cyl, main="Regression of MPG on Weight", xlab="Weight", ylab="Miles per Gallon")
 ```
 
-![plot of chunk unnamed-chunk-48](Session1-figure/unnamed-chunk-48-1.png) 
+![plot of chunk unnamed-chunk-49](Session1-figure/unnamed-chunk-49-1.png) 
 
 
 Gráficos en R: `ggplot2`
@@ -1229,36 +1270,36 @@ p + theme(axis.title=element_text(face="bold.italic",
 Gráficos básicos: Histograma
 =======================================================
 
-![plot of chunk unnamed-chunk-51](Session1-figure/unnamed-chunk-51-1.png) 
+![plot of chunk unnamed-chunk-52](Session1-figure/unnamed-chunk-52-1.png) 
 
 
 Gráficos básicos: Boxplot
 =======================================================
 
-![plot of chunk unnamed-chunk-52](Session1-figure/unnamed-chunk-52-1.png) 
+![plot of chunk unnamed-chunk-53](Session1-figure/unnamed-chunk-53-1.png) 
 
 Gráficos básicos: Diagrama de barras
 =======================================================
 
-![plot of chunk unnamed-chunk-53](Session1-figure/unnamed-chunk-53-1.png) 
+![plot of chunk unnamed-chunk-54](Session1-figure/unnamed-chunk-54-1.png) 
 
 Gráficos básicos: Diagrama de dispersión + Regresión
 =======================================================
 
-![plot of chunk unnamed-chunk-54](Session1-figure/unnamed-chunk-54-1.png) 
+![plot of chunk unnamed-chunk-55](Session1-figure/unnamed-chunk-55-1.png) 
 
 Gráficos básicos: Gráficos de densidad (Distribuciones)
 =======================================================
 
-![plot of chunk unnamed-chunk-55](Session1-figure/unnamed-chunk-55-1.png) 
+![plot of chunk unnamed-chunk-56](Session1-figure/unnamed-chunk-56-1.png) 
 
 Gráficos básicos: Dendrogramas
 =======================================================
 
-![plot of chunk unnamed-chunk-56](Session1-figure/unnamed-chunk-56-1.png) 
+![plot of chunk unnamed-chunk-57](Session1-figure/unnamed-chunk-57-1.png) 
 
 
 Gráficos básicos: Heatmaps
 =======================================================
 
-![plot of chunk unnamed-chunk-57](Session1-figure/unnamed-chunk-57-1.png) 
+![plot of chunk unnamed-chunk-58](Session1-figure/unnamed-chunk-58-1.png) 

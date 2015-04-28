@@ -2,6 +2,8 @@
 opts_chunk$set(cache=TRUE)
 library(ggplot2)
 library(lattice)
+library(FSAdata)
+data(BlueCatfish)
 ```
 
 INTRODUCCIÓN AL MANEJO DE DATOS Y PROGRAMACIÓN EN R: PRÁCTICA 1
@@ -117,7 +119,7 @@ Práctica 1: Reciclaje, aleatorización
 
 * la siguiente línea de código genera un vector que contiene los días de la semana del congreso. Usando la función adecuada (cubierta durante esta sesión), elija al azar tres de dichos días para salir a rumbear durante el congreso: `dias <- c("lunes", "martes", "miercoles", "jueves", "viernes")`. El sábado no está porque hay que dedicar al menos un día a conocer Leticia, y el domingo se dedica al señor, así que tampoco aplica.
 
-Práctica 1: Clases, coercion
+Práctica 1: Clases, coerción
 =======================================================
 
 * Genere una tabla cruzada de coerción pára las clases `integer`, `numeric`, `logical`, `character`, `factor`. Dicha tabla debe contener los siguientes resultados: `Si` (Si la coerción es posible), `NA` (coerción genera NA porque es ilógico realizarlo)
@@ -173,10 +175,68 @@ which(corotos < 100)
 Práctica 1: Paquetes (Aplicar si hay acceso a internet)
 =======================================================
 
-* Instalar los paquetes `lattice`, `ggplot2`, `dplyr` y `randtests`. Use la función `install.packages()`.
+* Instalar los paquetes `lattice`, `ggplot2`, `dplyr`, `devtools` y `randtests`. Use la función `install.packages()`.
 * Cargue el los paquetes `lattice` y `ggplot2`
+* Adicionalmente instale el paquete de pesquerías FSA con las siguientes instrucciones:
+
+```{r}
+library(devtools)
+install_github('droglenc/FSA') # Requiere tcltk, asegurarse de haberlo instalado!
+install_github('droglenc/FSAdata')
+```
+
 * estos paquetes van a ser usado en la sesión sobre gráficos
 
+Practica 1: Gráficas, sistema base
+=======================================================
+
+* Vamos a generar gráficos exploratorios para un conjunto de datos de edad y longitud total en el Bagre Azul (_Ictalurus furcatus_)
+
+```{r, eval = FALSE}
+library(FSAdata) # Cargar el paquete de datos de FSA
+data(BlueCatfish) # Cargar en el ambiente de trabajo el conjunto de datos BlueCatfish
+class(BlueCatfish) # Qué clase tiene el conjunto de datos?
+summary(BlueCatfish) # Sumarios de las variables en el conjunto de datos
+str(BlueCatfish)
+```
+
+Practica 1: Gráficas, sistema base, boxplot
+=======================================================
+
+* `boxplot(x, data, main, xlab)`
+
+        + `x` = la variable de interés
+        + `data` = conjunto de datos
+        + `main` = título del gráfico
+        + `ylab` = título del eje Y
+
+```{r, eval = FALSE}
+boxplot(variable, data = conjunto_de_datos) # Generar un boxplot para cada variable, tl y age
+boxplot(variable, data, main = "Boxplot de la variable XXX", ylab = "Título del eje y")
+```
+
+***
+
+```{r, echo=FALSE}
+boxplot(BlueCatfish$age, main = "Boxplot de la variable Edad", ylab = "Edad")
+```
+
+Practica 1: Gráficas, sistema base, histograma
+=======================================================
+
+* `hist(x, data, breaks, freq, col, main, xlab, ylab, xlim, ylim, ...)`
+
+```{r}
+hist(BlueCatfish$tl)
+```
+
+Practica 1: Gráficas, sistema base, scatterplot, regresión lineal
+=======================================================
+
+```{r}
+```
+
+
 =======================================================
 
 
@@ -195,14 +255,3 @@ Práctica 1: Paquetes (Aplicar si hay acceso a internet)
 =======================================================
 
 
-
-
-=======================================================
-
-=======================================================
-# FUNCIONES, ESTRUCTURAS DE CONTROL, E INTRODUCCIÓN A LA SIMULACIÓN
-
-Funciones (programación)
-=======================================================
-* Si hay una tarea de debemos repetir, tal vez sea buena idea crear una función que automatice dicha tarea
-* Presentan cuatro componentes: nombre, argumentos, cuerpo y ambiente

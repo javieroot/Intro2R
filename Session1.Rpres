@@ -70,6 +70,47 @@ Historia y contexto
 * Una calculadora de escritorio
 * Una herramienta de SIG
 * Una herramienta de simulación
+* Un generador de memes
+
+¿Qué es R?
+=======================================================
+<small style="font-size:.5em">
+```{r, eval=FALSE, text = "small"}
+MEME.GENERATOR <- 
+function(name.file.read.png, name.file.write.png, over.text, under.text, ps=12, height = 500, vertical.margin=20)
+{
+#read file
+img<-readPNG(name.file.read.png)
+ 
+#get size
+w<-dim(img)[2]
+ 
+#open new file for output
+png(name.file.write.png, width=w, height=height, bg="#000000", pointsize = ps)
+par(mar=c(vertical.margin,0,vertical.margin,0), xpd=NA, mgp=c(0,0,0), oma=c(0,0,0,0), ann=F)
+plot.new()
+plot.window(0:1, 0:1)
+ 
+#fill plot with image
+usr<-par("usr")    
+rasterImage(img, usr[1], usr[3], usr[2], usr[4])
+ 
+#add text
+text(.5,1.05, over.text, cex=5, col="#ffffff", pos=3)
+#add text
+text(.5, -.05, under.text, cex=5, col="#ffffff", pos=1)
+ 
+#close image
+dev.off()
+}
+
+MEME.GENERATOR("trollface.png", "meme-R.png", "algunos hacen\n estadística en R", "yo hago memes", ps=5, height=450)
+
+```
+</small>
+***
+
+![alt image](Session1-figure/meme.png)
 
 R en comparación con otras herramientas de análisis de datos
 =======================================================

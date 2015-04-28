@@ -2,3 +2,5 @@ base
 knitr
 ggplot2
 lattice
+FSAdata
+devtools
