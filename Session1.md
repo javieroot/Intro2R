@@ -208,7 +208,7 @@ Matrices: Generalidades
 
 * Son arreglos bidimensionales
 * Deben contener objetos de _la misma_ clase
-* Sus dimensiones son líneas * columnas
+* Sus dimensiones son hileras * columnas
 
 ***
 
@@ -1040,7 +1040,8 @@ ls()[which(ls() == "lst")] # Versión anidada que da el mismo resultado en una s
 Obteniendo información de los objetos
 =======================================================
 
-* class()
+* La función `class()` nos indica una propiedad importante de un objeto: Su clase
+* Se recomienda usar esta función de manera rutinaria para verificar procedimientos dependientes de funciones, o eventuales comportamientos indeseados durante labores de programación
 
 
 ```r
@@ -1051,7 +1052,9 @@ class(df)
 [1] "data.frame"
 ```
 
-* length()
+***
+
+* La longitud de un objeto es otro de sus atributos, obtenido con la función `length()`. En conjunto con la función `dim()` permite conocer las dimensiones y magnitudes de las mismas. Esta función es supremamente importante cuando se quiere programar rutinas implícitas y robustas.
 
 
 ```r
@@ -1061,8 +1064,6 @@ length(myList)
 ```
 [1] 3
 ```
-
-
 
 =======================================================
 # APENDICE 1: COERCIÓN
