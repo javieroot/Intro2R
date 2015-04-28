@@ -10,56 +10,25 @@ font-family: 'Serif'
 width: 1366
 height: 768
 author: Gustavo A. Ballen
+
 Museu de Zoologia da Universidade de São Paulo
+
 gaballench@gmail.com
 
 
-Práctica 1: Temas 1-3
+Práctica 1: Asignacion, clases
 =======================================================
 
-1. Cree una variable llamada `saludo`. Asigne a esta variable la frase `"Hola mundo de R! Llegué para quedarme"` usando el operador `<-`. Compare la presentación del valor de dicha variable con dos métodos: `print(saludo)` y `saludo`. Encuentra alguna diferencia entre ambos métodos?.
+* Cree una variable llamada `saludo`. Asigne a esta variable la frase `"Hola mundo de R! Llegué para quedarme"` usando el operador `<-`. Compare la presentación del valor de dicha variable con dos métodos: `print(saludo)` y `saludo`. Encuentra alguna diferencia entre ambos métodos?.
 
-2. Indique la clase (i.e., el tipo de datos que contiene) de dicha variable. Use las funciones `class()` o `str()`; encuentra alguna diferencia entre la información obtenida por ambos métodos?.
+* Indique la clase (i.e., el tipo de datos que contiene) de dicha variable. Use las funciones `class()` o `str()`; encuentra alguna diferencia entre la información obtenida por ambos métodos?.
 
-3. Asigne el valor `5` a una variable `x`. Asigne el valor `5L` a una variable `y`. Observe ahora el valor de cada variable. Son diferentes? Verifique la clase de cada objeto. Son diferentes?
+* Asigne el valor `5` a una variable `x`. Asigne el valor `5L` a una variable `y`. Observe ahora el valor de cada variable. Son diferentes? Verifique la clase de cada objeto. Son diferentes?
 
-
-Práctica 1: Temas 1-3
+Práctica 1: Operadores lógicos
 =======================================================
 
-4. Cree un objeto de las siguientes clases y llámelo como prefiera: `"character"`, `"integer"`, `"numeric"`, `"logical"`, `"complex"` (lo mismo que imaginario). TODOS deben ser de longitud `1`; Verifique la clase de cada objeto con las funciones que ya conoce. Alternativamente puede probar con `is.'clase_particular'('objeto')` (e.g., `is.integer(x)`)
-
-5. Cree un objeto con los números enteros del 1 al 5. Puede hacerlo por medio de la función `c()`, que `c`oncatena elementos en un vector. (Sugerencias: Escriba 1, 2, ..., 5 en dicha función, o asigne el valor de 1:5 a este. Los resultados difieren?)
-
-
-Práctica 1: Temas 1-3 [NO CORRER ANTES DE RESPONDER!]
-=======================================================
-
-7. Cuál es el resultado de la siguiente operación: `x + 2` dado que `x <- 1:10`. Cuál será el resultado de `y * 2` dado que `y <- 1:10`. Por qué se observan esos resultados?
-
-8. Dados los vectores `x` y `y` arriba, cuál es el tamaño del vector `z` resultante de la siguiente línea de código: `z <- x + y`. Hay alguna diferencia con `z <- c(x, y)`? Si es así, cuál es el tamaño del vector resultante?
-
-Práctica 1: Temas 1-3
-=======================================================
-
-1. Cree el siguiente objeto `matriz <- cbind(a = 1:10, b = 11:20, c = 21:30, d = 31:40)`. Ahora agregue una columna adicional de 10 valores de clase `integer`. Es importante que sean de la misma clase pues estamos creando una matriz y no un data frame. Cuáles son las dimensiones de ese objeto?
-
-2. Cree ahora un data frame con el siguiente código `df <- data.frame(a = 1:10, b = c("a", "b", "c", "b", "e", "f", "g", "h", "i", "j"), d = c(T, F, F, T, F, T, T, T, F, F))`. Es igual usar la función `cbind()` o `data.frame()` para crear un objeto con columnas de diferentes clases? Por qué? Verifique corriendo esa misma línea de código pero usando la función `cbind` en vez de `data.frame`.
-
-=======================================================
-
-3. Vamos a crear nuestra primera lista con la línea `lista <- list(x, y, z, matriz, df)`. Observe el contenido de ese objeto llamado lista. En qué difiere con respecto a los objetos creados por usted hasta el momento?
-
-Práctica 1: Temas 1-3
-=======================================================
-
-1. Dados los objetos `df` y `z` generados anteriormente, indique si la siguiente línea de código correrá sin generar avisos. Justifique su respuesta: `cbind(df, a = 1:3)` (A esto se le llama recursividad, más sobre eso en la siguiente sesión).
-
-2. la siguiente línea de código genera un vector que contiene los días de la semana del congreso. Usando la función adecuada (cubierta durante esta sesión), elija al azar tres de dichos días para salir a rumbear durante el congreso: `dias <- c("lunes", "martes", "miercoles", "jueves", "viernes")`. El sábado no está porque hay que dedicar al menos un día a conocer Leticia, y el domingo se dedica al señor, así que tampoco aplica.
-
-=======================================================
-
-6. Cuál va a ser el resultado de estas expresiones lógicas?
+* Cuál va a ser el resultado de estas expresiones lógicas?
 
 + 2 < 3
 + 2 > 3
@@ -83,8 +52,72 @@ Práctica 1: Temas 1-3
 + is.character("TRUE")
 + is.complex(3+1i)
 
+Práctica 1: Modificaciones de vectores
+=======================================================
+
+* Cree un objeto de las siguientes clases y llámelo como prefiera: `"character"`, `"integer"`, `"numeric"`, `"logical"`, `"complex"` (lo mismo que imaginario). TODOS deben ser de longitud `1`; Verifique la clase de cada objeto con las funciones que ya conoce. Alternativamente puede probar con `is.'clase_particular'('objeto')` (e.g., `is.integer(x)`)
+
+* Cree un objeto con los números enteros del 1 al 5. Puede hacerlo por medio de la función `c()`, que `c`oncatena elementos en un vector. (Sugerencias: Escriba 1, 2, ..., 5 en dicha función, o asigne el valor de 1:5 a este. Los resultados difieren?)
+
+Práctica 1: Operaciones vectorizadas [NO CORRER ANTES DE RESPONDER!]
+=======================================================
+
+* Cuál es el resultado de la siguiente operación: `x + 2` dado que `x <- 1:10`. Cuál será el resultado de `y * 2` dado que `y <- 1:10`. Por qué se observan esos resultados?
+
+* Dados los vectores `x` y `y` arriba, cuál es el tamaño del vector `z` resultante de la siguiente línea de código: `z <- x + y`. Hay alguna diferencia con `z <- c(x, y)`? Si es así, cuál es el tamaño del vector resultante?
+
+Práctica 1: Arreglos bidimensionales
+=======================================================
+
+* Cree el siguiente objeto `matriz <- cbind(a = 1:10, b = 11:20, c = 21:30, d = 31:40)`. Ahora agregue una columna adicional de 10 valores de clase `integer`. Es importante que sean de la misma clase pues estamos creando una matriz y no un data frame. Cuáles son las dimensiones de ese objeto?
+
+* Cree ahora un data frame con el siguiente código. Es igual usar la función `cbind()` o `data.frame()` para crear un objeto con columnas de diferentes clases? Por qué? Verifique corriendo esa misma línea de código pero usando la función `cbind` en vez de `data.frame`.
+
+```{r, eval=FALSE}
+df <- data.frame(a = 1:10, 
+                 b = c("a", "b", "c", "b", "e", "f", "g", "h", "i", "j"), 
+                 d = c(T, F, F, T, F, T, T, T, F, F))
+```
+
+Práctica 1: Arreglos bidimensionales
+=======================================================
+
+* Indique si la siguiente línea de código presenta algún error. Justifique y verifique corriendo el código:
 
 
+```{r, eval=FALSE}
+rbind(df, c("a", "j", T))
+```
+
+* A partir de una serie de números aleatorios provenientes de una distribución normal, genere un arreglo tridimensional de longitud tres en cada dimensión. Ahora aplique una operación vectorizada para que cada elemento de dicho arreglo contenga ahora los valores originales pero multiplicados por tres. Sugerencia: es perfectamente válido usar el resultado de una función como el input del argumento de otra función. Por ejemplo:
+
+```{r}
+mean(x = sample(1:20, 5, replace = FALSE)) # sample(...) es el argumento x de mean()
+```
+
+Práctica 1: Listas, aleatorización
+=======================================================
+
+* Vamos a crear nuestra primera lista con la línea `lista <- list(x, y, z, matriz, df)`. Observe el contenido de ese objeto llamado lista. En qué difiere con respecto a los objetos creados por usted hasta el momento?
+
+* Genere una lista de cuatro elementos con las siguientes categorías:
+
+        + A es una muestra aleatoria de una distribución normal con media = 5 y sd = 10
+        
+        + B es una muestra aleatoria de una distribución binomial con size = 13 y prob = 0.2
+
+        + C es un vector que aloja el resultado de diez lances en un experimento de cara y sello con una moneda no cargada, donde "C" es cara y "S" es sello
+        
+        + D es un vector conteniendo cualquier frase de su preferencia de no más de 10 palabras
+
+Práctica 1: Reciclaje, aleatorización
+=======================================================
+
+* Dados los objetos `df` y `z` generados anteriormente, indique si la siguiente línea de código correrá sin generar avisos. Justifique su respuesta: `cbind(df, a = 1:3)` (A esto se le llama reciclaje)
+
+* la siguiente línea de código genera un vector que contiene los días de la semana del congreso. Usando la función adecuada (cubierta durante esta sesión), elija al azar tres de dichos días para salir a rumbear durante el congreso: `dias <- c("lunes", "martes", "miercoles", "jueves", "viernes")`. El sábado no está porque hay que dedicar al menos un día a conocer Leticia, y el domingo se dedica al señor, así que tampoco aplica.
+
+Práctica 1: Clases, coercion
 =======================================================
 
 * Genere una tabla cruzada de coerción pára las clases `integer`, `numeric`, `logical`, `character`, `factor`. Dicha tabla debe contener los siguientes resultados: `Si` (Si la coerción es posible), `NA` (coerción genera NA porque es ilógico realizarlo)
@@ -99,21 +132,50 @@ character |         |         |         |           |
 factor    |         |         |         |           |        
 
 
-
+Práctica 1: Funciones
 =======================================================
 
+* En  el siguiente código identifique todas las funciones y determine su nombre y argumentos.
 
 
+```{r, eval=FALSE}
+specFamilyGlobal <- table(taxoinfo[, 2])
 
+numbers <- as.vector(specFamilyGlobal)
+
+families <- names(specFamilyGlobal)
+
+specFamilyGlobal <- data.frame(families, as.integer(numbers))
+
+tiff(filename = "specbyfamily.tiff", width = 1000, height = 480, units = "px")
+
+familybar <- qplot(factor(taxoinfo[, 2], levels = names(sort(table(taxoinfo[, 2])))),
+                   main = "Numero de especies por familia", 
+                   xlab = "Familia", ylab = "Riqueza", geom = "bar")
+
+familybar + theme(axis.text.x = element_text(angle = 90))
+
+dev.off()
+
+```
+
+Práctica 1: Función which()
 =======================================================
 
+* Dado el vector corotos con el código abajo, determine usando la función which() qué valores son menores a 100
 
+```{r, eval=FALSE}
+set.seed(1985)
+corotos <- sample(seq_len(1000), 50)
+which(corotos < 100)
+```
 
-
+Práctica 1: Paquetes (Aplicar si hay acceso a internet)
 =======================================================
 
-
-
+* Instalar los paquetes `lattice`, `ggplot2`, `dplyr` y `randtests`. Use la función `install.packages()`.
+* Cargue el los paquetes `lattice` y `ggplot2`
+* estos paquetes van a ser usado en la sesión sobre gráficos
 
 =======================================================
 

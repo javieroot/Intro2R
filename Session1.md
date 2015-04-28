@@ -191,11 +191,11 @@ Data frames: Generalidades
 
 ```
   var1 var2  var3   var4
-1    4    a  TRUE -1.708
-2    4    b FALSE -1.330
-3    4    c FALSE  1.248
-4    4    d  TRUE  0.529
-5    4    e FALSE  0.935
+1    4    a  TRUE  0.867
+2    4    b FALSE -1.605
+3    4    c FALSE  0.786
+4    4    d  TRUE  2.475
+5    4    e FALSE -0.993
 ```
 
 Arreglos multidimensionales: Generalidades
@@ -320,7 +320,7 @@ rnorm(n = 3) # Nombre rnorm, argumento n
 ```
 
 ```
-[1] -0.9038215 -0.3792643 -0.0610327
+[1]  0.31220688 -1.81784477  0.04150485
 ```
 
 ```r
@@ -336,7 +336,7 @@ Sys.time() # Nombre System.time, sin argumentos
 ```
 
 ```
-[1] "2015-04-27 16:49:13 BRT"
+[1] "2015-04-27 20:45:18 BRT"
 ```
 
 Creando nuestros primeros objetos: Operadores de asignación
@@ -779,11 +779,9 @@ ls()
 ```
 
 ```
- [1] "A"           "arr"         "df"          "dfr"         "diffClasses"
- [6] "k"           "lst"         "m"           "mat"         "matrix"     
-[11] "myChar"      "myComplex"   "myInteger"   "myList"      "myLogical"  
-[16] "myNumeric"   "n"           "o"           "sec"         "V"          
-[21] "vocales"     "x"           "y"          
+ [1] "A"       "arr"     "df"      "dfr"     "k"       "lst"     "m"      
+ [8] "mat"     "matrix"  "myList"  "n"       "o"       "sec"     "V"      
+[15] "vocales" "x"       "y"      
 ```
 
 ```r
@@ -792,10 +790,8 @@ ls()
 ```
 
 ```
- [1] "arr"         "df"          "dfr"         "diffClasses" "k"          
- [6] "lst"         "m"           "mat"         "matrix"      "myChar"     
-[11] "myComplex"   "myInteger"   "myList"      "myLogical"   "myNumeric"  
-[16] "n"           "o"           "sec"         "V"           "vocales"    
+ [1] "arr"     "df"      "dfr"     "k"       "lst"     "m"       "mat"    
+ [8] "matrix"  "myList"  "n"       "o"       "sec"     "V"       "vocales"
 ```
 
 Qué tenemos en el espacio de trabajo?: ls()
@@ -810,7 +806,6 @@ ls()
 ```
  [1] "arr"     "df"      "dfr"     "k"       "lst"     "m"       "mat"    
  [8] "matrix"  "myList"  "n"       "o"       "sec"     "V"       "vocales"
-[15] "x"       "y"      
 ```
 
 Muestreo aleatorio
@@ -824,7 +819,7 @@ sample(vocales, 3)
 ```
 
 ```
-[1] "u" "o" "a"
+[1] "u" "o" "e"
 ```
 
 Quién es quién dentro de un objeto?
