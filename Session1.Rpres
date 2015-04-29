@@ -59,8 +59,10 @@ Historia y contexto
 ¿Qué es R?
 =======================================================
 
-![alt text](Session1-figure/whatsr.png)
 
+<center><img src="Session1-figure/whatsr.png"
+        height="600px"/></center>
+        
 ¿Qué es R?
 =======================================================
 
@@ -115,13 +117,15 @@ MEME.GENERATOR("trollface.png", "meme-R.png", "algunos hacen\n estadística en R
 R en comparación con otras herramientas de análisis de datos
 =======================================================
 
-![alt text](Session1-figure/rvsweak.png)
-
+<center><img src="Session1-figure/rvsweak.png"
+        height="600px"/></center>
+        
 R en comparación con otras herramientas de análisis de datos
 =======================================================
 
-![alt text](Session1-figure/rvsstrong.png)
-
+<center><img src="Session1-figure/rvsstrong.png"
+        height="600px"/></center>
+        
 Ventajas de R
 =======================================================
 
@@ -308,6 +312,7 @@ Operadores de asignación:  <- vs. =
 Operadores de asignación:  <- vs. =
 =======================================================
 
+<small style="font-size:.75em">
 ```{r}
 X <- rnorm(100)
 Y <- 2*X + rnorm(100)
@@ -317,9 +322,11 @@ lm(formula = Y~X)
 ```{r}
 ls()
 ```
+</small>
 
 ***
 
+<small style="font-size:.75em">
 ```{r}
 X = rnorm(100)
 Y = 2*X + rnorm(100)
@@ -329,10 +336,12 @@ lm(formula = Y~X)
 ```{r}
 ls()
 ```
+</small>
 
 Operadores de asignación:  <- vs. =
 =======================================================
 
+<small style="font-size:.8em">
 ```{r}
 X <- rnorm(100)
 Y <- 2*X + rnorm(100)
@@ -342,6 +351,7 @@ lm(formula <- Y~X)
 ```{r}
 ls()
 ```
+</small>
 
 Operadores de asignación:  <- vs. =
 =======================================================
@@ -363,12 +373,13 @@ Funciones: Generalidades
 * Morfología general: `nombre(arg1, arg2, arg3, ..., argN)`
 
 ***
-
+<small style="font-size:.9em">
 ```{r, eval=TRUE, echo=TRUE}
 rnorm(n = 3) # Nombre rnorm, argumento n
 rep(x = "GAB", times = 5) # Nombre rep, argumentos x, times
-Sys.time() # Nombre System.time, sin argumentos 
+Sys.time() # Nombre Sys.time, sin argumentos 
 ```
+</small>
 
 Creando nuestros primeros objetos: Operadores de asignación
 =======================================================
@@ -495,11 +506,13 @@ Creación de arreglos multidimensionales
 Arrays
 =======================================================
 
+<small style="font-size:.8em">
 ```{r}
 arr <- array(data = 1:8, dim = c(2, 2, 2))
 arr
 dim(arr)
 ```
+</small>
 
 ***
 
@@ -514,6 +527,7 @@ Listas
 
 ***
 
+<small style="font-size:.8em">
 ```{r}
 m <- c(1, 2, 3)
 n <- data.frame(a = 1:2, b = rep('a', 2))
@@ -521,6 +535,7 @@ o <- matrix(data = 1:4, nrow = 2, ncol = 2, byrow = TRUE)
 lst <- list(m, n, o)
 lst
 ```
+</small>
 
 Listas
 =======================================================
@@ -583,7 +598,7 @@ dfr
 ***
 
 ```{r}
-rbind(dfr, c(6, 'b'))
+rbind(dfr, c(10, 'b'))
 ```
 
 Limpiando el espacio de trabajo: rm()
@@ -634,19 +649,22 @@ Cómo generar un muestreo aleatorio?
 
 * Pero y si redondeamos la primera cifra de cada número obtenido con `runif`???
 
+<small style="font-size:.8em">
 ```{r}
 unifs <- round(runif(min = 1, max = 10, n = 7), 0)
 unifs # Con un vector pequeño de siete elementos podemos ver que hay duplicados, pero y si contuviese 100 números aleatorios?
-unifs[duplicated(unifs)] # Ponchados! el número 5 aparece dos veces
+unique(unifs[duplicated(unifs)]) # Ponchados! tenemos números duplicados!
 ```
+</small>
 
 ***
-
+<small style="font-size:.8em">
 ```{r}
 muestreo <- sample(1:10, 7, replace = FALSE)
 muestreo # Con un vector pequeño de siete elementos podemos ver que hay duplicados, pero y si contuviese 100 números aleatorios el argumento replace = FALSE asegura que no existirán duplicados
 muestreo[duplicated(muestreo)] # integer(0) y manito arriba si no hay duplicados
 ```
+</small>
 
 Números aleatorios y dist. de probabilidad
 =======================================================
@@ -674,7 +692,7 @@ Quién es quién dentro de un objeto?
 
 * Puede pensarse en `which()` como una función que responde a un postulado lógico y da como respuesta quiénes cumplen con tal condición en un objeto
 
-<small style="font-size:.65em">
+<small style="font-size:.6em">
 ```{r}
 which(vocales =="e") # Cuál de los elementos del vector vocales es igual a e?
 which(1:10 <= 6) # Cuál de los enteros del uno al 10 es menor o igual a 6?
@@ -683,12 +701,13 @@ which(ls() == "lst") # Cuál de los elementos de nuestro espacio de trabajo es l
 </small>
 
 ***
-
+<small style="font-size:.6em">
 ```{r}
 which(ls() == "lst") # Quién es "lst"? Ok, es siete
-ls()[7] # El séptimo elemento de ls() es... voilà, "lst"
+ls()[8] # El séptimo elemento de ls() es... voilà, "lst"
 ls()[which(ls() == "lst")] # Versión anidada que da el mismo resultado en una sola linea de código
 ```
+</small>
 
 Obteniendo información de los objetos
 =======================================================
@@ -834,8 +853,9 @@ as.numeric(c('b', 'c', 4, 'd'))
 * En el "Comprehensive R Archive Network", el repositorio oficial de `R` ([http://cran.r-project.org/](http://cran.r-project.org/))
 * R ha evolucionado de manera increíble en cuanto a soporte adicional de paquetería.
 
-![alt text](Session1-figure/cranEvol.png)
-
+<center><img src="Session1-figure/cranEvol.png"
+        height="450px"/></center>
+        
 Ejemplos de paquetes
 =======================================================
 
@@ -860,7 +880,7 @@ install_github('droglenc/FSA') # Esta función puede usarse con un solo argument
 Cargando paquetes
 =======================================================
 
-* La función `library()` se enhcarga de cargar los paquetes que necesitemos
+* La función `library()` se encarga de cargar los paquetes que necesitemos
 
 ```{r, eval=FALSE, echo = TRUE, print=TRUE}
 library(vegan) #Al cargar el paquete NO usar comillas
@@ -888,18 +908,18 @@ Gráficos en R
 Gráficos en R: base
 =======================================================
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align='center'}
 datos <- data.frame(X = rnorm(10), Y = rnorm(10))
 lmod <- lm(Y ~ X, data = datos)
 ```
 
-```{r}
+```{r, fig.align='center'}
 plot(Y ~ X, data = datos) # Gráfico básico
 ```
 
 ***
 
-```{r}
+```{r, fig.align='center'}
 par(lty = 2, pch = 2)
 plot(Y ~ X, data = datos, main = "Gráfico", xlab = "Var1", ylab = "Var2")
 abline(lmod)
@@ -913,7 +933,7 @@ library(lattice)
 cloud(mpg~wt*qsec|cyl.f, main="3D Scatterplot by Cylinders")
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align='center'}
 # Example from http://www.statmethods.net/advgraphs/trellis.html
 # Lattice Examples
 library(lattice)
@@ -945,7 +965,7 @@ mtcars$cyl <- factor(mtcars$cyl,levels=c(4,6,8),
    labels=c("4cyl","6cyl","8cyl"))
 ```
 
-```{r}
+```{r, fig.align='center'}
 library(ggplot2)
 
 qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"), method="lm", formula=y~x, color=cyl, main="Regression of MPG on Weight", xlab="Weight", ylab="Miles per Gallon")
@@ -974,7 +994,7 @@ p + theme(axis.title=element_text(face="bold.italic",
 Gráficos básicos: Histograma
 =======================================================
 
-```{r, echo=FALSE}
+```{r, echo=FALSE,fig.align='center'}
 p1 <- rnorm(500,4)                     
 hist(p1, col= "green", xlim=c(0,8))  
 ```
@@ -983,7 +1003,7 @@ hist(p1, col= "green", xlim=c(0,8))
 Gráficos básicos: Boxplot
 =======================================================
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align='center'}
 ### Ejemplo modificado de http://www.statmethods.net/advgraphs/trellis.html
 
 bwplot(cyl.f~mpg|gear.f, ylab="Cylinders", xlab="Miles per Gallon", main="Mileage by Cylinders and Gears", layout=(c(1,3)))
@@ -993,7 +1013,7 @@ bwplot(cyl.f~mpg|gear.f, ylab="Cylinders", xlab="Miles per Gallon", main="Mileag
 Gráficos básicos: Diagrama de barras
 =======================================================
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align='center'}
 ### Ejemplo modificado de http://www.statmethods.net/graphs/bar.html
 counts <- table(mtcars$vs, mtcars$gear)
 barplot(counts, main="Car Distribution by Gears and VS",
@@ -1004,7 +1024,7 @@ barplot(counts, main="Car Distribution by Gears and VS",
 Gráficos básicos: Diagrama de dispersión + Regresión
 =======================================================
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align='center'}
 
 ggplot(mtcars, aes(wt, mpg)) + geom_point() + geom_smooth(method="lm")
 
@@ -1013,7 +1033,7 @@ ggplot(mtcars, aes(wt, mpg)) + geom_point() + geom_smooth(method="lm")
 Gráficos básicos: Gráficos de densidad (Distribuciones)
 =======================================================
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align='center'}
 ### Ejemplo modificado de http://stackoverflow.com/questions/6939136/how-to-overlay-density-plots-in-r
 dat <- data.frame(dens = c(rnorm(100), rnorm(100, 10, 5))
                    , lines = rep(c("a", "b"), each = 100))
@@ -1023,7 +1043,7 @@ ggplot(dat, aes(x = dens, fill = lines)) + geom_density(alpha = 0.5)
 Gráficos básicos: Dendrogramas
 =======================================================
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align='center'}
 ### Ejemplo modificado de http://stackoverflow.com/questions/18036094/how-to-create-a-dendrogram-with-colored-branches
 # Generate data
 set.seed(12345)
@@ -1060,7 +1080,7 @@ plot(hc)
 Gráficos básicos: Heatmaps
 =======================================================
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align='center'}
 ### Ejemplo modificado de http://digitheadslabnotebook.blogspot.com.br/2011/06/drawing-heatmaps-in-r.html
 data(mtcars)
 # scale data to mean=0, sd=1 and convert to matrix

@@ -53,8 +53,10 @@ Historia y contexto
 ¿Qué es R?
 =======================================================
 
-![alt text](Session1-figure/whatsr.png)
 
+<center><img src="Session1-figure/whatsr.png"
+        height="600px"/></center>
+        
 ¿Qué es R?
 =======================================================
 
@@ -109,13 +111,15 @@ MEME.GENERATOR("trollface.png", "meme-R.png", "algunos hacen\n estadística en R
 R en comparación con otras herramientas de análisis de datos
 =======================================================
 
-![alt text](Session1-figure/rvsweak.png)
-
+<center><img src="Session1-figure/rvsweak.png"
+        height="600px"/></center>
+        
 R en comparación con otras herramientas de análisis de datos
 =======================================================
 
-![alt text](Session1-figure/rvsstrong.png)
-
+<center><img src="Session1-figure/rvsstrong.png"
+        height="600px"/></center>
+        
 Ventajas de R
 =======================================================
 
@@ -232,11 +236,11 @@ Data frames: Generalidades
 
 ```
   var1 var2  var3   var4
-1    4    a  TRUE  0.441
-2    4    b FALSE  1.285
-3    4    c FALSE -1.556
-4    4    d  TRUE -1.470
-5    4    e FALSE  1.993
+1    4    a  TRUE  0.991
+2    4    b FALSE  2.010
+3    4    c FALSE -0.914
+4    4    d  TRUE  1.395
+5    4    e FALSE  0.931
 ```
 
 Arreglos multidimensionales: Generalidades
@@ -368,6 +372,7 @@ Operadores de asignación:  <- vs. =
 Operadores de asignación:  <- vs. =
 =======================================================
 
+<small style="font-size:.75em">
 
 ```r
 X <- rnorm(100)
@@ -382,7 +387,7 @@ lm(formula = Y ~ X)
 
 Coefficients:
 (Intercept)            X  
-    0.08148      2.07782  
+     0.1097       1.9210  
 ```
 
 
@@ -395,9 +400,11 @@ ls()
  [6] "myComplex"   "myInteger"   "myList"      "myLogical"   "myNumeric"  
 [11] "X"           "Y"          
 ```
+</small>
 
 ***
 
+<small style="font-size:.75em">
 
 ```r
 X = rnorm(100)
@@ -412,7 +419,7 @@ lm(formula = Y ~ X)
 
 Coefficients:
 (Intercept)            X  
-    0.03606      1.93762  
+    0.04823      1.97504  
 ```
 
 
@@ -425,10 +432,12 @@ ls()
  [6] "myComplex"   "myInteger"   "myList"      "myLogical"   "myNumeric"  
 [11] "X"           "Y"          
 ```
+</small>
 
 Operadores de asignación:  <- vs. =
 =======================================================
 
+<small style="font-size:.8em">
 
 ```r
 X <- rnorm(100)
@@ -443,7 +452,7 @@ lm(formula = formula <- Y ~ X)
 
 Coefficients:
 (Intercept)            X  
-     0.1083       1.9930  
+    0.01942      1.86774  
 ```
 
 
@@ -456,6 +465,7 @@ ls()
  [6] "myChar"      "myComplex"   "myInteger"   "myList"      "myLogical"  
 [11] "myNumeric"   "X"           "Y"          
 ```
+</small>
 
 Operadores de asignación:  <- vs. =
 =======================================================
@@ -477,14 +487,14 @@ Funciones: Generalidades
 * Morfología general: `nombre(arg1, arg2, arg3, ..., argN)`
 
 ***
-
+<small style="font-size:.9em">
 
 ```r
 rnorm(n = 3) # Nombre rnorm, argumento n
 ```
 
 ```
-[1] -1.1494264  0.2893405  0.0100701
+[1] -0.3125713 -0.6577676 -0.8969059
 ```
 
 ```r
@@ -496,12 +506,13 @@ rep(x = "GAB", times = 5) # Nombre rep, argumentos x, times
 ```
 
 ```r
-Sys.time() # Nombre System.time, sin argumentos 
+Sys.time() # Nombre Sys.time, sin argumentos 
 ```
 
 ```
-[1] "2015-04-29 14:18:50 BRT"
+[1] "2015-04-29 17:15:07 BRT"
 ```
+</small>
 
 Creando nuestros primeros objetos: Operadores de asignación
 =======================================================
@@ -733,6 +744,7 @@ Creación de arreglos multidimensionales
 Arrays
 =======================================================
 
+<small style="font-size:.8em">
 
 ```r
 arr <- array(data = 1:8, dim = c(2, 2, 2))
@@ -760,6 +772,7 @@ dim(arr)
 ```
 [1] 2 2 2
 ```
+</small>
 
 ***
 
@@ -774,6 +787,7 @@ Listas
 
 ***
 
+<small style="font-size:.8em">
 
 ```r
 m <- c(1, 2, 3)
@@ -797,6 +811,7 @@ lst
 [1,]    1    2
 [2,]    3    4
 ```
+</small>
 
 Listas
 =======================================================
@@ -924,17 +939,17 @@ dfr
 
 
 ```r
-rbind(dfr, c(6, 'b'))
+rbind(dfr, c(10, 'b'))
 ```
 
 ```
-  a b
-1 1 a
-2 2 a
-3 3 a
-4 4 a
-5 5 a
-6 6 b
+   a b
+1  1 a
+2  2 a
+3  3 a
+4  4 a
+5  5 a
+6 10 b
 ```
 
 Limpiando el espacio de trabajo: rm()
@@ -1002,7 +1017,7 @@ sample(vocales, 3)
 ```
 
 ```
-[1] "a" "u" "o"
+[1] "u" "o" "i"
 ```
 
 ```r
@@ -1010,7 +1025,7 @@ sample(x = 1:100, size = 5, replace = FALSE)
 ```
 
 ```
-[1] 53 42 45 60 46
+[1] 69 81 55 17 49
 ```
 
 ```r
@@ -1018,7 +1033,7 @@ runif(n = 5, min = 1, max = 100)
 ```
 
 ```
-[1] 32.419916 64.025647  8.648206 93.919512 90.316409
+[1] 97.19130 58.82245 58.79425 80.26431 32.07277
 ```
 
 Cómo generar un muestreo aleatorio?
@@ -1026,6 +1041,7 @@ Cómo generar un muestreo aleatorio?
 
 * Pero y si redondeamos la primera cifra de cada número obtenido con `runif`???
 
+<small style="font-size:.8em">
 
 ```r
 unifs <- round(runif(min = 1, max = 10, n = 7), 0)
@@ -1033,19 +1049,20 @@ unifs # Con un vector pequeño de siete elementos podemos ver que hay duplicados
 ```
 
 ```
-[1] 10  3 10  2  5 10  2
+[1]  4  4  6  9  5 10 10
 ```
 
 ```r
-unifs[duplicated(unifs)] # Ponchados! el número 5 aparece dos veces
+unique(unifs[duplicated(unifs)]) # Ponchados! tenemos números duplicados!
 ```
 
 ```
-[1] 10 10  2
+[1]  4 10
 ```
+</small>
 
 ***
-
+<small style="font-size:.8em">
 
 ```r
 muestreo <- sample(1:10, 7, replace = FALSE)
@@ -1053,7 +1070,7 @@ muestreo # Con un vector pequeño de siete elementos podemos ver que hay duplica
 ```
 
 ```
-[1] 10  1  3  7  8  4  2
+[1]  2  8 10  9  7  1  4
 ```
 
 ```r
@@ -1063,6 +1080,7 @@ muestreo[duplicated(muestreo)] # integer(0) y manito arriba si no hay duplicados
 ```
 integer(0)
 ```
+</small>
 
 Números aleatorios y dist. de probabilidad
 =======================================================
@@ -1107,7 +1125,7 @@ rnorm(5, mean = 0, sd = 1) # Genere cinco números aleatorios a partir de una di
 ```
 
 ```
-[1]  0.33760395  0.50759399 -0.06155537 -0.17796077 -1.11195642
+[1]  0.2745978 -1.3799171 -0.2216155 -1.2965001 -1.6265847
 ```
 </small>
 
@@ -1116,7 +1134,7 @@ Quién es quién dentro de un objeto?
 
 * Puede pensarse en `which()` como una función que responde a un postulado lógico y da como respuesta quiénes cumplen con tal condición en un objeto
 
-<small style="font-size:.65em">
+<small style="font-size:.6em">
 
 ```r
 which(vocales =="e") # Cuál de los elementos del vector vocales es igual a e?
@@ -1144,7 +1162,7 @@ which(ls() == "lst") # Cuál de los elementos de nuestro espacio de trabajo es l
 </small>
 
 ***
-
+<small style="font-size:.6em">
 
 ```r
 which(ls() == "lst") # Quién es "lst"? Ok, es siete
@@ -1155,11 +1173,11 @@ which(ls() == "lst") # Quién es "lst"? Ok, es siete
 ```
 
 ```r
-ls()[7] # El séptimo elemento de ls() es... voilà, "lst"
+ls()[8] # El séptimo elemento de ls() es... voilà, "lst"
 ```
 
 ```
-[1] "m"
+[1] "mat"
 ```
 
 ```r
@@ -1169,6 +1187,7 @@ ls()[which(ls() == "lst")] # Versión anidada que da el mismo resultado en una s
 ```
 [1] "lst"
 ```
+</small>
 
 Obteniendo información de los objetos
 =======================================================
@@ -1452,8 +1471,9 @@ Warning: NAs introduzidos por coerção
 * En el "Comprehensive R Archive Network", el repositorio oficial de `R` ([http://cran.r-project.org/](http://cran.r-project.org/))
 * R ha evolucionado de manera increíble en cuanto a soporte adicional de paquetería.
 
-![alt text](Session1-figure/cranEvol.png)
-
+<center><img src="Session1-figure/cranEvol.png"
+        height="450px"/></center>
+        
 Ejemplos de paquetes
 =======================================================
 
@@ -1479,7 +1499,7 @@ install_github('droglenc/FSA') # Esta función puede usarse con un solo argument
 Cargando paquetes
 =======================================================
 
-* La función `library()` se enhcarga de cargar los paquetes que necesitemos
+* La función `library()` se encarga de cargar los paquetes que necesitemos
 
 
 ```r
@@ -1515,7 +1535,7 @@ Gráficos en R: base
 plot(Y ~ X, data = datos) # Gráfico básico
 ```
 
-![plot of chunk unnamed-chunk-55](Session1-figure/unnamed-chunk-55-1.png) 
+<img src="Session1-figure/unnamed-chunk-55-1.png" title="plot of chunk unnamed-chunk-55" alt="plot of chunk unnamed-chunk-55" style="display: block; margin: auto;" />
 
 ***
 
@@ -1526,7 +1546,7 @@ plot(Y ~ X, data = datos, main = "Gráfico", xlab = "Var1", ylab = "Var2")
 abline(lmod)
 ```
 
-![plot of chunk unnamed-chunk-56](Session1-figure/unnamed-chunk-56-1.png) 
+<img src="Session1-figure/unnamed-chunk-56-1.png" title="plot of chunk unnamed-chunk-56" alt="plot of chunk unnamed-chunk-56" style="display: block; margin: auto;" />
 
 Gráficos en R: lattice
 =======================================================
@@ -1537,7 +1557,7 @@ library(lattice)
 cloud(mpg~wt*qsec|cyl.f, main="3D Scatterplot by Cylinders")
 ```
 
-![plot of chunk unnamed-chunk-58](Session1-figure/unnamed-chunk-58-1.png) 
+<img src="Session1-figure/unnamed-chunk-58-1.png" title="plot of chunk unnamed-chunk-58" alt="plot of chunk unnamed-chunk-58" style="display: block; margin: auto;" />
 
 Gráficos en R: ggplot2
 =======================================================
@@ -1551,7 +1571,7 @@ library(ggplot2)
 qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"), method="lm", formula=y~x, color=cyl, main="Regression of MPG on Weight", xlab="Weight", ylab="Miles per Gallon")
 ```
 
-![plot of chunk unnamed-chunk-60](Session1-figure/unnamed-chunk-60-1.png) 
+<img src="Session1-figure/unnamed-chunk-60-1.png" title="plot of chunk unnamed-chunk-60" alt="plot of chunk unnamed-chunk-60" style="display: block; margin: auto;" />
 
 
 Gráficos en R: ggplot2
@@ -1575,36 +1595,36 @@ p + theme(axis.title=element_text(face="bold.italic",
 Gráficos básicos: Histograma
 =======================================================
 
-![plot of chunk unnamed-chunk-63](Session1-figure/unnamed-chunk-63-1.png) 
+<img src="Session1-figure/unnamed-chunk-63-1.png" title="plot of chunk unnamed-chunk-63" alt="plot of chunk unnamed-chunk-63" style="display: block; margin: auto;" />
 
 
 Gráficos básicos: Boxplot
 =======================================================
 
-![plot of chunk unnamed-chunk-64](Session1-figure/unnamed-chunk-64-1.png) 
+<img src="Session1-figure/unnamed-chunk-64-1.png" title="plot of chunk unnamed-chunk-64" alt="plot of chunk unnamed-chunk-64" style="display: block; margin: auto;" />
 
 Gráficos básicos: Diagrama de barras
 =======================================================
 
-![plot of chunk unnamed-chunk-65](Session1-figure/unnamed-chunk-65-1.png) 
+<img src="Session1-figure/unnamed-chunk-65-1.png" title="plot of chunk unnamed-chunk-65" alt="plot of chunk unnamed-chunk-65" style="display: block; margin: auto;" />
 
 Gráficos básicos: Diagrama de dispersión + Regresión
 =======================================================
 
-![plot of chunk unnamed-chunk-66](Session1-figure/unnamed-chunk-66-1.png) 
+<img src="Session1-figure/unnamed-chunk-66-1.png" title="plot of chunk unnamed-chunk-66" alt="plot of chunk unnamed-chunk-66" style="display: block; margin: auto;" />
 
 Gráficos básicos: Gráficos de densidad (Distribuciones)
 =======================================================
 
-![plot of chunk unnamed-chunk-67](Session1-figure/unnamed-chunk-67-1.png) 
+<img src="Session1-figure/unnamed-chunk-67-1.png" title="plot of chunk unnamed-chunk-67" alt="plot of chunk unnamed-chunk-67" style="display: block; margin: auto;" />
 
 Gráficos básicos: Dendrogramas
 =======================================================
 
-![plot of chunk unnamed-chunk-68](Session1-figure/unnamed-chunk-68-1.png) 
+<img src="Session1-figure/unnamed-chunk-68-1.png" title="plot of chunk unnamed-chunk-68" alt="plot of chunk unnamed-chunk-68" style="display: block; margin: auto;" />
 
 
 Gráficos básicos: Heatmaps
 =======================================================
 
-![plot of chunk unnamed-chunk-69](Session1-figure/unnamed-chunk-69-1.png) 
+<img src="Session1-figure/unnamed-chunk-69-1.png" title="plot of chunk unnamed-chunk-69" alt="plot of chunk unnamed-chunk-69" style="display: block; margin: auto;" />

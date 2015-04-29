@@ -1,0 +1,7 @@
+---
+title: "Tarea temas 1-5"
+author: "Gustavo A. Ballen"
+date: "29-04-2015"
+output: html_document
+---
+
