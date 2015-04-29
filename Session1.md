@@ -299,6 +299,14 @@ Listas: Generalidades
 
 
 ```r
+class(myList)
+```
+
+```
+[1] "list"
+```
+
+```r
 class(myList[[1]])
 ```
 
@@ -341,8 +349,122 @@ Operadores de asignación
 Uso de los operadores de asignación y funciones útiles para generar datos
 
 * `<-` asigna un valor (o valores) a una variable global (u objeto) (e.g., `variable1  <- valor`). SIEMPRE PARA VARIABLES!
-* `=` asigna un valor (o valores) a una variable local (e.g., argumento x de una función es igual a `TRUE`; más sobre esto después). NUNCA PARA VALORES!
-* `<<-` es un asignador que funciona entre ambientes. Casi nunca se usa, solo en funciones donde se requiere alterar el valor de una variable fuera del ambiente de la función de interés. Puede pensarse en este operador como un mega-asignador que busca la variable en todos los ambientes disponibles y la modifica. USAR CON EXTREMA PRECAUCIÓN!
+* `=` asigna un valor (o valores) a una variable de nivel superior (e.g., argumento x de una función es igual a `TRUE`; más sobre esto después). NUNCA PARA VALORES!
+* `<<-` es un asignador no local que funciona entre ambientes. Casi nunca se usa, solo en funciones donde se requiere alterar el valor de una variable fuera del ambiente de la función de interés. Puede pensarse en este operador como un mega-asignador que busca la variable en todos los ambientes disponibles y la modifica. USAR CON EXTREMA PRECAUCIÓN!
+
+Operadores de asignación:  <- vs. =
+=======================================================
+
+* Entonces, ambos operadores sirven para realizar asignación
+* Una búsqueda en google revela que algunas personas recomiendan usar  <- , otras =
+* La guía de estilo de Google [recomienda](http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml#assignment)  <- 
+* La guía de estilo de Hadley Wickham [recomienda](http://adv-r.had.co.nz/Style.html)  <- 
+* John Chambers (2008) [indica](http://www.springer.com/br/book/9780387759357) que son sinónimos
+* `help(`=`)` [muestra](https://stat.ethz.ch/R-manual/R-devel/library/base/html/assignOps.html) que la diferencia entre ambos es que = es solo permitido a nivel superior
+* La info para desarrolladores de R [indica](http://developer.r-project.org/equalAssign.html) que son sinónimos sin mucho detalle
+* Kun Ren [demuestra](http://renkun.me/blog/2014/01/28/difference-between-assignment-operators-in-r.html) por qué no son sinónimos
+* Entonces, en qué difieren?
+
+Operadores de asignación:  <- vs. =
+=======================================================
+
+
+```r
+X <- rnorm(100)
+Y <- 2*X + rnorm(100)
+lm(formula = Y~X)
+```
+
+```
+
+Call:
+lm(formula = Y ~ X)
+
+Coefficients:
+(Intercept)            X  
+    0.08148      2.07782  
+```
+
+
+```r
+ls()
+```
+
+```
+ [1] "arr"         "df"          "diffClasses" "matrix"      "myChar"     
+ [6] "myComplex"   "myInteger"   "myList"      "myLogical"   "myNumeric"  
+[11] "X"           "Y"          
+```
+
+***
+
+
+```r
+X = rnorm(100)
+Y = 2*X + rnorm(100)
+lm(formula = Y~X)
+```
+
+```
+
+Call:
+lm(formula = Y ~ X)
+
+Coefficients:
+(Intercept)            X  
+    0.03606      1.93762  
+```
+
+
+```r
+ls()
+```
+
+```
+ [1] "arr"         "df"          "diffClasses" "matrix"      "myChar"     
+ [6] "myComplex"   "myInteger"   "myList"      "myLogical"   "myNumeric"  
+[11] "X"           "Y"          
+```
+
+Operadores de asignación:  <- vs. =
+=======================================================
+
+
+```r
+X <- rnorm(100)
+Y <- 2*X + rnorm(100)
+lm(formula <- Y~X)
+```
+
+```
+
+Call:
+lm(formula = formula <- Y ~ X)
+
+Coefficients:
+(Intercept)            X  
+     0.1083       1.9930  
+```
+
+
+```r
+ls()
+```
+
+```
+ [1] "arr"         "df"          "diffClasses" "formula"     "matrix"     
+ [6] "myChar"      "myComplex"   "myInteger"   "myList"      "myLogical"  
+[11] "myNumeric"   "X"           "Y"          
+```
+
+Operadores de asignación:  <- vs. =
+=======================================================
+
+* Cómo así??? Noten el objeto llamado formula como resultado de llamar ls(). el operador  <- ha creado este objeto en el ambiente de trabajo!
+* Conclusión, los dos operadores NO son sinónimos dependiendo del contexto.
+* Para crear objetos o asignar valores a los mismos, ambos operadores realizan la misma tarea
+* Para asignar valores a un _argumento_ dentro de la llamada de una funciíon, `=` es la elección correcta, mientras que  `<-` va a crear un objeto fuera de la función, va a asignar su valor al argumento, y realizará dicha tarea
+* Por qué es esta diferncia relevante? usar  `<-` dentro de funciones puede generar efectos colaterales indeseados como modificación de objetos que NO queríamos modificar
 
 Funciones: Generalidades
 =======================================================
@@ -352,7 +474,7 @@ Funciones: Generalidades
 * Contienen opciones llamadas argumentos
 * Sucedidos por paréntesis (e.g., `c()`, `nrow()`, `sd()`, `lm()`)
 * Presentan tres partes principales: Formales (argumentos), cuerpo y ambiente (más sobre esto luego).
-* Morfología general: `funcion(arg1, arg2, arg3, ..., argN)`
+* Morfología general: `nombre(arg1, arg2, arg3, ..., argN)`
 
 ***
 
@@ -362,7 +484,7 @@ rnorm(n = 3) # Nombre rnorm, argumento n
 ```
 
 ```
-[1]  0.8143934  1.6213108 -1.0109143
+[1] -1.1494264  0.2893405  0.0100701
 ```
 
 ```r
@@ -378,7 +500,7 @@ Sys.time() # Nombre System.time, sin argumentos
 ```
 
 ```
-[1] "2015-04-28 01:30:47 BRT"
+[1] "2015-04-29 14:18:50 BRT"
 ```
 
 Creando nuestros primeros objetos: Operadores de asignación
@@ -821,9 +943,9 @@ ls()
 ```
 
 ```
- [1] "A"       "arr"     "df"      "dfr"     "k"       "lst"     "m"      
- [8] "mat"     "matrix"  "myList"  "n"       "o"       "sec"     "V"      
-[15] "vocales" "x"       "y"      
+ [1] "A"       "arr"     "df"      "dfr"     "formula" "k"       "lst"    
+ [8] "m"       "mat"     "matrix"  "myList"  "n"       "o"       "sec"    
+[15] "V"       "vocales" "x"       "X"       "y"       "Y"      
 ```
 
 ```r
@@ -832,8 +954,9 @@ ls()
 ```
 
 ```
- [1] "arr"     "df"      "dfr"     "k"       "lst"     "m"       "mat"    
- [8] "matrix"  "myList"  "n"       "o"       "sec"     "V"       "vocales"
+ [1] "arr"     "df"      "dfr"     "formula" "k"       "lst"     "m"      
+ [8] "mat"     "matrix"  "myList"  "n"       "o"       "sec"     "V"      
+[15] "vocales" "X"       "Y"      
 ```
 
 Qué tenemos en el espacio de trabajo?: ls()
@@ -847,8 +970,9 @@ ls()
 ```
 
 ```
- [1] "arr"     "df"      "dfr"     "k"       "lst"     "m"       "mat"    
- [8] "matrix"  "myList"  "n"       "o"       "sec"     "V"       "vocales"
+ [1] "arr"     "df"      "dfr"     "formula" "k"       "lst"     "m"      
+ [8] "mat"     "matrix"  "myList"  "n"       "o"       "sec"     "V"      
+[15] "vocales" "X"       "Y"      
 ```
 
 * Recuerdan la función `rm()`? Bueno, usandola en conjunto con la función `ls()` y el argumento `list` en la primera, podemos limpiar el espacio de trabajo de un solo tacazo
@@ -871,7 +995,7 @@ sample(vocales, 3)
 ```
 
 ```
-[1] "a" "e" "u"
+[1] "a" "u" "o"
 ```
 
 ```r
@@ -879,7 +1003,7 @@ sample(x = 1:100, size = 5, replace = FALSE)
 ```
 
 ```
-[1] 92 19 77  3 49
+[1] 53 42 45 60 46
 ```
 
 ```r
@@ -887,7 +1011,7 @@ runif(n = 5, min = 1, max = 100)
 ```
 
 ```
-[1] 80.31305 12.52780 50.40860 71.63072 48.30084
+[1] 32.419916 64.025647  8.648206 93.919512 90.316409
 ```
 
 Cómo generar un muestreo aleatorio?
@@ -902,7 +1026,7 @@ unifs # Con un vector pequeño de siete elementos podemos ver que hay duplicados
 ```
 
 ```
-[1] 5 7 5 2 8 5 9
+[1] 10  3 10  2  5 10  2
 ```
 
 ```r
@@ -910,7 +1034,7 @@ unifs[duplicated(unifs)] # Ponchados! el número 5 aparece dos veces
 ```
 
 ```
-[1] 5 5
+[1] 10 10  2
 ```
 
 ***
@@ -922,7 +1046,7 @@ muestreo # Con un vector pequeño de siete elementos podemos ver que hay duplica
 ```
 
 ```
-[1] 9 6 4 7 5 1 3
+[1] 10  1  3  7  8  4  2
 ```
 
 ```r
@@ -975,7 +1099,7 @@ rnorm(5, mean = 0, sd = 1) # Genere cinco números aleatorios a partir de una di
 ```
 
 ```
-[1]  0.7991081  0.5842808 -0.7512239 -0.5794803 -0.9025590
+[1]  0.33760395  0.50759399 -0.06155537 -0.17796077 -1.11195642
 ```
 </small>
 
@@ -1007,7 +1131,7 @@ which(ls() == "lst") # Cuál de los elementos de nuestro espacio de trabajo es l
 ```
 
 ```
-[1] 7
+[1] 6
 ```
 </small>
 ***
@@ -1018,7 +1142,7 @@ which(ls() == "lst") # Quién es "lst"? Ok, es siete
 ```
 
 ```
-[1] 7
+[1] 6
 ```
 
 ```r
@@ -1026,7 +1150,7 @@ ls()[7] # El séptimo elemento de ls() es... voilà, "lst"
 ```
 
 ```
-[1] "lst"
+[1] "m"
 ```
 
 ```r
@@ -1376,7 +1500,7 @@ Gráficos en R: `base`
 plot(Y ~ X, data = datos) # Gráfico básico
 ```
 
-![plot of chunk unnamed-chunk-49](Session1-figure/unnamed-chunk-49-1.png) 
+![plot of chunk unnamed-chunk-55](Session1-figure/unnamed-chunk-55-1.png) 
 
 ***
 
@@ -1387,7 +1511,7 @@ plot(Y ~ X, data = datos, main = "Gráfico", xlab = "Var1", ylab = "Var2")
 abline(lmod)
 ```
 
-![plot of chunk unnamed-chunk-50](Session1-figure/unnamed-chunk-50-1.png) 
+![plot of chunk unnamed-chunk-56](Session1-figure/unnamed-chunk-56-1.png) 
 
 Gráficos en R: `lattice`
 =======================================================
@@ -1398,7 +1522,7 @@ library(lattice)
 cloud(mpg~wt*qsec|cyl.f, main="3D Scatterplot by Cylinders")
 ```
 
-![plot of chunk unnamed-chunk-52](Session1-figure/unnamed-chunk-52-1.png) 
+![plot of chunk unnamed-chunk-58](Session1-figure/unnamed-chunk-58-1.png) 
 
 Gráficos en R: `ggplot2`
 =======================================================
@@ -1412,7 +1536,7 @@ library(ggplot2)
 qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"), method="lm", formula=y~x, color=cyl, main="Regression of MPG on Weight", xlab="Weight", ylab="Miles per Gallon")
 ```
 
-![plot of chunk unnamed-chunk-54](Session1-figure/unnamed-chunk-54-1.png) 
+![plot of chunk unnamed-chunk-60](Session1-figure/unnamed-chunk-60-1.png) 
 
 
 Gráficos en R: `ggplot2`
@@ -1433,36 +1557,36 @@ p + theme(axis.title=element_text(face="bold.italic",
 Gráficos básicos: Histograma
 =======================================================
 
-![plot of chunk unnamed-chunk-57](Session1-figure/unnamed-chunk-57-1.png) 
+![plot of chunk unnamed-chunk-63](Session1-figure/unnamed-chunk-63-1.png) 
 
 
 Gráficos básicos: Boxplot
 =======================================================
 
-![plot of chunk unnamed-chunk-58](Session1-figure/unnamed-chunk-58-1.png) 
+![plot of chunk unnamed-chunk-64](Session1-figure/unnamed-chunk-64-1.png) 
 
 Gráficos básicos: Diagrama de barras
 =======================================================
 
-![plot of chunk unnamed-chunk-59](Session1-figure/unnamed-chunk-59-1.png) 
+![plot of chunk unnamed-chunk-65](Session1-figure/unnamed-chunk-65-1.png) 
 
 Gráficos básicos: Diagrama de dispersión + Regresión
 =======================================================
 
-![plot of chunk unnamed-chunk-60](Session1-figure/unnamed-chunk-60-1.png) 
+![plot of chunk unnamed-chunk-66](Session1-figure/unnamed-chunk-66-1.png) 
 
 Gráficos básicos: Gráficos de densidad (Distribuciones)
 =======================================================
 
-![plot of chunk unnamed-chunk-61](Session1-figure/unnamed-chunk-61-1.png) 
+![plot of chunk unnamed-chunk-67](Session1-figure/unnamed-chunk-67-1.png) 
 
 Gráficos básicos: Dendrogramas
 =======================================================
 
-![plot of chunk unnamed-chunk-62](Session1-figure/unnamed-chunk-62-1.png) 
+![plot of chunk unnamed-chunk-68](Session1-figure/unnamed-chunk-68-1.png) 
 
 
 Gráficos básicos: Heatmaps
 =======================================================
 
-![plot of chunk unnamed-chunk-63](Session1-figure/unnamed-chunk-63-1.png) 
+![plot of chunk unnamed-chunk-69](Session1-figure/unnamed-chunk-69-1.png) 

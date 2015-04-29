@@ -264,6 +264,7 @@ myList
 ***
 
 ```{r}
+class(myList)
 class(myList[[1]])
 class(myList[[2]])
 class(myList[[3]])
@@ -288,8 +289,68 @@ Operadores de asignación
 Uso de los operadores de asignación y funciones útiles para generar datos
 
 * `<-` asigna un valor (o valores) a una variable global (u objeto) (e.g., `variable1  <- valor`). SIEMPRE PARA VARIABLES!
-* `=` asigna un valor (o valores) a una variable local (e.g., argumento x de una función es igual a `TRUE`; más sobre esto después). NUNCA PARA VALORES!
-* `<<-` es un asignador que funciona entre ambientes. Casi nunca se usa, solo en funciones donde se requiere alterar el valor de una variable fuera del ambiente de la función de interés. Puede pensarse en este operador como un mega-asignador que busca la variable en todos los ambientes disponibles y la modifica. USAR CON EXTREMA PRECAUCIÓN!
+* `=` asigna un valor (o valores) a una variable de nivel superior (e.g., argumento x de una función es igual a `TRUE`; más sobre esto después). NUNCA PARA VALORES!
+* `<<-` es un asignador no local que funciona entre ambientes. Casi nunca se usa, solo en funciones donde se requiere alterar el valor de una variable fuera del ambiente de la función de interés. Puede pensarse en este operador como un mega-asignador que busca la variable en todos los ambientes disponibles y la modifica. USAR CON EXTREMA PRECAUCIÓN!
+
+Operadores de asignación:  <- vs. =
+=======================================================
+
+* Entonces, ambos operadores sirven para realizar asignación
+* Una búsqueda en google revela que algunas personas recomiendan usar  <- , otras =
+* La guía de estilo de Google [recomienda](http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml#assignment)  <- 
+* La guía de estilo de Hadley Wickham [recomienda](http://adv-r.had.co.nz/Style.html)  <- 
+* John Chambers (2008) [indica](http://www.springer.com/br/book/9780387759357) que son sinónimos
+* `help(`=`)` [muestra](https://stat.ethz.ch/R-manual/R-devel/library/base/html/assignOps.html) que la diferencia entre ambos es que = es solo permitido a nivel superior
+* La info para desarrolladores de R [indica](http://developer.r-project.org/equalAssign.html) que son sinónimos sin mucho detalle
+* Kun Ren [demuestra](http://renkun.me/blog/2014/01/28/difference-between-assignment-operators-in-r.html) por qué no son sinónimos
+* Entonces, en qué difieren?
+
+Operadores de asignación:  <- vs. =
+=======================================================
+
+```{r}
+X <- rnorm(100)
+Y <- 2*X + rnorm(100)
+lm(formula = Y~X)
+```
+
+```{r}
+ls()
+```
+
+***
+
+```{r}
+X = rnorm(100)
+Y = 2*X + rnorm(100)
+lm(formula = Y~X)
+```
+
+```{r}
+ls()
+```
+
+Operadores de asignación:  <- vs. =
+=======================================================
+
+```{r}
+X <- rnorm(100)
+Y <- 2*X + rnorm(100)
+lm(formula <- Y~X)
+```
+
+```{r}
+ls()
+```
+
+Operadores de asignación:  <- vs. =
+=======================================================
+
+* Cómo así??? Noten el objeto llamado formula como resultado de llamar ls(). el operador  <- ha creado este objeto en el ambiente de trabajo!
+* Conclusión, los dos operadores NO son sinónimos dependiendo del contexto.
+* Para crear objetos o asignar valores a los mismos, ambos operadores realizan la misma tarea
+* Para asignar valores a un _argumento_ dentro de la llamada de una funciíon, `=` es la elección correcta, mientras que  `<-` va a crear un objeto fuera de la función, va a asignar su valor al argumento, y realizará dicha tarea
+* Por qué es esta diferncia relevante? usar  `<-` dentro de funciones puede generar efectos colaterales indeseados como modificación de objetos que NO queríamos modificar
 
 Funciones: Generalidades
 =======================================================
@@ -299,7 +360,7 @@ Funciones: Generalidades
 * Contienen opciones llamadas argumentos
 * Sucedidos por paréntesis (e.g., `c()`, `nrow()`, `sd()`, `lm()`)
 * Presentan tres partes principales: Formales (argumentos), cuerpo y ambiente (más sobre esto luego).
-* Morfología general: `funcion(arg1, arg2, arg3, ..., argN)`
+* Morfología general: `nombre(arg1, arg2, arg3, ..., argN)`
 
 ***
 
