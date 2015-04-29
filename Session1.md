@@ -341,7 +341,7 @@ Operadores
 * Lógicos
      + `<`, `<=`, `>`, `>=`, `==`, `!=`, `!x` (no x), `x|y`(x Ó y), `x&y` (x Y y), `isTRUE(x)` (¿es X verdadero?)
 * Asignación
-     + `<-` (recomendado), `=` (NO recomendado)
+     + `<-` (recomendado), `=` (NO recomendado), `<<-` (usuarios pro)
 
 Operadores de asignación
 =======================================================
@@ -356,11 +356,11 @@ Operadores de asignación:  <- vs. =
 =======================================================
 
 * Entonces, ambos operadores sirven para realizar asignación
-* Una búsqueda en google revela que algunas personas recomiendan usar  <- , otras =
-* La guía de estilo de Google [recomienda](http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml#assignment)  <- 
-* La guía de estilo de Hadley Wickham [recomienda](http://adv-r.had.co.nz/Style.html)  <- 
+* Una búsqueda en google revela que algunas personas recomiendan usar  `<-` , otras `=`
+* La guía de estilo de Google [recomienda](http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml#assignment)  `<-` 
+* La guía de estilo de Hadley Wickham [recomienda](http://adv-r.had.co.nz/Style.html)  `<-` 
 * John Chambers (2008) [indica](http://www.springer.com/br/book/9780387759357) que son sinónimos
-* `help(`=`)` [muestra](https://stat.ethz.ch/R-manual/R-devel/library/base/html/assignOps.html) que la diferencia entre ambos es que = es solo permitido a nivel superior
+* `help(`=`)` [muestra](https://stat.ethz.ch/R-manual/R-devel/library/base/html/assignOps.html) que la diferencia entre ambos es que `=` es solo permitido a nivel superior
 * La info para desarrolladores de R [indica](http://developer.r-project.org/equalAssign.html) que son sinónimos sin mucho detalle
 * Kun Ren [demuestra](http://renkun.me/blog/2014/01/28/difference-between-assignment-operators-in-r.html) por qué no son sinónimos
 * Entonces, en qué difieren?
@@ -460,7 +460,7 @@ ls()
 Operadores de asignación:  <- vs. =
 =======================================================
 
-* Cómo así??? Noten el objeto llamado formula como resultado de llamar ls(). el operador  <- ha creado este objeto en el ambiente de trabajo!
+* Cómo así??? Noten el objeto llamado `formula` como resultado de llamar `ls()`. el operador  `<-` ha creado este objeto en el ambiente de trabajo!
 * Conclusión, los dos operadores NO son sinónimos dependiendo del contexto.
 * Para crear objetos o asignar valores a los mismos, ambos operadores realizan la misma tarea
 * Para asignar valores a un _argumento_ dentro de la llamada de una funciíon, `=` es la elección correcta, mientras que  `<-` va a crear un objeto fuera de la función, va a asignar su valor al argumento, y realizará dicha tarea
@@ -599,8 +599,7 @@ Operaciones vectorizadas
 
 
 ```r
-k <- 3
-V <- c(1, 2, 3, 4, 5)
+k <- 3; V <- c(1, 2, 3, 4, 5)
 k*V # xV = {kV1, kV2, kV3, kV4, kV5} = 3*1, 3*2, ..., 3*5
 ```
 
@@ -608,7 +607,16 @@ k*V # xV = {kV1, kV2, kV3, kV4, kV5} = 3*1, 3*2, ..., 3*5
 [1]  3  6  9 12 15
 ```
 
-* El ejemplo de arriba usó la multiplicación, pero se puede realizar cualquier operación matemática con este mismo principio.
+```r
+m <- c(1, 2, 3, 4, 5)
+m+V # m+V = {m1+V1, m2+V2, m3+V3, m4+V4, m5+V5} = 1+1, 2+2, ..., 5+5
+```
+
+```
+[1]  2  4  6  8 10
+```
+
+* El ejemplo de arriba usó la multiplicación y la suma, pero se puede realizar cualquier operación matemática con este mismo principio.
 
 Operaciones vectorizadas: Reciclaje
 =======================================================
@@ -631,7 +639,7 @@ comprimento do objeto menor
 [1]  4 10 18  7 16 27 10
 ```
 
-* Esto indica que R recicla los elementos del vector menor repitiéndolos hasta completar el número de elementos necesario para llevar a cabo la operación vectorizada
+* Esto indica que `R` recicla los elementos del vector menor repitiéndolos hasta completar el número de elementos necesario para llevar a cabo la operación vectorizada
 
 Agregando valores de un vector: c()
 =======================================================
@@ -649,12 +657,10 @@ A
 [1] 45 23
 ```
 
-Creación de arreglos multidimensionales: matrix(), data.frame(), array()
-
-Matrices
+Creación de matrices
 =======================================================
 
-* La función matrix(data, nrow, ncol, byrow, dimnames) crea una matriz con los datos data, número de hileras y columnas nrow y ncol respectivamente, llena la matriz por columa o por hilera, y tiene los nombres de sus dimensiones dimnames
+* La función `matrix(data, nrow, ncol, byrow, dimnames)` crea una matriz con los datos `data`, número de hileras y columnas `nrow` y `ncol` respectivamente, llena la matriz por columa o por hilera, y tiene los nombres de sus dimensiones `dimnames`
 
 
 ```r
@@ -670,16 +676,16 @@ r2  4  5  6
 r3  7  8  9
 ```
 
-Data frames
+Creación de data frames
 =======================================================
 
-* La función data.frame(..., row.names, colnames, stringsAsFactors) genera un arreglo por columnas, donde cada columna puede contener una clase diferente (e.g., col1 tiene elementos integer, col2 numeric, col3 logical, col4 character)
+* La función `data.frame(..., row.names, colnames, stringsAsFactors)` genera un arreglo por columnas, donde cada columna puede contener una clase diferente (e.g., col1 tiene elementos `integer`, col2 `numeric`, col3 `logical`, col4 `character`)
 * Los puntos suspensivos contienen argumentos que identifican los grupos. Cualquier argumento conteniendo datos que no sea uno de los argumentos contenidos en la función entran a hacer parte de los datos
-* row.names indica los nombres de cada hilera (no necesario pero útil)
-* colnames especifica los nombres de columna
-* stringsAsFactors determina si los elementos de clase character deben ser convertidos en factor automáticamente.
+* `row.names` indica los nombres de cada hilera (no necesario pero útil)
+* `colnames` especifica los nombres de columna
+* `stringsAsFactors` determina si los elementos de clase `character` deben ser convertidos en `factor` automáticamente.
 
-Data frames
+Creación de data frames
 =======================================================
 
 
@@ -716,13 +722,13 @@ r4    4    a
 r5    5    a
 ```
 
-Arrays
+Creación de arreglos multidimensionales
 =======================================================
 
-* Creados con la función array(data, dim, dimnames)
-* data determina los valores con los que vamos a llenar el arreglo
-* dim representa el número de dimensiones (e.g., "Alto * Ancho * Profundo")
-* dimnames identifica los nombres de las dimensiones
+* Creados con la función `array(data, dim, dimnames)`
+* `data` determina los valores con los que vamos a llenar el arreglo
+* `dim` representa el número de dimensiones (e.g., "Alto * Ancho * Profundo")
+* `dimnames` identifica los nombres de las dimensiones
 
 Arrays
 =======================================================
@@ -764,7 +770,7 @@ dim(arr)
 Listas
 =======================================================
 
-* Creadas con la función list(...) donde los puntos suspensivos representan objetos a ser incluidos en la lista, con o sin nombres
+* Creadas con la función `list(...)` donde los puntos suspensivos representan objetos a ser incluidos en la lista, con o sin nombres
 
 ***
 
@@ -849,10 +855,11 @@ class(lst[[3]])
 Modificando los valores de un arreglo: cbind
 =======================================================
 
-* Las funciones D-bind() (D- por dimensión) agregan vectores como líneas o columnas a un arreglo preexistente. Operan sobre hileras o columnas 
-* cbind agrega columnas (c por column) al primer argumento de la función.
+* Las funciones `D-bind()` (D- por dimensión) agregan vectores como líneas o columnas a un arreglo preexistente. Operan sobre hileras o columnas 
+* `cbind` agrega columnas (c por column) al primer argumento de la función.
 * El número de elementos en las columnas a agregar debe ser del mismo número de hileras que el arreglo al que se pegan, o generarán reciclaje por default.
-* Trabaja en arreglos bidimensionales (matrix o data frame), siempre que se respete la condición de homogeneidad de clase
+* Trabaja en arreglos bidimensionales (`matrix` o `data frame`), siempre que se respete la condición de homogeneidad de clase
+* Si no se respeta homogeneidad de clase, genera coerción implícita (más sobre esto adelante)
 
 Modificando los valores de un arreglo: cbind
 =======================================================
@@ -891,9 +898,9 @@ cbind(dfr, c = c(T, F, F, T, T))
 Modificando los valores de un arreglo: rbind
 =======================================================
 
-* rbind agrega columnas (r por column) al primer argumento de la función.
+* `rbind` agrega columnas (r por column) al primer argumento de la función.
 * El número de elementos en las columnas a agregar debe ser del mismo número de hileras que el arreglo al que se pegan, o generarán reciclaje por default.
-* Trabaja en arreglos bidimensionales (matrix o data frame), siempre que se respete la condición de homogeneidad de clase _por columna_
+* Trabaja en arreglos bidimensionales (`matrix` o `data frame`), siempre que se respete la condición de homogeneidad de clase _por columna_
 
 Modificando los valores de un arreglo: rbind
 =======================================================
@@ -985,7 +992,7 @@ rm(list = ls()) # Remover una lista de los objetos encontrado con ls()
 Cómo generar un muestreo aleatorio?
 =======================================================
 
-* Uno podría pensar que las funciones rDIST (e.g., rnorm, rpois, runif) permitirían obtener dicho resultado. Sin embargo, cuando queremos elegir elementos de manera aleatoria la forma correcta es usando sample() y no runif (random uniforms), pues la primera opera sobre conjuntos de elementos, mientras que la segunda obtiene de una distribución uniforme continua dichos valores.
+* Uno podría pensar que las funciones `rDIST` (e.g., `rnorm`, `rpois`, `runif`) permitirían obtener dicho resultado. Sin embargo, cuando queremos elegir elementos de manera aleatoria la forma correcta es usando `sample()` y no `runif` (random uniforms), pues la primera opera sobre conjuntos de elementos, mientras que la segunda obtiene de una distribución uniforme continua dichos valores.
 
 *** 
 
@@ -1017,7 +1024,7 @@ runif(n = 5, min = 1, max = 100)
 Cómo generar un muestreo aleatorio?
 =======================================================
 
-* Pero y si redondeamos la primera cifra de cada número obtenido con runif???
+* Pero y si redondeamos la primera cifra de cada número obtenido con `runif`???
 
 
 ```r
@@ -1060,14 +1067,15 @@ integer(0)
 Números aleatorios y dist. de probabilidad
 =======================================================
 
-* Cada una de las distribuciones probabilisticas más importantes tiene un conjunto de funciones ya incorporadas en R, listas para usar. COn ellas podemos obtener:
+* Cada una de las distribuciones probabilisticas más importantes tiene un conjunto de funciones ya incorporadas en `R`, listas para usar. COn ellas podemos obtener:
 
-        + Densidad (dDIST) F(x) dado un valor de x
-        + Probabilidad (pDIST) dado un cuantil
-        + Cuantiles (qDIST) data una probabilidad
-        + Números aleatorios (rDIST)
+        + Densidad (`dDIST`) F(x) dado un valor de x
+        + Probabilidad (`pDIST`) dado un cuantil
+        + Cuantiles (`qDIST`) data una probabilidad
+        + Números aleatorios (`rDIST`)
 
 ***
+
 <small style="font-size:.7em">
 
 ```r
@@ -1106,7 +1114,7 @@ rnorm(5, mean = 0, sd = 1) # Genere cinco números aleatorios a partir de una di
 Quién es quién dentro de un objeto?
 =======================================================
 
-* Puede pensarse en which() como una función que responde a un postulado lógico y da como respuesta quiénes cumplen con tal condición en un objeto
+* Puede pensarse en `which()` como una función que responde a un postulado lógico y da como respuesta quiénes cumplen con tal condición en un objeto
 
 <small style="font-size:.65em">
 
@@ -1134,6 +1142,7 @@ which(ls() == "lst") # Cuál de los elementos de nuestro espacio de trabajo es l
 [1] 6
 ```
 </small>
+
 ***
 
 
@@ -1242,12 +1251,12 @@ as.logical(cla)
 [1] TRUE
 ```
 
-Coerción explícita: Entre `numeric` e `integer`
+Coerción explícita: Entre numeric e integer
 =======================================================
 
 
 ```r
-float <- 5
+float <- 5.0000
 print(float)
 ```
 
@@ -1283,7 +1292,7 @@ class(integer) # Qué clase tiene el objeto integer?
 [1] "integer"
 ```
 
-Coerción explícita: Entre `character` y `factor`
+Coerción explícita: Entre character y factor
 =======================================================
 
 
@@ -1387,7 +1396,7 @@ as.complex(letras)
 Coerción implícita
 =======================================================
 
-* Ocurre cuando mezclamos objetos de diferentes clases en un objeto que solo puede contener elementos de la misma clase. Por ejemplo, si aplicamos c() sobre elementos de clase character y numeric, cuál es la clase del vector resultante?
+* Ocurre cuando mezclamos objetos de diferentes clases en un objeto que solo puede contener elementos de la misma clase. Por ejemplo, si aplicamos `c()` sobre elementos de clase `character` y `numeric`, cuál es la clase del vector resultante?
 
 
 ```r
@@ -1419,8 +1428,8 @@ Warning: NAs introduzidos por coerção
 
 * Software (i.e., funciones) escritas para llevar a cabo tareas relacionadas
 * TODOS de libre acceso
-* La mayoría escritos en R, pero varios en C, C++ o FORTRAN
-* Nivel pro en R. Si se ha aprendido a programar y se han generado funciones útiles para alguna tarea que valga la pena publicar, tal vez sea buena idea someter un nuevo paquete. La inmensa mayoría de los usuarios jamás llega a este punto
+* La mayoría escritos en `R`, pero varios en `C`, `C++` o `FORTRAN`
+* Nivel pro en `R`. Si se ha aprendido a programar y se han generado funciones útiles para alguna tarea que valga la pena publicar, tal vez sea buena idea someter un nuevo paquete. La inmensa mayoría de los usuarios jamás llega a este punto
 
 ¿Qué son los paquetes?
 =======================================================
@@ -1440,7 +1449,7 @@ Warning: NAs introduzidos por coerção
 ¿Dónde se encuentran?
 =======================================================
 
-* En el "Comprehensive R Archive Network", el repositorio oficial de R (http://cran.r-project.org/)
+* En el "Comprehensive R Archive Network", el repositorio oficial de `R` ([http://cran.r-project.org/](http://cran.r-project.org/))
 * R ha evolucionado de manera increíble en cuanto a soporte adicional de paquetería.
 
 ![alt text](Session1-figure/cranEvol.png)
@@ -1451,26 +1460,32 @@ Ejemplos de paquetes
 * `ggplot2`. Sistema avanzado de graficación
 * `vegan`. Paquete para análisis ecológicos
 * `ddplyr`. Paquete de herramientas para manipulación de datos
-* `xlsx`. Paquete para importar/exportar datos entre R y MS Excel
+* `xlsx`. Paquete para importar/exportar datos entre `R` y MS Excel
 
 Instalación
 =======================================================
 
-* install.packages()
+* `install.packages()` Función estándar para instalar directamente de CRAN
+* `devtools::install_github()` Función adicional para instalar de github.com. Requiere tener instalado el paquete `devtools`
 
 
 ```r
 install.packages("vegan") #El nombre del paquete va entre comillas
+
+library(devtools) # Cargar devtools para usar install_github
+install_github('droglenc/FSA') # Esta función puede usarse con un solo argumento con el formato "usuario/repositorio"
 ```
 
 Cargando paquetes
 =======================================================
 
-* library()
+* La función `library()` se enhcarga de cargar los paquetes que necesitemos
 
 
 ```r
 library(vegan) #Al cargar el paquete NO usar comillas
+library(devtools)
+library(FSA)
 ```
 
 * Los paquetes pueden tener dependencias, es decir, requerir paquetes adicionales para funcionar. Siempre descargar e instalar el paquete Y sus dependencias
@@ -1480,9 +1495,9 @@ library(vegan) #Al cargar el paquete NO usar comillas
 Gráficos en R
 =======================================================
 
-* R tiene opciones extensas de graficación, desde sistemas sencillos como `base` a algunos más sofisticados como `lattice` o `ggplot2`
+* `R` tiene opciones extensas de graficación, desde sistemas sencillos como `base` a algunos más sofisticados como `lattice` o `ggplot2`
 * Cada sistema de gráficos de R tiene sus pros y sus contras, y trabaja mejor bajo condiciones específicas
-* La graficación en R es un arte complejo y requiere mucho esfuerzo para ser dominado. Cada tipo de gráfica puede requerir un sistema gráfico diferente
+* La graficación en `R` es un arte complejo y requiere mucho esfuerzo para ser dominado. Cada tipo de gráfica puede requerir un sistema gráfico diferente
 
 Gráficos en R
 =======================================================
@@ -1490,7 +1505,7 @@ Gráficos en R
 * Hay dos pasos básicos que son más evidentes en `base`: Generación del gráfico y anotación. EL sistema `lattice` es diferente pues el gráfico se genera con una sola llamada de función. 
 * En contraste, `ggplot2` es un sistema que funciona con ambos procedimientos, generación de gráficos y anotación, pero también puede generar un gráfico completo con una sola llamada de función como `lattice`.
 
-Gráficos en R: `base`
+Gráficos en R: base
 =======================================================
 
 
@@ -1513,7 +1528,7 @@ abline(lmod)
 
 ![plot of chunk unnamed-chunk-56](Session1-figure/unnamed-chunk-56-1.png) 
 
-Gráficos en R: `lattice`
+Gráficos en R: lattice
 =======================================================
 
 
@@ -1524,7 +1539,7 @@ cloud(mpg~wt*qsec|cyl.f, main="3D Scatterplot by Cylinders")
 
 ![plot of chunk unnamed-chunk-58](Session1-figure/unnamed-chunk-58-1.png) 
 
-Gráficos en R: `ggplot2`
+Gráficos en R: ggplot2
 =======================================================
 
 
@@ -1539,8 +1554,11 @@ qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"), method="lm", formula=y~x,
 ![plot of chunk unnamed-chunk-60](Session1-figure/unnamed-chunk-60-1.png) 
 
 
-Gráficos en R: `ggplot2`
+Gráficos en R: ggplot2
 =======================================================
+
+* Ejemplo de código necesario para generar un grafico con `ggplot2`
+
 
 ```r
 # Creación del objeto que alojará las capas del gráfico
