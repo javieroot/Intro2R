@@ -227,7 +227,7 @@ Practica 1: Gráficas, sistema base, histograma
 * `hist(x, data, breaks, freq, col, main, xlab, ylab, xlim, ylim, ...)`
 
 ```{r}
-hist(BlueCatfish$tl)
+### El código de los estudiantes va aquí
 ```
 
 Practica 1: Gráficas, sistema base, scatterplot, regresión lineal

@@ -1,0 +1,57 @@
+```{r setup, include=FALSE}
+opts_chunk$set(cache=TRUE)
+library(ggplot2)
+library(lattice)
+options(stringsAsFactors = FALSE)
+attach(mtcars)
+```
+
+INTRODUCCIÓN AL MANEJO DE DATOS Y PROGRAMACIÓN EN R
+========================================================
+width: 1366
+height: 768
+font-family: 'Serif'
+author: Gustavo A. Ballen
+
+Museu de Zoologia da Universidade de São Paulo
+
+gaballench@gmail.com
+
+
+
+========================================================
+# ESTRUCTURA DE OBJETOS EN R
+
+Recordando cosas básicas
+========================================================
+
+* `R` es un dialecto que hace un uso fuerte de objetos, los cuales tienen propiedades caracteristicas
+* Los tres componentes más importantes de cualquier objeto son clase, nombre y dimensiones. Otros componentes tales como los atributos no son comunes a todos los tipos de objetos posibles en `R`.
+
+Estructura de vectores: Quiz
+========================================================
+
+* Con cuál de estas funciones podemos conocer las dimensiones de un objeto?
+
+        + length()
+        + dim()
+        + str()
+        + dimensiones()
+
+Estructura de vectores: Quiz
+========================================================
+
+* Determine mentalmente la longitud de los siguientes vectores. Posteriormente haga uso de la función adecuada 
+
+```{r, eval=FALSE}
+teth <- "Bonum est praestolari cum silentio salutare R"
+salto <- seq(from = 1, to = 20, by = 2)
+alea <- rbinom(n = 10, size = 20, prob = 0.05)
+
+```
+
+========================================================
+
+========================================================
+
+========================================================
