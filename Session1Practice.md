@@ -67,7 +67,7 @@ Práctica 1: Arreglos bidimensionales
 
 * Cree el siguiente objeto `matriz <- cbind(a = 1:10, b = 11:20, c = 21:30, d = 31:40)`. Ahora agregue una columna adicional de 10 valores de clase `integer`. Es importante que sean de la misma clase pues estamos creando una matriz y no un data frame. Cuáles son las dimensiones de ese objeto?
 
-* Cree ahora un data frame con el siguiente código. Es igual usar la función `cbind()` o `data.frame()` para crear un objeto con columnas de diferentes clases? Por qué? Verifique corriendo esa misma línea de código pero usando la función `cbind` en vez de `data.frame`.
+* Cree ahora un data frame con el siguiente código. Cree que sea igual usar la función `cbind()` o `data.frame()` para crear un objeto con columnas de diferentes clases? Por qué? Verifique corriendo esa misma línea de código pero usando la función `cbind` en vez de `data.frame`.
 
 
 ```r
@@ -95,7 +95,7 @@ mean(x = sample(1:20, 5, replace = FALSE)) # sample(...) es el argumento x de me
 ```
 
 ```
-[1] 8.6
+[1] 9
 ```
 
 Práctica 1: Listas, aleatorización
@@ -174,7 +174,174 @@ corotos <- sample(seq_len(1000), 50)
 which(corotos < 100)
 ```
 
-Práctica 1: Paquetes (Aplicar si hay acceso a internet)
+Estructura de vectores: Quiz
+========================================================
+
+* Con cuál de estas funciones podemos conocer las dimensiones de un objeto?
+
+        + length()
+        + dim()
+        + str()
+        + dimensiones()
+
+Estructura de vectores: Quiz (R)
+========================================================
+
+* Con cuál de estas funciones podemos conocer las dimensiones de un objeto?
+
+        + length()
+        + dim() <<<<<<<<<
+        + str()
+        + dimensiones()
+
+Estructura de vectores: Quiz
+========================================================
+
+* Determine mentalmente la longitud de los siguientes vectores. Posteriormente haga uso de la función adecuada para verificarlo
+
+
+```r
+teth <- "Bonum est praestolari cum silentio salutare R"
+salto <- seq(from = 1, to = 20, by = 2)
+alea <- rbinom(n = 10, size = 20, prob = 0.05)
+```
+
+Estructura de vectores: Quiz (R)
+========================================================
+
+* Determine mentalmente la longitud de los siguientes vectores. Posteriormente haga uso de la función adecuada para verificarlo
+
+
+```r
+teth <- "Bonum est praestolari cum silentio salutare R"
+length(teth)
+```
+
+```
+[1] 1
+```
+
+```r
+salto <- seq(from = 1, to = 20, by = 2)
+length(salto)
+```
+
+```
+[1] 10
+```
+
+```r
+alea <- rbinom(n = 10, size = 20, prob = 0.05)
+length(alea)
+```
+
+```
+[1] 10
+```
+
+Estructura de vectores: Quiz
+========================================================
+
+* Determine el nombre de los siguientes objetos
+
+
+```r
+teth <- "Bonum est praestolari cum silentio salutare R"
+salto <- seq(from = 1, to = 20, by = 2)
+alea <- rbinom(n = 10, size = 20, prob = 0.05)
+```
+
+Estructura de vectores: Quiz (R)
+========================================================
+
+* Determine el nombre de los siguientes objetos
+
+
+```r
+teth <- "Bonum est praestolari cum silentio salutare R" # teth
+salto <- seq(from = 1, to = 20, by = 2) # salto
+alea <- rbinom(n = 10, size = 20, prob = 0.05) # alea
+```
+
+* Modificando una frase que dijera una profesora en algún momento (hablando de taxonomía), "es como saber que tú eres tú y yo soy yo"
+
+Estructura de vectores: Quiz
+========================================================
+
+* Determine la _clase_ de los siguientes objetos por inspección. Verifique usando la función adecuada
+
+
+
+```r
+alpha <- rep(x = "GAB", times = 5)
+Y <- 2*rnorm(100) + rnorm(100)
+l <- c(FALSE, TRUE, TRUE, FALSE)
+L2 <- c(FALSE, TRUE, "true", FALSE)
+```
+
+* Cómo describiría a un recién iniciado en `R` lo que es una clase de un objeto?
+
+Estructura de vectores: Quiz (R)
+========================================================
+
+* Determine la _clase_ de los siguientes objetos por inspección. Verifique usando la función adecuada
+* Por qué la clase del objeto L2 es `character` y no `loogical` si contiene `TRUE`s y `FALSE`s?
+* Cómo describiría a un recién iniciado en `R` lo que es una clase de un objeto? R/ La clase determina el tipo de datos que contiene un objeto, es como la _especie_ del objeto
+
+***
+
+<small style="font-size:.65em">
+
+```r
+alpha <- rep(x = "GAB", times = 5) # character
+class(alpha)
+```
+
+```
+[1] "character"
+```
+
+```r
+Y <- 2*rnorm(100) + rnorm(100) # numeric
+class(Y)
+```
+
+```
+[1] "numeric"
+```
+
+```r
+l <- c(FALSE, TRUE, TRUE, FALSE) # logical
+class(l)
+```
+
+```
+[1] "logical"
+```
+
+```r
+L2 <- c(FALSE, TRUE, "true", FALSE) # character
+class(L2)
+```
+
+```
+[1] "character"
+```
+</small>
+
+Práctica con subconjuntos e índices
+========================================================
+
+Práctica con subconjuntos e índices
+========================================================
+
+Práctica con subconjuntos e índices
+========================================================
+
+Práctica con subconjuntos e índices
+========================================================
+
+Paquetes (Aplicar si hay acceso a internet)
 =======================================================
 
 * Instalar los paquetes `lattice`, `ggplot2`, `dplyr`, `devtools` y `randtests`. Use la función `install.packages()`.
@@ -182,15 +349,10 @@ Práctica 1: Paquetes (Aplicar si hay acceso a internet)
 * Adicionalmente instale el paquete de pesquerías FSA con las siguientes instrucciones:
 
 
-```r
-library(devtools)
-install_github('droglenc/FSA') # Requiere tcltk, asegurarse de haberlo instalado!
-install_github('droglenc/FSAdata')
-```
 
 * estos paquetes van a ser usado en la sesión sobre gráficos
 
-Practica 1: Gráficas, sistema base
+Gráficas, sistema base
 =======================================================
 
 * Vamos a generar gráficos exploratorios para un conjunto de datos de edad y longitud total en el Bagre Azul (_Ictalurus furcatus_)
@@ -201,10 +363,10 @@ library(FSAdata) # Cargar el paquete de datos de FSA
 data(BlueCatfish) # Cargar en el ambiente de trabajo el conjunto de datos BlueCatfish
 class(BlueCatfish) # Qué clase tiene el conjunto de datos?
 summary(BlueCatfish) # Sumarios de las variables en el conjunto de datos
-str(BlueCatfish)
+str(BlueCatfish) # Estructura del objeto BlueCatfish
 ```
 
-Practica 1: Gráficas, sistema base, boxplot
+Gráficas, sistema base, boxplot
 =======================================================
 
 * `boxplot(x, data, main, xlab)`
@@ -222,25 +384,40 @@ boxplot(variable, data, main = "Boxplot de la variable XXX", ylab = "Título del
 
 ***
 
-![plot of chunk unnamed-chunk-9](Session1Practice-figure/unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-15](Session1Practice-figure/unnamed-chunk-15-1.png) 
 
-Practica 1: Gráficas, sistema base, histograma
+Gráficas, sistema base, histograma
 =======================================================
 
 * `hist(x, data, breaks, freq, col, main, xlab, ylab, xlim, ylim, ...)`
 
 
 ```r
-hist(BlueCatfish$tl)
+### Genere un histograma para la misma variable del boxplot. Use la ayuda de R con el operador ?hist para mayor información sobre el uso de esa función
 ```
 
-![plot of chunk unnamed-chunk-10](Session1Practice-figure/unnamed-chunk-10-1.png) 
-
-Practica 1: Gráficas, sistema base, scatterplot, regresión lineal
+Gráficas, sistema base, scatterplot, regresión lineal
 =======================================================
 
+* Vamos a practicar anotación de gráficas en base usando como ejemplo la regresión lineal
+* La función lm() genera una regresión lineal simple para un modelo determinado, con variables x y y en un conjunto de datos. Para más información consultar ?lm
+* El diagrama de dispersión se obtiene por la función plot() que cuando es usada con variables numéricas usa un método para graficar dispersión en el plano cartesiano. Los argumentos básicos de dicha función son x, y, aunque pueden especificarse otros argumentos como data, formula y anotadores gráficos. Consultar ?plot para mayor información
+
+=======================================================
+
+* Podemos superponer una recta a un gráfico obtenido con base usando la función abline. Esta función permite dibujar lineas horizontales, verticales, u oblicuas usando unvector de valores o un modelo lineal.
+* Debe usar el conjunto de datos BlueCatfish cargado anteriormente para realizar el gráfico de dispersión y la regresión lineal. A continuación se da una idea de cómo realizarlo
+* Al generar la gráfica use los argumentos adecuados para imprimirle un título y los nombres de los ejes
 
 
+```r
+# Use los datos del data frame BluCatfish para este ejercicio
+# modelo <- lm(...) # esta función genera el modelo de regresión lineal
+# plot(x, y, ...) es la función para generar un diagrama de dispersión en base
+# abline(lm) # Esta función imprime la recta obtenida con el modelo lineal
+```
+
+* Después de lograr el objetivo usar el nivel pro adquirido en esta sesión para generar la misma grafica pero _solo con los primeros 50_ valores del conjunto de datos original 
 
 =======================================================
 
