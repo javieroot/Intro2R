@@ -1165,11 +1165,11 @@ which(ls() == "lst") # Cuál de los elementos de nuestro espacio de trabajo es l
 <small style="font-size:.6em">
 
 ```r
-which(ls() == "lst") # Quién es "lst"? Ok, es siete
+which(ls() == "lst") # Quién es "lst"? Ok, es ocho
 ```
 
 ```
-[1] 6
+[1] 8
 ```
 
 ```r
@@ -1177,7 +1177,7 @@ ls()[8] # El séptimo elemento de ls() es... voilà, "lst"
 ```
 
 ```
-[1] "mat"
+[1] "lst"
 ```
 
 ```r
@@ -1571,8 +1571,10 @@ library(ggplot2)
 qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"), method="lm", formula=y~x, color=cyl, main="Regression of MPG on Weight", xlab="Weight", ylab="Miles per Gallon")
 ```
 
-<img src="Session1-figure/unnamed-chunk-60-1.png" title="plot of chunk unnamed-chunk-60" alt="plot of chunk unnamed-chunk-60" style="display: block; margin: auto;" />
+***
 
+
+<img src="Session1-figure/unnamed-chunk-61-1.png" title="plot of chunk unnamed-chunk-61" alt="plot of chunk unnamed-chunk-61" style="display: block; margin: auto;" />
 
 Gráficos en R: ggplot2
 =======================================================

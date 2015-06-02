@@ -344,7 +344,7 @@ class(a)
 Operadores de subconjuntos: [[]]
 ========================================================
 
-* Similar al operador [ pero más restrictivo en cuanto a la cantidad de índices, pues solo acepta UNO por dimensión. No soporta
+* Similar al operador [ pero más restrictivo en cuanto a la cantidad de índices, pues solo acepta UNO por dimensión
 * Devuelve un elemento de clase diferente al objeto original cuando es necesario (e.g., en clases y data frames)
 * Tiene la misma sintaxis que [ en vectores unidimensionales y bidimensionales
 
@@ -525,3 +525,32 @@ vector
 ```
 [1] "b de bebe" "c"         "d"         "e"        
 ```
+
+Operadores de subconjuntos: Modificación
+========================================================
+
+* Ahora vamos a cambiar propiedades como la clase de una de las columnas del objeto `df`.
+
+
+```r
+class(df$d) <- "character"
+df
+```
+
+```
+  a b     d
+1 1 a  TRUE
+2 2 b FALSE
+3 3 c FALSE
+4 4 b  TRUE
+5 5 e FALSE
+```
+
+```r
+class(df$d)
+```
+
+```
+[1] "character"
+```
+

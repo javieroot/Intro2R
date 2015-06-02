@@ -703,7 +703,7 @@ which(ls() == "lst") # Cuál de los elementos de nuestro espacio de trabajo es l
 ***
 <small style="font-size:.6em">
 ```{r}
-which(ls() == "lst") # Quién es "lst"? Ok, es siete
+which(ls() == "lst") # Quién es "lst"? Ok, es ocho
 ls()[8] # El séptimo elemento de ls() es... voilà, "lst"
 ls()[which(ls() == "lst")] # Versión anidada que da el mismo resultado en una sola linea de código
 ```
@@ -955,6 +955,8 @@ Gráficos en R: ggplot2
 =======================================================
 
 ```{r, echo=FALSE, eval=TRUE}
+detach(mtcars)
+attach(mtcars)
 ### Ejemplo modificado de http://www.statmethods.net/advgraphs/ggplot2.html
 # ggplot2 examples
 mtcars$gear <- factor(mtcars$gear,levels=c(3,4,5),
@@ -965,13 +967,19 @@ mtcars$cyl <- factor(mtcars$cyl,levels=c(4,6,8),
    labels=c("4cyl","6cyl","8cyl"))
 ```
 
-```{r, fig.align='center'}
+```{r, echo=TRUE, eval=FALSE}
 library(ggplot2)
 
 qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"), method="lm", formula=y~x, color=cyl, main="Regression of MPG on Weight", xlab="Weight", ylab="Miles per Gallon")
 ```
-```{r, echo=FALSE}
 
+***
+
+
+```{r, fig.align='center', echo=FALSE}
+library(ggplot2)
+
+qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"), method="lm", formula=y~x, color=cyl, main="Regression of MPG on Weight", xlab="Weight", ylab="Miles per Gallon")
 ```
 
 Gráficos en R: ggplot2

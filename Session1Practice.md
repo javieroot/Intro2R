@@ -332,14 +332,16 @@ class(L2)
 Práctica con subconjuntos e índices
 ========================================================
 
-Práctica con subconjuntos e índices
-========================================================
+* Genere un vector con 50 números aleatorios provenientes de una distribución normal estándar. Posteriormente, asigne un valor 0 a aquellos menores a 0. (sugerencia 1, use rnorm y recuerde que una normal estándar tiene media = 0 y sd = 1). Repita este punto usando índices lógicos e índices numéricos
+* Tome el cuarto elemento de la segunda columna del data frame `df` y asígnele un valor de 100
+* Cree un vector correspondiente con la tercera columna del objeto `df`. Use tanto el operador `$` como `[`
+* Tome el vector de números aleatorios que creó anteriormente y encuentre si hay algún valor por encima de la media + 1`sd` 
 
 Práctica con subconjuntos e índices
 ========================================================
 
-Práctica con subconjuntos e índices
-========================================================
+* De la lista que creó anteriormente, indique cuál es la clase del quinto elemento dentro del tercer objeto guardado en la lista. Recuerde que las listas son colecciones de objetos que pueden tener diferentes clases. Recuerde además la diferencia entre los operadores `[` y `[[` para listas
+
 
 Paquetes (Aplicar si hay acceso a internet)
 =======================================================
@@ -418,22 +420,5 @@ Gráficas, sistema base, scatterplot, regresión lineal
 ```
 
 * Después de lograr el objetivo usar el nivel pro adquirido en esta sesión para generar la misma grafica pero _solo con los primeros 50_ valores del conjunto de datos original 
-
-=======================================================
-
-
-
-
-=======================================================
-
-
-
-
-=======================================================
-
-
-
-
-=======================================================
 
 
