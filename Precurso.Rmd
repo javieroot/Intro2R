@@ -129,14 +129,69 @@ Generalmente `R` se llama `r` en estos repositorios, aunque en distribuciones ba
 # Corriendo R
 
 * Sistemas de interfaz gráfica: Doble click en el logo
-* Linea de comandos: Depende del nombre (e.g., r-base, r, R, etc.)
+* Linea de comandos: Depende del nombre (e.g., r-base, r, R, etc.), basta con escribirlo y dar enter. Usualmente r va a tener opciones para correr desde línea de comandos, lo cual se puede explorar escribiendo r --help. Si r tiene otro nombre en el sistema, por ejemplo r-devel, usar ese nombre en vez de r simple para el comandode ayuda.
 
 # Ahora... Cómo empiezo?
 
 Este curso no tiene prerrequisitos per se, pero dado que la meta es aprender las bases de programación y análisis de datos en R en dos días de curso precongreso, más nos vale ser ñoños y adelantar algo de trabajo. El siguiente link contiene un curso online gratuito que los estudiantes deberán completar antes de llegar a las sesiones de Leticia. No importa si parte del material no se entendió por completo, el hecho de realizarlo generará familiaridad con R, lo que agilizará el trabajo.
 
-[Try R](tryr.codeschool.com/)
+[Try R](http://tryr.codeschool.com/)
 
 Una vez terminado ese cursillo introductorio y obtenido el último 'badge', tomar un pantallazo y enviarlo por correo electrónico a gaballench /arroba/ gmail /punto/ com.
 
 
+# IDE para R: Rstudio y otras alternativas
+
+Los IDEs (ambiente de desarrollo integrado por su siglas en inglés) son programas que hacen mas amena la programación en diferentes lenguajes, y con frecuencia presentan herramientas para optimizar procesos como debugging, revisión de sintaxis, predicción de texto y planillas. Estas herramientas son útiles pero no necesarias para programar.
+
+R Presenta soporte en diferentes IDEs, incluyendo uno especializado en R. Algunos de los IDEs son supremamente básicos y solamente soportan formato de sintaxis en scripts pero no poermiten enviar a la consola los scripts. Algunos de estos IDEs que personalmente conozco y dónde obtenerlos se encuentran a continuación. Cabe resaltar que el recomendado es Rstudio, un IDE especializado en R que tiene soporte para diferentes funciones que otros no presentan.
+
+Para el curso deben llegar con R y algún IDE que soporte trabajo interactivo con la consola de R (e.g., Rstudio, Tinn-R, vim, Sublime Text, etc.)
+
+## Rstudio
+Se encuentra en [http://www.rstudio.com/](http://www.rstudio.com/)
+
+### Pros
+* Gratis
+* Funciones especiales para R como paneles con información de los objetos en memoria, ayuda  y visualización de objetos especiales como presentaciones
+* Cada vez presenta funciones más útiles como verificación de sintaxis
+* Presenta tal vez el mirror más eficiente actualmente (0-cloud)
+* Comunicación limpia entre la consola y el panel de script (Crtl+Enter)
+
+### Contras
+* A veces no es necesario tener todo a la vista en los paneles. Sin embargo, esto puede saltarse minimizando dichos páneles.
+* Solo soporta herramientas para R, markdown y C.
+
+## Tinn-R
+Se encuentra en este [link](http://nbcgib.uesc.br/lec/software/editores/tinn-r/en)
+
+### Pros
+* Muchas de las opciones de Rstudio
+* la interfaz gráfica soporta muchas opciones para usuarios acostumbrados a la aproximación point-and-click
+
+### Contras
+* La cantidad de opciones de la interfaz gráfica es tan grande que puede resultar poco eficiente
+
+## RGedit
+Se encuentra en [sourceforge](http://rgedit.sourceforge.net/)
+
+### Pros
+* Multiplataforma
+* Plugin para gedit, un editor de texto versatil y sencillo que soporta más opciones que notepad o wordpad (ambos en windows)
+* Soporta uso por conexiones SSH y formato de código
+* Especialmente útil para escribir scripts rápidos, simples, o que no requieren ser corrido en el momento
+
+### Contras
+* No tiene conexión a consola de R, por lo que los scripts no se pueden correr directamente desde gedit con el plugin rgedit
+
+## Sublime text 3
+Se encuentra en [Sublime Text](http://www.sublimetext.com/)
+
+### Pros
+* Es un editor de texto especial para programadores
+* Tiene tantas opciones y soporte para tantos lenguajes de programación que sus posibilidades son increiblemente más extensas que cualquier otro IDE que soporte R
+* Es más eficiente cuando se debe programar en varios lenguajes incluyendo R
+
+### Contras
+* No es gratis
+* El output de la consola no tiene aún justificación de texto, por lo que en ocasiones toca moverse con la barra de desplazamiento horizontal para ver parte del output de R
