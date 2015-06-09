@@ -1,0 +1,286 @@
+```{r setup, include=FALSE}
+opts_chunk$set(cache=TRUE)
+library(ggplot2)
+library(lattice)
+options(stringsAsFactors = FALSE)
+attach(mtcars)
+```
+
+INTRODUCCIÓN AL MANEJO DE DATOS Y PROGRAMACIÓN EN R
+========================================================
+width: 1366
+height: 768
+font-family: 'Serif'
+author: Gustavo A. Ballen
+
+Museu de Zoologia da Universidade de São Paulo
+
+gaballench@gmail.com
+
+
+=======================================================
+# APLICACIONES DE R A PROBLEMAS DE INVESTIGACIÓN ICTIOLÓGICA
+
+Ecología de comunidades
+=======================================================
+
+* En 2014 se realizó un inventario rápido en la cuenca alta del río Cinaruco en Colombia
+* Todos los análisis de ecología de comunidades fueron llevados a cabo en R
+* Listas de especies, nuevos registros y especies esperadas fueron analizadas
+* Riqueza
+* Estructura
+* Diversidad beta
+* Reemplazo de especies
+* Modelos de abundancia
+
+
+=======================================================
+
+### Script for the data analysis used in Ballen (unpubl.) Peces de Juriepe. FOB.
+
+##### Global analyses #####
+
+## Set WD
+setwd("/home/balleng/Dropbox/Consulting/Arauca Cinaruco 2014/Analysis/cinaruco")
+
+## Load abundance data
+dataset <- read.csv("juriepe.csv")
+cNames <- as.character(dataset[, 1])
+dataset <- dataset[, -1]
+# Transpose table
+dataset <- t(dataset)
+colnames(dataset) <- cNames
+rm(cNames)
+
+Curva global de acumulación de especies
+=======================================================
+
+library(iNEXT)
+globalMargins <- apply(dataset, 2, sum)
+names(globalMargins) <- NULL
+globalMargins <- as.numeric(globalMargins)
+globalanalyses <- iNEXT(globalMargins)
+tiff(filename = "globalcurve.tiff", width = 480, height = 480, units = "px")
+ggiNEXT(globalanalyses)
+dev.off()
+
+## Expected, observed, and new records
+expected <- read.csv("esperadas.csv", header = FALSE)
+expected <- as.character(expected[,1])
+expected <-sort(expected)
+observed <- as.character(colnames(dataset))
+observed <- sort(observed)
+
+newRecords <- setdiff(observed, expected)
+
+# get rid of sps and affs
+newToSpecies <- newRecords[-grep("*sp.",newRecords)]
+newToSpecies <- newToSpecies[-grep("*aff.", newToSpecies)]
+
+# get rid of new combinations/species/identifications
+changes <- sort(c("Copella eigenmanni", "Hemigrammus analis", "Hemigrammus geisleri", 
+             "Hyphessobrycon mavro", "Hemigrammus bleheri"))
+newToSpecies <- setdiff(newToSpecies, changes)
+
+rm(changes)
+# rm(newRecords) # uncomment this line if total differences between observed and expected are desired
+
+## Taxonomic info
+taxoinfo <- read.csv("infotaxo.csv", header = TRUE)
+
+# Species by order
+specOrderGlobal <- table(taxoinfo[, 1])
+tiff(filename = "specbyorder.tiff", width = 1000, height = 480, units = "px")
+orderbar <- qplot(factor(taxoinfo[, 1], levels = names(sort(table(taxoinfo[, 1])))), main = "Numero de especies por orden", 
+                   xlab = "Orden", ylab = "Riqueza", geom = "bar")
+orderbar + theme(axis.text.x = element_text(angle = 90))
+dev.off()
+
+# Species by family
+specFamilyGlobal <- table(taxoinfo[, 2])
+numbers <- as.vector(specFamilyGlobal)
+families <- names(specFamilyGlobal)
+specFamilyGlobal <- data.frame(families, as.integer(numbers))
+tiff(filename = "specbyfamily.tiff", width = 1000, height = 480, units = "px")
+familybar <- qplot(factor(taxoinfo[, 2], levels = names(sort(table(taxoinfo[, 2])))), main = "Numero de especies por familia", 
+        xlab = "Familia", ylab = "Riqueza", geom = "bar")
+familybar + theme(axis.text.x = element_text(angle = 90))
+dev.off()
+
+## Diet
+diet <- read.csv("diet.csv", header = TRUE)
+dietByOrder <- table(responseName = diet$Diet, diet$Order)
+dietByOrderSum <- apply(dietByOrder, 1, FUN = sum)
+dietByFamily <-table(responseName = diet$Diet, diet$Family)
+dietByFamilySum <- apply(dietByFamily, 1, FUN = sum)
+
+# Pie charts
+tiff(filename = "dietpiechart.tiff", width = 1000, height = 480, units = "px")
+pie <- ggplot(diet, aes(x = factor(1), fill = factor(Diet))) + geom_bar(width = 1)
+pie + coord_polar(theta = "y")
+dev.off()
+##### Analysis by waterbody #####
+samples <- rownames(dataset)
+localities <- c(rep("ARA-01", 3), "ARA-02", "ARA-01", "ARA-02", rep("ARA-03", 9), 
+                "ARA-04", "ARA-05", rep("ARA-04", 2), "ARA-01", "ARA-03", 
+                "ARA-05", "ARA-04")
+samplesLocs <- cbind(samples, localities)
+
+rm(samples, localities)
+
+# Caño Juriepe:
+juriepeSamples <- samplesLocs[which(samplesLocs[, 2] == "ARA-01"), 1]
+juriepeSamples <- c(juriepeSamples, samplesLocs[which(samplesLocs[, 2] == "ARA-02"), 1])
+juriepeSamples <- c(juriepeSamples, samplesLocs[which(samplesLocs[, 2] == "ARA-03"), 1])
+juriepeSamples <- sort(juriepeSamples)
+juriepe <- dataset[juriepeSamples, ]
+
+rm(juriepeSamples)
+
+juriepeMargins <- apply(juriepe, 2, sum)
+names(juriepeMargins) <- NULL
+juriepeMargins <- as.numeric(juriepeMargins)
+juriepeAnalyses <- iNEXT(juriepeMargins)
+tiff(filename = "juriepecurve.tiff", width = 480, height = 480, units = "px")
+ggiNEXT(juriepeAnalyses)
+dev.off()
+
+juriepeSpecies <- colnames(juriepe[, which(juriepeMargins > 0)])
+
+# Morichal La Calandria:
+calandriaSamples <- samplesLocs[which(samplesLocs[, 2] == "ARA-05"), 1]
+calandria <- dataset[calandriaSamples, ]
+
+rm(calandriaSamples)
+
+calandriaMargins <- apply(calandria, 2, sum)
+names(calandriaMargins) <- NULL
+calandriaMargins <- as.numeric(calandriaMargins)
+calandriaAnalyses <- iNEXT(calandriaMargins)
+tiff(filename = "calandriacurve.tiff", width = 480, height = 480, units = "px")
+ggiNEXT(calandriaAnalyses)
+dev.off()
+
+calandriaSpecies <- colnames(calandria[, which(calandriaMargins > 0)])
+
+# Caño Seco:
+secoSamples <- samplesLocs[which(samplesLocs[, 2] == "ARA-04"), 1]
+seco <- dataset[secoSamples, ]
+
+rm(secoSamples)
+
+secoMargins <- apply(seco, 2, sum)
+names(secoMargins) <- NULL
+secoMargins <- as.numeric(secoMargins)
+secoAnalyses <- iNEXT(secoMargins)
+tiff(filename = "secocurve.tiff", width = 480, height = 480, units = "px")
+ggiNEXT(secoAnalyses)
+dev.off()
+
+secoSpecies <- colnames(seco[, which(secoMargins > 0)])
+
+##### Beta Diversity #####
+# Finish this reading http://www.loujost.com/Statistics%20and%20Physics/Diversity%20and%20Similarity/EffectiveNumberOfSpecies.htm
+
+# barplot with 95%CI
+tiff(filename = "betadiversity.tiff", width = 480, height = 480, units = "px")
+
+entropies <- c(ChaoEntropy(globalMargins, datatype="abundance")[1, 2], 
+               ChaoEntropy(juriepeMargins, datatype="abundance")[1, 2], 
+               ChaoEntropy(calandriaMargins, datatype="abundance")[1, 2], 
+               ChaoEntropy(secoMargins, datatype="abundance")[1, 2])
+mp <- barplot(entropies, axes=FALSE, axisnames=FALSE, ylim=c(0, 3), 
+              main = "Entropía de Shannon", xlab = "Global y Estaciones", 
+              ylab = "H")
+axis(1, labels=c("Cinaruco (Global)", "Cñ. Juriepe", "Mr. Calandria", "Cñ. Seco"), 
+     at = mp)
+axis(2, at=seq(0 , 3, by=0.5))
+box()
+upper <- matrix(c(ChaoEntropy(globalMargins, datatype="abundance")[1, 5], 
+                  ChaoEntropy(juriepeMargins, datatype="abundance")[1, 5], 
+                  ChaoEntropy(calandriaMargins, datatype="abundance")[1, 5], 
+                  ChaoEntropy(secoMargins, datatype="abundance")[1, 5]), 2)
+lower<- matrix(c(ChaoEntropy(globalMargins, datatype="abundance")[1, 4], 
+                 ChaoEntropy(juriepeMargins, datatype="abundance")[1, 4], 
+                 ChaoEntropy(calandriaMargins, datatype="abundance")[1, 4], 
+                 ChaoEntropy(secoMargins, datatype="abundance")[1, 4]), 2)
+segments(mp, lower, mp, upper, lwd=2)
+segments(mp - 0.1, lower, mp + 0.1, lower, lwd=2)
+segments(mp - 0.1, upper, mp + 0.1, upper, lwd=2)
+dev.off()
+
+##### Species replacement #####
+# See http://www.pmc.ucsc.edu/~mclapham/Rtips/cluster.htm
+# And Bocard et al. 2011. Num. Ecology (mendeley pdf)
+library(vegan)
+siteSpecies <- rbind(juriepeMargins, calandriaMargins, secoMargins)
+rownames(siteSpecies) <- c("Juriepe", "Calandria", "Seco")
+colnames(siteSpecies) <- colnames(dataset)
+distMatrix <- vegdist(siteSpecies, method="bray")
+cluster <- hclust(distMatrix)
+tiff(filename = "replacement.tiff", width = 480, height = 480, units = "px")
+plot(cluster, hang = -1)
+dev.off()
+
+##### RAD plot for anaysis of structure #####
+# Global best fit by locality
+RAD <- radfit(siteSpecies)
+tiff(filename = "RAD.tiff", width = 480, height = 480, units = "px")
+plot(RAD)
+dev.off()
+
+# Fit all models and use AIC for best fit for each site
+RADjuriepe <- radfit(siteSpecies[1, ])
+tiff(filename = "RADjuriepe.tiff", width = 480, height = 480, units = "px")
+radlattice(RADjuriepe)
+dev.off()
+RADcalandria <- radfit(siteSpecies[2, ])
+tiff(filename = "RADcalandria.tiff", width = 480, height = 480, units = "px")
+radlattice(RADcalandria)
+dev.off()
+RADseco <- radfit(siteSpecies[3, ])
+tiff(filename = "RADseco.tiff", width = 480, height = 480, units = "px")
+radlattice(RADseco)
+dev.off()
+
+
+
+=======================================================
+
+
+
+
+=======================================================
+
+
+
+=======================================================
+
+
+
+
+=======================================================
+
+
+
+
+=======================================================
+
+
+
+
+=======================================================
+
+
+
+=======================================================
+
+
+
+
+=======================================================
+
+
+
+
+=======================================================
