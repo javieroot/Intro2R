@@ -3,7 +3,7 @@
 En este repositorio encontrará información relevante para el curso *Introducción al manejo de datos y programación en R*. Para ir a la sección de interés dar click en alguno de los links abajo. Para información sobre la estructura del curso seguir leyendo en esta sección.
 
 # Información precurso
-* Dar click [aquí](https://github.com/gaballench/Intro2R/) para obtener información introductoria e instrucciones para instalar el software necesario para el desarrollo del curso (i.e., `R` y `RStudio`)
+* Dar click [aquí](https://github.com/gaballench/Intro2R/blob/master/Precurso.Rmd) para obtener información introductoria e instrucciones para instalar el software necesario para el desarrollo del curso (i.e., `R` y `RStudio`)
 
 # Sesiones del curso
 
