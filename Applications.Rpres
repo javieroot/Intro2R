@@ -21,6 +21,9 @@ gaballench@gmail.com
 =======================================================
 # APLICACIONES DE R A PROBLEMAS DE INVESTIGACIÓN ICTIOLÓGICA
 
+=======================================================
+# Ecología de comunidades
+
 Ecología de comunidades
 =======================================================
 
@@ -33,12 +36,8 @@ Ecología de comunidades
 * Reemplazo de especies
 * Modelos de abundancia
 
-
+Indicar el dir. de trabajo y cargar los datos
 =======================================================
-
-### Script for the data analysis used in Ballen (unpubl.) Peces de Juriepe. FOB.
-
-##### Global analyses #####
 
 ## Set WD
 setwd("/home/balleng/Dropbox/Consulting/Arauca Cinaruco 2014/Analysis/cinaruco")
@@ -64,6 +63,9 @@ tiff(filename = "globalcurve.tiff", width = 480, height = 480, units = "px")
 ggiNEXT(globalanalyses)
 dev.off()
 
+Listas de especies
+=======================================================
+
 ## Expected, observed, and new records
 expected <- read.csv("esperadas.csv", header = FALSE)
 expected <- as.character(expected[,1])
@@ -84,6 +86,9 @@ newToSpecies <- setdiff(newToSpecies, changes)
 
 rm(changes)
 # rm(newRecords) # uncomment this line if total differences between observed and expected are desired
+
+Info taxonómica y estructura (1)
+=======================================================
 
 ## Taxonomic info
 taxoinfo <- read.csv("infotaxo.csv", header = TRUE)
@@ -107,6 +112,9 @@ familybar <- qplot(factor(taxoinfo[, 2], levels = names(sort(table(taxoinfo[, 2]
 familybar + theme(axis.text.x = element_text(angle = 90))
 dev.off()
 
+Descripción de dieta
+=======================================================
+
 ## Diet
 diet <- read.csv("diet.csv", header = TRUE)
 dietByOrder <- table(responseName = diet$Diet, diet$Order)
@@ -128,6 +136,9 @@ samplesLocs <- cbind(samples, localities)
 
 rm(samples, localities)
 
+Riqueza en Caño Juriepe
+=======================================================
+
 # Caño Juriepe:
 juriepeSamples <- samplesLocs[which(samplesLocs[, 2] == "ARA-01"), 1]
 juriepeSamples <- c(juriepeSamples, samplesLocs[which(samplesLocs[, 2] == "ARA-02"), 1])
@@ -147,6 +158,9 @@ dev.off()
 
 juriepeSpecies <- colnames(juriepe[, which(juriepeMargins > 0)])
 
+Riqueza Morichal La Calandria
+=======================================================
+
 # Morichal La Calandria:
 calandriaSamples <- samplesLocs[which(samplesLocs[, 2] == "ARA-05"), 1]
 calandria <- dataset[calandriaSamples, ]
@@ -162,6 +176,9 @@ ggiNEXT(calandriaAnalyses)
 dev.off()
 
 calandriaSpecies <- colnames(calandria[, which(calandriaMargins > 0)])
+
+Riqueza Caño Seco
+=======================================================
 
 # Caño Seco:
 secoSamples <- samplesLocs[which(samplesLocs[, 2] == "ARA-04"), 1]
@@ -179,8 +196,10 @@ dev.off()
 
 secoSpecies <- colnames(seco[, which(secoMargins > 0)])
 
+Diversidad beta
+=======================================================
+
 ##### Beta Diversity #####
-# Finish this reading http://www.loujost.com/Statistics%20and%20Physics/Diversity%20and%20Similarity/EffectiveNumberOfSpecies.htm
 
 # barplot with 95%CI
 tiff(filename = "betadiversity.tiff", width = 480, height = 480, units = "px")
@@ -209,9 +228,11 @@ segments(mp - 0.1, lower, mp + 0.1, lower, lwd=2)
 segments(mp - 0.1, upper, mp + 0.1, upper, lwd=2)
 dev.off()
 
+Reemplazo de especies
+=======================================================
+
 ##### Species replacement #####
-# See http://www.pmc.ucsc.edu/~mclapham/Rtips/cluster.htm
-# And Bocard et al. 2011. Num. Ecology (mendeley pdf)
+
 library(vegan)
 siteSpecies <- rbind(juriepeMargins, calandriaMargins, secoMargins)
 rownames(siteSpecies) <- c("Juriepe", "Calandria", "Seco")
@@ -221,6 +242,9 @@ cluster <- hclust(distMatrix)
 tiff(filename = "replacement.tiff", width = 480, height = 480, units = "px")
 plot(cluster, hang = -1)
 dev.off()
+
+Modelos de abundancia
+=======================================================
 
 ##### RAD plot for anaysis of structure #####
 # Global best fit by locality
@@ -243,44 +267,210 @@ tiff(filename = "RADseco.tiff", width = 480, height = 480, units = "px")
 radlattice(RADseco)
 dev.off()
 
+=======================================================
+# Limnología de la represa Guarapiranga, Sao Paulo
 
-
+Limnología de Guarapiranga
 =======================================================
 
+* Con un total de 151 líneas de código se desarrolló la v.1 que es totalmente funcional
 
+<center><img src="seminario-figure/script.png"
+        height="500px"/></center>
+***
 
+* Básicamente lee el formato html de una página web, identifica links a archivos pdf, los descarga, convierte los pdfs a csvs, corrige errores de formato, y genera archivos listos para ser cargados en R
 
+Paquetes necesarios
 =======================================================
 
+```{r, eval=FALSE}
+# Uso práctico de direcciones http 
+library(httr)
+# Funciones para vectorización y modificación simple de strings
+library(stringr)
+# Facilitador de descargas
+library(downloader)
+```
 
+Local da maquina e pastas de execução do tabula
+=======================================================
+```{r, eval = FALSE}
+# Set Syslocale
+Sys.setlocale('LC_ALL','C') 
 
+# Tell R to look for tabula in its respective path. Each time a session starts
+# it is necessary to run these lines as the effects are not global but temporary
+
+Sys.setenv(PATH=paste(Sys.getenv("PATH"),
+                      "/home/balleng/jruby-1.7.16.1/bin/",sep=":"))
+Sys.setenv(PATH=paste(Sys.getenv("PATH"),
+                      "/opt/jruby/bin/",sep=":"))
+```
+
+Nossa pasta de trabalho
 =======================================================
 
+```{r, eval=FALSE}
+# setwd("./guarapiranga")
+setwd("PATH")
+dir.create("datasets")
+```
 
-
-
+URL da Sabesp, lendo a info da internet
 =======================================================
 
+<small style="font-size:.8em">
+```{r, eval=FALSE}
+urlSabesp <- "http://site.sabesp.com.br/site/interna/Default.aspx?secaoId=43"
 
+linesSabesp <- readLines(urlSabesp)
 
+monitIndex <- grep("monitoramento", linesSabesp, ignore.case = TRUE, value = FALSE)
+pdfIndex <- grep("pdf", linesSabesp, ignore.case = TRUE, value = FALSE)
 
+compl <- c(monitIndex, pdfIndex)
+
+linesSabesp[compl[duplicated(compl)]] # Cases for which only pdf lines from the 
+# monitoramento folder
+
+linesSabesp <- linesSabesp[compl[duplicated(compl)]] # Reduced to pdf urls
+```
+</small>
+
+Gerando as URLs finais
 =======================================================
 
+```{r, eval=FALSE}
+pdfUrls <- vector()
+range <- vector(length = 2)
+for(i in seq_along(linesSabesp)) {
+	range[1] <- str_locate(linesSabesp[i], "/uploads/file/monitoramento")[1]
+	range[2] <- str_locate(linesSabesp[i], ".pdf")[2]
+	pdfUrls <- c(pdfUrls, str_sub(linesSabesp[i], start = range[1], end = range[2]))
+}
+```
 
-
-
+Obtendo os nomes de arquivo com base nas URLs
 =======================================================
 
+```{r, eval=FALSE}
+pdfFilenames <- vector()
 
+for(i in seq_along(pdfUrls)) {
+	filename <- strsplit(pdfUrls[i], "/")[[1]][length(strsplit(pdfUrls[i], "/")[[1]])]
+	pdfFilenames <- c(pdfFilenames, filename)
+}
 
+dir.create("sabespDatasets")
+```
+
+Preparando os URLS dos pdfs
 =======================================================
 
+```{r, eval=FALSE}
+urlPrefix <- "http://site.sabesp.com.br"
 
+for(i in seq_along(pdfUrls)) {
+	download(url = paste(urlPrefix, pdfUrls[i], sep = ""), 
+		destfile = paste(getwd(), "/sabespDatasets/", i, ".pdf", sep = ""))
+}
+```
 
-
+Passando os nomes dos pdfs pra os futuros csvs
 =======================================================
 
+````{r, eval=FALSE}
+pdfDownloads <- list.files("sabespDatasets", recursive = TRUE, full.names = FALSE)
 
+csvNames <- vector()
 
+for(i in seq_along(pdfDownloads)) {
+	name <- str_sub(pdfDownloads[i], start = 1, end = (str_length(pdfDownloads[i])-4))
+	csvNames <- c(csvNames, name)
+}
+
+setwd("sabespDatasets")
+```
+
+Converção do pdf pra o csv
+=======================================================
+
+O processo leva por conta de uma hora pra 176 arquivos
+```{r, eval=FALSE}
+for(i in seq_along(pdfDownloads)) {
+	system(paste("tabula --pages all -o ", csvNames[i], ".csv ", pdfDownloads[i], sep = ""))
+}
+# t1 <- Sys.time(); expr{}; t2 <- Sys.time(); print(t2-t1) 
+# for only two files had this output:
+# [1] Time difference of 40.14474 secs
+# This means that for a total of 176 files it would take:
+# 40.14474s/2 = 20.07237s; 20.07237s*176 = 3532.737s/60s*m^-1 = 58.87895m
+csvNames <- grep(".csv", dir(), value = TRUE)
+```
+
+Modificando erros de conversão em formato
+=======================================================
+
+```{r, eval=FALSE}
+# Call the replacer.sh bash script in order to format the csv files
+system("cd ..; cd ..; cp analyses/replacer.sh datasets/sabespDatasets")
+system("sh replacer.sh")
+```
+
+O script replacer.sh
+=======================================================
+
+```{bash}
+#!/bin/bash
+for i in `ls *.csv`
+do
+sed -ri 's/,"//g' $i
+sed -ri 's/",//g' $i
+sed -ri 's/"//g' $i
+sed -ri 's/ ,/ /g' $i
+sed -ri 's/,/\./g' $i
+sed -ri 's/ /\,/g' $i
+sed -ri 's/^,//g' $i
+sed -ri 's/,,/,/g' $i
+done
+```
 
 =======================================================
+# Resultados graficos
+
+Site da Sabesp
+=======================================================
+
+<center><img src="seminario-figure/sitesabesp.png"
+        height="500px"/></center>
+
+Estrutura HTML
+=======================================================
+
+<center><img src="seminario-figure/html.png"
+        height="500px"/></center>
+
+Baixando os arquivos pdf
+=======================================================
+
+<center><img src="seminario-figure/pdfs.png"
+        height="500px"/></center>
+
+O que tém o pdf dentro?
+=======================================================
+
+<center><img src="seminario-figure/pdfdentro.png"
+        height="500px"/></center>
+
+Após conversão: csv
+=======================================================
+
+<center><img src="seminario-figure/csvs.png"
+        height="500px"/></center>
+
+O que tém o csv dentro?
+=======================================================
+
+<center><img src="seminario-figure/csvdentro.png"
+        height="500px"/></center>|
