@@ -1,10 +1,4 @@
-```{r setup, include=FALSE}
-opts_chunk$set(cache=TRUE)
-library(ggplot2)
-library(lattice)
-options(stringsAsFactors = FALSE)
-attach(mtcars)
-```
+
 
 INTRODUCCIÓN AL MANEJO DE DATOS Y PROGRAMACIÓN EN R
 ========================================================
@@ -39,7 +33,8 @@ Ecología de comunidades
 Indicar el dir. de trabajo y cargar los datos
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 ## Set WD
 setwd("/home/balleng/Dropbox/Consulting/Arauca Cinaruco 2014/Analysis/cinaruco")
 
@@ -55,7 +50,8 @@ rm(cNames)
 Curva global de acumulación de especies
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 library(iNEXT)
 globalMargins <- apply(dataset, 2, sum)
 names(globalMargins) <- NULL
@@ -69,7 +65,8 @@ dev.off()
 Listas de especies
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 ## Expected, observed, and new records
 expected <- read.csv("esperadas.csv", header = FALSE)
 expected <- as.character(expected[,1])
@@ -95,7 +92,8 @@ rm(changes)
 Info taxonómica y estructura (1)
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 ## Taxonomic info
 taxoinfo <- read.csv("infotaxo.csv", header = TRUE)
 
@@ -122,7 +120,8 @@ dev.off()
 Descripción de dieta
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 ## Diet
 diet <- read.csv("diet.csv", header = TRUE)
 dietByOrder <- table(responseName = diet$Diet, diet$Order)
@@ -148,7 +147,8 @@ rm(samples, localities)
 Riqueza en Caño Juriepe
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 # Caño Juriepe:
 juriepeSamples <- samplesLocs[which(samplesLocs[, 2] == "ARA-01"), 1]
 juriepeSamples <- c(juriepeSamples, samplesLocs[which(samplesLocs[, 2] == "ARA-02"), 1])
@@ -172,7 +172,8 @@ juriepeSpecies <- colnames(juriepe[, which(juriepeMargins > 0)])
 Riqueza Morichal La Calandria
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 # Morichal La Calandria:
 calandriaSamples <- samplesLocs[which(samplesLocs[, 2] == "ARA-05"), 1]
 calandria <- dataset[calandriaSamples, ]
@@ -193,7 +194,8 @@ calandriaSpecies <- colnames(calandria[, which(calandriaMargins > 0)])
 Riqueza Caño Seco
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 # Caño Seco:
 secoSamples <- samplesLocs[which(samplesLocs[, 2] == "ARA-04"), 1]
 seco <- dataset[secoSamples, ]
@@ -214,7 +216,8 @@ secoSpecies <- colnames(seco[, which(secoMargins > 0)])
 Diversidad beta
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 ##### Beta Diversity #####
 
 # barplot with 95%CI
@@ -248,7 +251,8 @@ dev.off()
 Reemplazo de especies
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 ##### Species replacement #####
 
 library(vegan)
@@ -265,7 +269,8 @@ dev.off()
 Modelos de abundancia
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 ##### RAD plot for anaysis of structure #####
 # Global best fit by locality
 RAD <- radfit(siteSpecies)
@@ -305,7 +310,8 @@ Limnología de Guarapiranga
 Paquetes necesarios
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 # Uso práctico de direcciones http 
 library(httr)
 # Funciones para vectorización y modificación simple de strings
@@ -316,7 +322,8 @@ library(downloader)
 
 Local da maquina e pastas de execução do tabula
 =======================================================
-```{r, eval = FALSE}
+
+```r
 # Set Syslocale
 Sys.setlocale('LC_ALL','C') 
 
@@ -332,7 +339,8 @@ Sys.setenv(PATH=paste(Sys.getenv("PATH"),
 Nossa pasta de trabalho
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 # setwd("./guarapiranga")
 setwd("PATH")
 dir.create("datasets")
@@ -342,7 +350,8 @@ URL da Sabesp, lendo a info da internet
 =======================================================
 
 <small style="font-size:.8em">
-```{r, eval=FALSE}
+
+```r
 urlSabesp <- "http://site.sabesp.com.br/site/interna/Default.aspx?secaoId=43"
 
 linesSabesp <- readLines(urlSabesp)
@@ -362,7 +371,8 @@ linesSabesp <- linesSabesp[compl[duplicated(compl)]] # Reduced to pdf urls
 Gerando as URLs finais
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 pdfUrls <- vector()
 range <- vector(length = 2)
 for(i in seq_along(linesSabesp)) {
@@ -375,7 +385,8 @@ for(i in seq_along(linesSabesp)) {
 Obtendo os nomes de arquivo com base nas URLs
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 pdfFilenames <- vector()
 
 for(i in seq_along(pdfUrls)) {
@@ -389,7 +400,8 @@ dir.create("sabespDatasets")
 Preparando os URLS dos pdfs
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 urlPrefix <- "http://site.sabesp.com.br"
 
 for(i in seq_along(pdfUrls)) {
@@ -401,7 +413,8 @@ for(i in seq_along(pdfUrls)) {
 Passando os nomes dos pdfs pra os futuros csvs
 =======================================================
 
-````{r, eval=FALSE}
+
+```r
 pdfDownloads <- list.files("sabespDatasets", recursive = TRUE, full.names = FALSE)
 
 csvNames <- vector()
@@ -418,7 +431,8 @@ Converção do pdf pra o csv
 =======================================================
 
 O processo leva por conta de uma hora pra 176 arquivos
-```{r, eval=FALSE}
+
+```r
 for(i in seq_along(pdfDownloads)) {
 	system(paste("tabula --pages all -o ", csvNames[i], ".csv ", pdfDownloads[i], sep = ""))
 }
@@ -433,7 +447,8 @@ csvNames <- grep(".csv", dir(), value = TRUE)
 Modificando erros de conversão em formato
 =======================================================
 
-```{r, eval=FALSE}
+
+```r
 # Call the replacer.sh bash script in order to format the csv files
 system("cd ..; cd ..; cp analyses/replacer.sh datasets/sabespDatasets")
 system("sh replacer.sh")
