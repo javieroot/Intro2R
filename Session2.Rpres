@@ -424,7 +424,7 @@ Ejemplo de simulación: Medias muestral y poblacional
 * El Teorema del Límite Central (CTL por sus siglas en inglés) indica que para una distribución normal la media muestral es un buen estimador de la media poblacional
 * Esto puede evidenciarse con una simulación por remuestreo
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 set.seed(1)
 muestra <- rnorm(100)
 xbar <- mean(muestra)
@@ -436,10 +436,17 @@ for(i in 1:1000) {
 }
 ```
 
-Ejemplo de simulación: Medias muestral y poblacional
+Ejemplo de simulación
 =======================================================
 
-```{r}
+```{r, eval=FALSE}
+hist(medias)
+abline(v = xbar)
+```
+
+***
+
+```{r, echo=FALSE}
 hist(medias)
 abline(v = xbar)
 ```
