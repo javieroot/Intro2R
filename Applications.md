@@ -47,6 +47,7 @@ dataset <- t(dataset)
 colnames(dataset) <- cNames
 rm(cNames)
 ```
+
 Curva global de acumulación de especies
 =======================================================
 
@@ -57,10 +58,16 @@ globalMargins <- apply(dataset, 2, sum)
 names(globalMargins) <- NULL
 globalMargins <- as.numeric(globalMargins)
 globalanalyses <- iNEXT(globalMargins)
-tiff(filename = "globalcurve.tiff", width = 480, height = 480, units = "px")
+png(filename = "globalcurve.png", width = 480, height = 480, units = "px")
 ggiNEXT(globalanalyses)
 dev.off()
 ```
+
+Curva global de acumulación de especies
+=======================================================
+
+<center><img src="Applications-figure/globalcurve.png"
+        height="700px"/></center>
 
 Listas de especies
 =======================================================
@@ -99,23 +106,41 @@ taxoinfo <- read.csv("infotaxo.csv", header = TRUE)
 
 # Species by order
 specOrderGlobal <- table(taxoinfo[, 1])
-tiff(filename = "specbyorder.tiff", width = 1000, height = 480, units = "px")
+png(filename = "specbyorder.png", width = 1000, height = 480, units = "px")
 orderbar <- qplot(factor(taxoinfo[, 1], levels = names(sort(table(taxoinfo[, 1])))), main = "Numero de especies por orden", 
                    xlab = "Orden", ylab = "Riqueza", geom = "bar")
 orderbar + theme(axis.text.x = element_text(angle = 90))
 dev.off()
+```
 
+Info taxonómica y estructura (1)
+=======================================================
+
+<center><img src="Applications-figure/specbyorder.png"
+        height="600px"/></center>
+
+Info taxonómica y estructura (1)
+=======================================================
+
+
+```r
 # Species by family
 specFamilyGlobal <- table(taxoinfo[, 2])
 numbers <- as.vector(specFamilyGlobal)
 families <- names(specFamilyGlobal)
 specFamilyGlobal <- data.frame(families, as.integer(numbers))
-tiff(filename = "specbyfamily.tiff", width = 1000, height = 480, units = "px")
+png(filename = "specbyfamily.png", width = 1000, height = 480, units = "px")
 familybar <- qplot(factor(taxoinfo[, 2], levels = names(sort(table(taxoinfo[, 2])))), main = "Numero de especies por familia", 
         xlab = "Familia", ylab = "Riqueza", geom = "bar")
 familybar + theme(axis.text.x = element_text(angle = 90))
 dev.off()
 ```
+
+Info taxonómica y estructura (1)
+=======================================================
+
+<center><img src="Applications-figure/specbyfamily.png"
+        height="600px"/></center>
 
 Descripción de dieta
 =======================================================
@@ -130,10 +155,23 @@ dietByFamily <-table(responseName = diet$Diet, diet$Family)
 dietByFamilySum <- apply(dietByFamily, 1, FUN = sum)
 
 # Pie charts
-tiff(filename = "dietpiechart.tiff", width = 1000, height = 480, units = "px")
+png(filename = "dietpiechart.png", width = 1000, height = 480, units = "px")
 pie <- ggplot(diet, aes(x = factor(1), fill = factor(Diet))) + geom_bar(width = 1)
 pie + coord_polar(theta = "y")
 dev.off()
+```
+
+Descripción de dieta
+=======================================================
+
+<center><img src="Applications-figure/dietpiechart.png"
+        height="600px"/></center>
+
+Alistando el conjunto de datos para análisis por estación
+=======================================================
+
+
+```r
 ##### Analysis by waterbody #####
 samples <- rownames(dataset)
 localities <- c(rep("ARA-01", 3), "ARA-02", "ARA-01", "ARA-02", rep("ARA-03", 9), 
@@ -162,12 +200,18 @@ juriepeMargins <- apply(juriepe, 2, sum)
 names(juriepeMargins) <- NULL
 juriepeMargins <- as.numeric(juriepeMargins)
 juriepeAnalyses <- iNEXT(juriepeMargins)
-tiff(filename = "juriepecurve.tiff", width = 480, height = 480, units = "px")
+png(filename = "juriepecurve.png", width = 480, height = 480, units = "px")
 ggiNEXT(juriepeAnalyses)
 dev.off()
 
 juriepeSpecies <- colnames(juriepe[, which(juriepeMargins > 0)])
 ```
+
+Riqueza en Caño Juriepe
+=======================================================
+
+<center><img src="Applications-figure/juriepecurve.png"
+        height="700px"/></center>
 
 Riqueza Morichal La Calandria
 =======================================================
@@ -184,12 +228,18 @@ calandriaMargins <- apply(calandria, 2, sum)
 names(calandriaMargins) <- NULL
 calandriaMargins <- as.numeric(calandriaMargins)
 calandriaAnalyses <- iNEXT(calandriaMargins)
-tiff(filename = "calandriacurve.tiff", width = 480, height = 480, units = "px")
+png(filename = "calandriacurve.png", width = 480, height = 480, units = "px")
 ggiNEXT(calandriaAnalyses)
 dev.off()
 
 calandriaSpecies <- colnames(calandria[, which(calandriaMargins > 0)])
 ```
+
+Riqueza Morichal La Calandria
+=======================================================
+
+<center><img src="Applications-figure/calandriacurve.png"
+        height="700px"/></center>
 
 Riqueza Caño Seco
 =======================================================
@@ -206,12 +256,18 @@ secoMargins <- apply(seco, 2, sum)
 names(secoMargins) <- NULL
 secoMargins <- as.numeric(secoMargins)
 secoAnalyses <- iNEXT(secoMargins)
-tiff(filename = "secocurve.tiff", width = 480, height = 480, units = "px")
+png(filename = "secocurve.png", width = 480, height = 480, units = "px")
 ggiNEXT(secoAnalyses)
 dev.off()
 
 secoSpecies <- colnames(seco[, which(secoMargins > 0)])
 ```
+
+Riqueza Caño Seco
+=======================================================
+
+<center><img src="Applications-figure/secocurve.png"
+        height="700px"/></center>
 
 Diversidad beta
 =======================================================
@@ -221,7 +277,7 @@ Diversidad beta
 ##### Beta Diversity #####
 
 # barplot with 95%CI
-tiff(filename = "betadiversity.tiff", width = 480, height = 480, units = "px")
+png(filename = "betadiversity.png", width = 480, height = 480, units = "px")
 
 entropies <- c(ChaoEntropy(globalMargins, datatype="abundance")[1, 2], 
                ChaoEntropy(juriepeMargins, datatype="abundance")[1, 2], 
@@ -234,6 +290,13 @@ axis(1, labels=c("Cinaruco (Global)", "Cñ. Juriepe", "Mr. Calandria", "Cñ. Sec
      at = mp)
 axis(2, at=seq(0 , 3, by=0.5))
 box()
+```
+
+Diversidad beta (continuación)
+=======================================================
+
+
+```r
 upper <- matrix(c(ChaoEntropy(globalMargins, datatype="abundance")[1, 5], 
                   ChaoEntropy(juriepeMargins, datatype="abundance")[1, 5], 
                   ChaoEntropy(calandriaMargins, datatype="abundance")[1, 5], 
@@ -248,6 +311,12 @@ segments(mp - 0.1, upper, mp + 0.1, upper, lwd=2)
 dev.off()
 ```
 
+Diversidad beta
+=======================================================
+
+<center><img src="Applications-figure/betadiversity.png"
+        height="700px"/></center>
+
 Reemplazo de especies
 =======================================================
 
@@ -261,12 +330,12 @@ rownames(siteSpecies) <- c("Juriepe", "Calandria", "Seco")
 colnames(siteSpecies) <- colnames(dataset)
 distMatrix <- vegdist(siteSpecies, method="bray")
 cluster <- hclust(distMatrix)
-tiff(filename = "replacement.tiff", width = 480, height = 480, units = "px")
+png(filename = "replacement.png", width = 480, height = 480, units = "px")
 plot(cluster, hang = -1)
 dev.off()
 ```
 
-Modelos de abundancia
+Estructura (2): Modelos de abundancia
 =======================================================
 
 
@@ -274,24 +343,48 @@ Modelos de abundancia
 ##### RAD plot for anaysis of structure #####
 # Global best fit by locality
 RAD <- radfit(siteSpecies)
-tiff(filename = "RAD.tiff", width = 480, height = 480, units = "px")
+png(filename = "RAD.png", width = 480, height = 480, units = "px")
 plot(RAD)
 dev.off()
 
 # Fit all models and use AIC for best fit for each site
 RADjuriepe <- radfit(siteSpecies[1, ])
-tiff(filename = "RADjuriepe.tiff", width = 480, height = 480, units = "px")
+png(filename = "RADjuriepe.png", width = 480, height = 480, units = "px")
 radlattice(RADjuriepe)
 dev.off()
 RADcalandria <- radfit(siteSpecies[2, ])
-tiff(filename = "RADcalandria.tiff", width = 480, height = 480, units = "px")
+png(filename = "RADcalandria.png", width = 480, height = 480, units = "px")
 radlattice(RADcalandria)
 dev.off()
 RADseco <- radfit(siteSpecies[3, ])
-tiff(filename = "RADseco.tiff", width = 480, height = 480, units = "px")
+png(filename = "RADseco.png", width = 480, height = 480, units = "px")
 radlattice(RADseco)
 dev.off()
 ```
+
+Estructura (2): Modelos de abundancia general
+=======================================================
+
+<center><img src="Applications-figure/RAD.png"
+        height="700px"/></center>
+
+Estructura (2): Modelos de abundancia Juriepe
+=======================================================
+
+<center><img src="Applications-figure/RADjuriepe.png"
+        height="700px"/></center>
+
+Estructura (2): Modelos de abundancia Calandria
+=======================================================
+
+<center><img src="Applications-figure/RADcalandria.png"
+        height="700px"/></center>
+
+Estructura (2): Modelos de abundancia Seco
+=======================================================
+
+<center><img src="Applications-figure/RADseco.png"
+        height="700px"/></center>
 
 =======================================================
 # Limnología de la represa Guarapiranga, Sao Paulo
@@ -301,7 +394,7 @@ Limnología de Guarapiranga
 
 * Con un total de 151 líneas de código se desarrolló la v.1 que es totalmente funcional
 
-<center><img src="seminario-figure/script.png"
+<center><img src="Applications-figure/script.png"
         height="500px"/></center>
 ***
 
@@ -320,7 +413,7 @@ library(stringr)
 library(downloader)
 ```
 
-Local da maquina e pastas de execução do tabula
+Ajustar el local de la máquina y la carpeta de ejecución de tabula
 =======================================================
 
 ```r
@@ -336,7 +429,7 @@ Sys.setenv(PATH=paste(Sys.getenv("PATH"),
                       "/opt/jruby/bin/",sep=":"))
 ```
 
-Nossa pasta de trabalho
+Nuestra carpeta de trabajo
 =======================================================
 
 
@@ -346,7 +439,7 @@ setwd("PATH")
 dir.create("datasets")
 ```
 
-URL da Sabesp, lendo a info da internet
+URL de la Sabesp, leyendo la información de la internet
 =======================================================
 
 <small style="font-size:.8em">
@@ -368,7 +461,7 @@ linesSabesp <- linesSabesp[compl[duplicated(compl)]] # Reduced to pdf urls
 ```
 </small>
 
-Gerando as URLs finais
+Generando las URLs finales
 =======================================================
 
 
@@ -382,7 +475,7 @@ for(i in seq_along(linesSabesp)) {
 }
 ```
 
-Obtendo os nomes de arquivo com base nas URLs
+Obteniendo los nombres de archivo con base en las URLs
 =======================================================
 
 
@@ -397,7 +490,7 @@ for(i in seq_along(pdfUrls)) {
 dir.create("sabespDatasets")
 ```
 
-Preparando os URLS dos pdfs
+Preparando las URLS de los pdfs
 =======================================================
 
 
@@ -410,7 +503,7 @@ for(i in seq_along(pdfUrls)) {
 }
 ```
 
-Passando os nomes dos pdfs pra os futuros csvs
+Pasando los nombres de los pdfs para los futuros csvs
 =======================================================
 
 
@@ -427,7 +520,7 @@ for(i in seq_along(pdfDownloads)) {
 setwd("sabespDatasets")
 ```
 
-Converção do pdf pra o csv
+Conversión de pdf a csv usando tabula
 =======================================================
 
 O processo leva por conta de uma hora pra 176 arquivos
@@ -444,7 +537,7 @@ for(i in seq_along(pdfDownloads)) {
 csvNames <- grep(".csv", dir(), value = TRUE)
 ```
 
-Modificando erros de conversão em formato
+Modificando errores de conversión de archivo
 =======================================================
 
 
@@ -454,7 +547,7 @@ system("cd ..; cd ..; cp analyses/replacer.sh datasets/sabespDatasets")
 system("sh replacer.sh")
 ```
 
-O script replacer.sh
+El script replacer.sh
 =======================================================
 
 ```{bash}
@@ -475,38 +568,38 @@ done
 =======================================================
 # Resultados graficos
 
-Site da Sabesp
+Página de la Sabesp
 =======================================================
 
-<center><img src="seminario-figure/sitesabesp.png"
+<center><img src="Applications-figure/sitesabesp.png"
         height="500px"/></center>
 
-Estrutura HTML
+Estructura HTML
 =======================================================
 
-<center><img src="seminario-figure/html.png"
+<center><img src="Applications-figure/html.png"
         height="500px"/></center>
 
-Baixando os arquivos pdf
+Bajando los archivos pdf
 =======================================================
 
-<center><img src="seminario-figure/pdfs.png"
+<center><img src="Applications-figure/pdfs.png"
         height="500px"/></center>
 
-O que tém o pdf dentro?
+Qué tiene cada pdf adentro?
 =======================================================
 
-<center><img src="seminario-figure/pdfdentro.png"
+<center><img src="Applications-figure/pdfdentro.png"
         height="500px"/></center>
 
-Após conversão: csv
+Después de la conversión: csv
 =======================================================
 
-<center><img src="seminario-figure/csvs.png"
+<center><img src="Applications-figure/csvs.png"
         height="500px"/></center>
 
-O que tém o csv dentro?
+Qué tiene cada csv adentro?
 =======================================================
 
-<center><img src="seminario-figure/csvdentro.png"
-        height="500px"/></center>|
+<center><img src="Applications-figure/csvdentro.png"
+        height="500px"/></center>
