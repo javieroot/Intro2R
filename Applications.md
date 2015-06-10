@@ -82,7 +82,13 @@ observed <- as.character(colnames(dataset))
 observed <- sort(observed)
 
 newRecords <- setdiff(observed, expected)
+```
 
+Listas de especies (continuación)
+=======================================================
+
+
+```r
 # get rid of sps and affs
 newToSpecies <- newRecords[-grep("*sp.",newRecords)]
 newToSpecies <- newToSpecies[-grep("*aff.", newToSpecies)]
@@ -195,7 +201,13 @@ juriepeSamples <- sort(juriepeSamples)
 juriepe <- dataset[juriepeSamples, ]
 
 rm(juriepeSamples)
+```
 
+Riqueza en Caño Juriepe
+=======================================================
+
+
+```r
 juriepeMargins <- apply(juriepe, 2, sum)
 names(juriepeMargins) <- NULL
 juriepeMargins <- as.numeric(juriepeMargins)
@@ -283,6 +295,13 @@ entropies <- c(ChaoEntropy(globalMargins, datatype="abundance")[1, 2],
                ChaoEntropy(juriepeMargins, datatype="abundance")[1, 2], 
                ChaoEntropy(calandriaMargins, datatype="abundance")[1, 2], 
                ChaoEntropy(secoMargins, datatype="abundance")[1, 2])
+```
+
+Diversidad beta
+=======================================================
+
+
+```r
 mp <- barplot(entropies, axes=FALSE, axisnames=FALSE, ylim=c(0, 3), 
               main = "Entropía de Shannon", xlab = "Global y Estaciones", 
               ylab = "H")
@@ -346,7 +365,13 @@ RAD <- radfit(siteSpecies)
 png(filename = "RAD.png", width = 480, height = 480, units = "px")
 plot(RAD)
 dev.off()
+```
 
+Estructura (2): Modelos de abundancia
+=======================================================
+
+
+```r
 # Fit all models and use AIC for best fit for each site
 RADjuriepe <- radfit(siteSpecies[1, ])
 png(filename = "RADjuriepe.png", width = 480, height = 480, units = "px")
@@ -366,25 +391,25 @@ Estructura (2): Modelos de abundancia general
 =======================================================
 
 <center><img src="Applications-figure/RAD.png"
-        height="700px"/></center>
+        height="600px"/></center>
 
 Estructura (2): Modelos de abundancia Juriepe
 =======================================================
 
 <center><img src="Applications-figure/RADjuriepe.png"
-        height="700px"/></center>
+        height="600px"/></center>
 
 Estructura (2): Modelos de abundancia Calandria
 =======================================================
 
 <center><img src="Applications-figure/RADcalandria.png"
-        height="700px"/></center>
+        height="600px"/></center>
 
 Estructura (2): Modelos de abundancia Seco
 =======================================================
 
 <center><img src="Applications-figure/RADseco.png"
-        height="700px"/></center>
+        height="600px"/></center>
 
 =======================================================
 # Limnología de la represa Guarapiranga, Sao Paulo
@@ -415,6 +440,7 @@ library(downloader)
 
 Ajustar el local de la máquina y la carpeta de ejecución de tabula
 =======================================================
+
 
 ```r
 # Set Syslocale
