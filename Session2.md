@@ -476,6 +476,45 @@ for(i in seq_along(s)) {
 [1] 10
 ```
 
+Nota sobre estructuras de control
+=======================================================
+
+* Si queremos usar estructuras de control para guardar parte de la información obtenida en cada iteración debemos usar un elemento creado antes de la estructura de control y asegurarnos de que estamos modificando dicho elemento de la forma necesaria en cada iteración
+* Note que los elementos que creamos en cada iteración son reemplazados como el ste ejemplo, donde al final el objeto `valor` contiene el valor de la última iteración
+
+
+```r
+tam = 1:10
+for(i in seq_along(tam)) {
+        valor <- i*10
+}
+valor
+```
+
+```
+[1] 100
+```
+
+Nota sobre estructuras de control
+=======================================================
+
+
+* Por ejemplo, si queremos obtener un valor en cada una de las iteraciones, por ejemplo aquel correspondiente al objeto `valor`, la forma correcta es creando un objeto "recipiente" donde iremos guardando los valores de interés:
+
+
+```r
+tam <- 1:10
+valores <- vector()
+for(i in seq_along(tam)) {
+        valor <- i*10
+        valores <- c(valores, valor)
+}
+valores
+```
+
+```
+ [1]  10  20  30  40  50  60  70  80  90 100
+```
 
 
 =======================================================
@@ -595,4 +634,4 @@ abline(v = xbar)
 
 ***
 
-![plot of chunk unnamed-chunk-20](Session2-figure/unnamed-chunk-20-1.png) 
+![plot of chunk unnamed-chunk-22](Session2-figure/unnamed-chunk-22-1.png) 
