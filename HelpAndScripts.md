@@ -17,25 +17,62 @@ gaballench@gmail.com
 Por qué es importante obtener ayuda?
 ========================================================
 
+* Cualquier herramienta informática requiere de un trabajo extensivo de documentación para los usuarios, y R tiene una documentación INMENSA!
+* Como toda herramienta de programación o análisis basado en comandos, la probabilidad de obtener errores por algún caracter faltante (e.g., una coma) es alta
+* Durante la primera etapa de aprendizaje del lenguaje es muy común cometer errores de toda índole, desde errores tipográficos hasta errores de comprensión de estructura de objetos
 
+Qué opciones tenemos cuando necesitamos ayuda?
+========================================================
+
+* Entre los materiales disponibles encontramos manuales, libros, tutoriales en video y texto, cursos gratis, cursos pagos, foros, faqs, y un inmenso etcétera
+* Un aspecto importante es saber qué tan compĺicado es el problema que estamos teniendo para así elegir la fuente de ayuda más apropiada
+* Es muy importante no solo saber dónde encontrar ayuda, sino cómo pedirla
+
+Documentación básica: CRAN
+========================================================
+
+* Como ya vimos, disponible en http://cran.r-project.org/
+* Aparte de ser el repositorio oficial del proyecto R, contiene una extensa lista de recursos de aprendizaje y la documentación oficial de R
+
+<center><img src="HelpAndScripts-figure/cran.png"
+        height="450px"/></center>
+
+Documentación básica: CRAN (Manuales)
+========================================================
+
+<center><img src="HelpAndScripts-figure/cranmanuals.png"
+        height="500px"/></center>
+
+Documentación básica: CRAN (FAQS [frequently-asked questions])
+========================================================
+
+<center><img src="HelpAndScripts-figure/cranfaqs.png"
+        height="500px"/></center>
+
+
+Documentación básica: CRAN (Materiales contribuidos)
+========================================================
+
+<center><img src="HelpAndScripts-figure/crancontrib.png"
+        height="500px"/></center>
+
+StackOverflow.com
+========================================================
+
+* Portal social online para preguntas y respuestas relacionadas principalmente con tecnología, pero expandiéndose a otros temas tales como cultura y artes
+* Podría pensarse en este como el "Yahoo respuestas" de la tecnología (incluyendo programación, lenguajes y muchos otros temas) pero sin la inmensa cantidad de preguntas cómicas que se encuentran en aquella página de yahoo.
+* Presenta un cuidado serio de la comunidad, de modo que preguntas fuera de contexto o duplicadas son rápidamente marcadas y modificadas para mantener la limpieza del portal
+* Disponible en http://stackoverflow.com
+
+StackOverflow.com
+========================================================
+
+<center><img src="HelpAndScripts-figure/stackpage.png"
+        height="500px"/></center>
 
 ========================================================
 
-
-========================================================
-
-
-
-========================================================
-
-
-
-========================================================
-
-
-
-========================================================
-
+*Cómo funciona?
 
 
 ========================================================
