@@ -156,10 +156,10 @@ Manuales para usar listas/foros
 ========================================================
 
 * http://www.r-project.org/posting-guide.html
-* 
+* http://stackoverflow.com/help/how-to-ask (y referencias en esa página)
 
 
-How to ask questions the smart way
+"How to ask questions the smart way"
 ========================================================
 
 * http://www.catb.org/~esr/faqs/smart-questions.html
@@ -174,17 +174,49 @@ How to ask questions the smart way
         + If You Can't Get An Answer
         + How To Answer Questions in a Helpful Way
 
+Y dentro de R... Cómo obtener ayuda?
+========================================================
 
+* Las funciones `help()` y `example()` permiten abrir dos componentes importantes de la documentación de una función o paquete: El archivo de documentación como tal, y ejemplos de código haciendo uso de dichas funciones
+* Los operadores `?` y `??` son abreviaturas de las funciones `help()` y `help.search()`, que permiten buscar tópicos tales como funciones o palabras clave sobre procedimientos de interés. La primera de estas funciones requiere que el objeto sobre el cual queremos buscar información tenga el nombre exacto de un objeto (e.g., una función o paquete). La segunda de estas funciones es útil para extender la búsqueda a páginas de ayuda sobre temas no tan específicos (por ejemplo temas o procedimientos, digamos, varianza, especies, etc.)
+
+Ayuda en R
 ========================================================
 
 
+```r
+# Todos estos son métodos equivalentes
+help(aov) # Debe ser un nombre de objeto o estar en el nombre del archivo de ayuda 
+help("aov") # Puede usarse entre comillas
+?aov # Versión simplificada de la misma función
+?"aov" # También permite usar comillas para realizar búsqueda
+```
+
+
+```r
+# Estos dos son métodos equivalentes. Note que no existe ningún objeto de R llamado "variance"
+help.search("variance") # Puede ser un término no incluido en el título del archivo de ayuda. Debe encontrarse entre comillas
+??"variance" # Versión simplificada de la misma función. Debe estar entre comillas
+```
+
+Cómo NO hacer preguntas
+========================================================
+
+<center><img src="HelpAndScripts-figure/badq1.png"
+        height="150px"/></center>
+
+<center><img src="HelpAndScripts-figure/badq4.png"
+        height="100px"/></center>
 
 ========================================================
 
-
+<center><img src="HelpAndScripts-figure/badq2.png"
+        height="600px"/></center>
 
 ========================================================
 
+<center><img src="HelpAndScripts-figure/badq3.png"
+        height="700px"/></center>
 
 
 ========================================================
