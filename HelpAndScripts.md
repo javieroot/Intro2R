@@ -208,6 +208,20 @@ Cómo NO hacer preguntas
 <center><img src="HelpAndScripts-figure/badq4.png"
         height="100px"/></center>
 
+<center><img src="HelpAndScripts-figure/badq5.png"
+        height="170px"/></center>
+
+========================================================
+
+<center><img src="HelpAndScripts-figure/badq6.png"
+        height="175px"/></center>
+
+<center><img src="HelpAndScripts-figure/badq7.png"
+        height="175px"/></center>
+
+<center><img src="HelpAndScripts-figure/badq8.png"
+        height="140px"/></center>
+
 ========================================================
 
 <center><img src="HelpAndScripts-figure/badq2.png"
@@ -218,6 +232,23 @@ Cómo NO hacer preguntas
 <center><img src="HelpAndScripts-figure/badq3.png"
         height="700px"/></center>
 
+Mala pregunta en lista de correos
+========================================================
+
+<center><img src="HelpAndScripts-figure/badq91.png"
+        height="700px"/></center>
+
+Respuesta recibida en lista de correos
+========================================================
+
+<center><img src="HelpAndScripts-figure/badq92.png"
+        height="200px"/></center>
+
+Respuesta recibida en lista de correos
+========================================================
+
+<center><img src="HelpAndScripts-figure/badq93.png"
+        height="350px"/></center>
 
 ========================================================
 
@@ -228,5 +259,22 @@ Cómo NO hacer preguntas
 
 
 ========================================================
+
+
+
+========================================================
+
+
+
+========================================================
+
+
+
+========================================================
+
+
+
+========================================================
+
 
 
