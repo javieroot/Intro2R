@@ -1,37 +1,33 @@
-Session2Practice
+
+
+INTRODUCCIÓN AL MANEJO DE DATOS Y PROGRAMACIÓN EN R: PRÁCTICA 2
 ========================================================
-author: 
-date: 
+font-family: 'Serif'
+width: 1366
+height: 768
+author: Gustavo A. Ballen
 
-First Slide
+Museu de Zoologia da Universidade de São Paulo
+
+gaballench@gmail.com
+
 ========================================================
+# LLEGÓ LA HORA DE SEPARAR LOS NIÑOS DE LOS HOMBRES!
 
-For more details on authoring R presentations click the
-**Help** button on the toolbar.
-
-- Bullet 1
-- Bullet 2
-- Bullet 3
-
-Slide With Code
-========================================================
-
-
-```r
-summary(cars)
-```
-
-```
-     speed           dist       
- Min.   : 4.0   Min.   :  2.00  
- 1st Qu.:12.0   1st Qu.: 26.00  
- Median :15.0   Median : 36.00  
- Mean   :15.4   Mean   : 42.98  
- 3rd Qu.:19.0   3rd Qu.: 56.00  
- Max.   :25.0   Max.   :120.00  
-```
-
-Slide With Plot
+Aplicación de funciones, estr. de control y simulación
 ========================================================
 
-![plot of chunk unnamed-chunk-2](Session2Practice-figure/unnamed-chunk-2-1.png) 
+_Problema_: Queremos obtener dos parámetros importantes para cada uno de mil conjuntos de datos
+
+
+Paso 1: Estru
+========================================================
+
+Paso 2
+========================================================
+
+Paso 3
+========================================================
+
+
+========================================================

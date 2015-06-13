@@ -51,7 +51,8 @@ Tal vez sea necesario instalar gfortran y tcltk, disponibles en el link [tools](
 
 ## R en Linux: Linea de comandos y package managers
 
-### Debian 
+### Debian
+
 Ver instrucciones [aquí](http://cran.r-project.org/bin/linux/debian/). Puede ser necesario completar algunos pasos como incluir CRAN dentro de la lista de repositorios en `/etc/apt/sources.list`.
 
 En ocasiones es necesario además agregar la clave apt (ver SECURE APT) en aquella página.
@@ -64,6 +65,7 @@ apt-get install r-base r-base-dev
 ```
 
 ### Ubuntu
+
 Ver instrucciones [aquí](http://cran.r-project.org/bin/linux/ubuntu/). Dado que Ubuntu (y también Mint) son distribuciones basadas en Debian, el proceso es muy similar y tal vez sea necesario incluir CRAN dentro de la lista de repositorios para obtener las versiones más actualizadas de R conforme vayan saliendo.
 
 En ocasiones es necesario además agregar la clave apt (ver SECURE APT) en aquella página.
@@ -149,9 +151,11 @@ R Presenta soporte en diferentes IDEs, incluyendo uno especializado en R. Alguno
 Para el curso deben llegar con R y algún IDE que soporte trabajo interactivo con la consola de R (e.g., Rstudio, Tinn-R, vim, Sublime Text, etc.)
 
 ## Rstudio
+
 Se encuentra en [http://www.rstudio.com/](http://www.rstudio.com/)
 
 ### Pros
+
 * Gratis
 * Funciones especiales para R como paneles con información de los objetos en memoria, ayuda  y visualización de objetos especiales como presentaciones
 * Cada vez presenta funciones más útiles como verificación de sintaxis
@@ -159,39 +163,99 @@ Se encuentra en [http://www.rstudio.com/](http://www.rstudio.com/)
 * Comunicación limpia entre la consola y el panel de script (Crtl+Enter)
 
 ### Contras
+
 * A veces no es necesario tener todo a la vista en los paneles. Sin embargo, esto puede saltarse minimizando dichos páneles.
 * Solo soporta herramientas para R, markdown y C.
 
 ## Tinn-R
+
 Se encuentra en este [link](http://nbcgib.uesc.br/lec/software/editores/tinn-r/en)
 
 ### Pros
+
 * Muchas de las opciones de Rstudio
 * la interfaz gráfica soporta muchas opciones para usuarios acostumbrados a la aproximación point-and-click
 
 ### Contras
+
 * La cantidad de opciones de la interfaz gráfica es tan grande que puede resultar poco eficiente
 
 ## RGedit
+
 Se encuentra en [sourceforge](http://rgedit.sourceforge.net/)
 
 ### Pros
+
 * Multiplataforma
 * Plugin para gedit, un editor de texto versatil y sencillo que soporta más opciones que notepad o wordpad (ambos en windows)
 * Soporta uso por conexiones SSH y formato de código
 * Especialmente útil para escribir scripts rápidos, simples, o que no requieren ser corrido en el momento
 
 ### Contras
+
 * No tiene conexión a consola de R, por lo que los scripts no se pueden correr directamente desde gedit con el plugin rgedit
 
 ## Sublime text 3
+
 Se encuentra en [Sublime Text](http://www.sublimetext.com/)
 
 ### Pros
+
 * Es un editor de texto especial para programadores
 * Tiene tantas opciones y soporte para tantos lenguajes de programación que sus posibilidades son increiblemente más extensas que cualquier otro IDE que soporte R
 * Es más eficiente cuando se debe programar en varios lenguajes incluyendo R
 
 ### Contras
+
 * No es gratis
 * El output de la consola no tiene aún justificación de texto, por lo que en ocasiones toca moverse con la barra de desplazamiento horizontal para ver parte del output de R
+
+# Instalando paquetes
+
+Los paquetes son componentes importantes que permiten extender las funcionalidades de R de un modo increíble (ver sesión 1). Para instalarlos usando conexión a internet, solo debemos en general correr uno o dos comandos en la consola de R. Hay dos tipos de repositorio para paquete de R: CRAN y Github.com. El primero es el repositorio oficial del proyecto R, mientras que el segundo es un repositorio online que soporta control de versiones usando git. Cada uno de los métodos de instalación es diferente, por lo que les explicaré a continuación cómo proceder. Para instalar cualquier paquete se debe verificar si hace parte de CRAN (la inmensa mayoría) o Github (paquetes en etapa de desarrollo o poco populares).
+
+Debe mencionarse que hay muchas formas de instalar paquetes en R, algunos de ellos incluyen la descarega del paquete o preprocesamiento (e.g., compilación cuando contienen código en lenguajes compilados como C/C++, fortran, ocmal, etc.). El 99.999999999% de las veces no será necesario más que usar los métodos simples de instalación de paquetes, de modo que solamente me concentraré en presentarles tales métodos.
+
+## Usando CRAN
+
+Para instalar paquetes desde CRAN necesitamos usar la función `install.packages("nombre_del_paquete_entre_comillas")`. A continuación veremos las opciones de dicha función:
+
+```{r}
+formals(install.packages)
+```
+
+De esta lista de argumentos nos concentraremos en dos de ellos: `pkgs` y `repos`. El primer argumento nos permite definir los nombres de los paquetes a instalar, y el segundo nos permite informar a R el mirror particular que queremos usar. Si solamente usamos el primer argumento, `install.packages` abrirá una ventana preguntando qué mirror queremos usar. Hay dos reglas generales que yo uso cuando debo instalar un paquete: (1) Un mirror del país en el que estoy, (2) cuando el mirror está caido, uno confiable de un país cercano (e.g., el mirror de la UN Colombia generalmente no funcionaba para mí, así que usaba el de la FMVZ de la USP que casi nunca me ha fallado), (3) 0-cloud (_aka_ rstudio mirror) pues por lo menos en los últimos años ha sido la opción más confiable y además he logrado usarlo fácilmente a través de proxies como el de la UN Bogotá o MZUSP São Paulo sin problema. Los otros mirrors a veces sufren problemas para que los proxies nos permitan acceso a estos.
+
+La forma de usar esos argumentos para instalar paquetes es la siguiente:
+
+```{r, eval=FALSE}
+# Si no queremos definir un mirror particular sino elegir de la ventana emergente
+install.packages("nombre_del_paquete")
+# Si queremos definir un mirror particular
+install.packages("nombre_del_paquete", "URL_o_nombre_del_mirror")
+
+# Ejempĺo del primer caso para el paquete ggplot2
+install.packages("ggplot2")
+#Ejemplo del segundo caso para el paquete ggplot2 usando el mirror de Rstudio
+install.packages("ggplot2", "0-cloud")
+```
+
+## Usando devtools + github
+
+Este método se usa cuando queremos bajar un paquete publicado como repositorio de github. Para ello debemos instalar previamente un paquete llamado devtools, que contiene varias funciones útiles para desarrolladores. Entre tales funciones encontramos la función `install_github`, que nos permite llevar a cabo dicha tarea. Un paquete importante en pesquerías llamado FSA no se encuentra disponible en CRAN pero sí en github, por lo que para instalarlo debemos usar la función `install_github` del paquete devtools. Primero instalaremos el paquete devtools de CRAN:
+
+```{r, eval=FALSE}
+install.packages("devtools") # Elegir el mirror apropiado de la lista enla ventana emergente
+```
+
+Ahora debemos instalar el paquete de interés usando la función `install_github`, pero primero debemos cargar el paquete devtools para poder usar dicha función:
+
+```{r, eval=FALSE}
+library(devtools)
+install_github("cuenta_del_desarrollador/repositorio")
+
+# Ejemplo instalando el paquete FSA  
+library(devtools)
+install_github('droglenc/FSA') # Requiere tcltk, asegurarse de haberlo instalado!
+install_github('droglenc/FSAdata')
+```
