@@ -14,10 +14,17 @@ gaballench@gmail.com
 ========================================================
 # SCRIPTS INFORMÁTICOS Y CÓMO OBTENER AYUDA SOBRE R
 
+========================================================
+# SCRIPTS INFORMÁTICOS
+
+========================================================
+# AYUDA!!!
+
 Por qué es importante obtener ayuda?
 ========================================================
 
 * Cualquier herramienta informática requiere de un trabajo extensivo de documentación para los usuarios, y R tiene una documentación INMENSA!
+* La mayoría de la documentación proviene de la comunidad de usuarios misma, lo cual es común en proyectos de software libre (+1 para el software libre)
 * Como toda herramienta de programación o análisis basado en comandos, la probabilidad de obtener errores por algún caracter faltante (e.g., una coma) es alta
 * Durante la primera etapa de aprendizaje del lenguaje es muy común cometer errores de toda índole, desde errores tipográficos hasta errores de comprensión de estructura de objetos
 
@@ -56,6 +63,15 @@ Documentación básica: CRAN (Materiales contribuidos)
 <center><img src="HelpAndScripts-figure/crancontrib.png"
         height="500px"/></center>
 
+R-project: Listas de correo
+========================================================
+
+* http://www.r-project.org/mail.html
+* A estas listas de correo se pueden enviar preguntas y/o respuestas sobre R. Hay diferentes listas temáticas donde las preguntas se concentran en R aplicado a campos especiales de análisis (e.g., R-SIG-ecology sobre R aplicado a ecología)
+
+<center><img src="HelpAndScripts-figure/mailing.png"
+        height="350px"/></center>
+
 StackOverflow.com
 ========================================================
 
@@ -70,9 +86,93 @@ StackOverflow.com
 <center><img src="HelpAndScripts-figure/stackpage.png"
         height="500px"/></center>
 
+StackOverlow.com: Cómo funciona?
 ========================================================
 
-*Cómo funciona?
+* Como algunos recursos online, tenemos que abrir una cuenta para realizar preguntas o enviar respuestas
+* Si queremos solamente leer preguntas y respuestas hechas por otras personas, podemos tener acceso a estas sin necesidad de tener una cuenta
+* Realizamos una pregunta _de manera adecuada_ y asociando etiquetas a la misma, de tal forma que el portal sea capaz de organizar las preguntas en categorías y así permitir a la comunidad enfocarse en asuntos relacionados con una situación particular, ya sea un sistema operativo, leguaje de programación, tipo de análisis, etc.
+* En la barra superior de la página encontramos un cuadro de texto para realizar búsquedas; antes de preguntar ___siempre___ buscar por palabras clave allí para estar seguros de que lo que vamos a preguntar no ha sido preguntado antes
+
+StackOverlow.com: Estructura de preguntas
+========================================================
+
+<center><img src="HelpAndScripts-figure/qso.png"
+        height="500px"/></center>
+
+StackOverlow.com: Estructura de respuestas
+========================================================
+
+<center><img src="HelpAndScripts-figure/aso.png"
+        height="500px"/></center>
+
+StackOverlow.com: Estructura de respuestas
+========================================================
+
+<center><img src="HelpAndScripts-figure/aso2.png"
+        height="500px"/></center>
+
+
+R project en español (Facebook)
+========================================================
+
+<center><img src="HelpAndScripts-figure/rfb.png"
+        height="500px"/></center>
+
+R project en español
+========================================================
+
+<center><img src="HelpAndScripts-figure/goodqrfb.png"
+        height="600px"/></center>
+
+Por último y la más importante... Google
+========================================================
+
+* La maravilla más grande de las tecnologías de la información en el S. XXI
+* Ni la patineta voladora de Marty McFly es tan sensacional como google
+* No existe libro, profesor, o tutorial que se le compare
+* Disponible en https://www.google.com
+
+Google.com
+========================================================
+
+<center><img src="HelpAndScripts-figure/google.png"
+        height="500px"/></center>
+
+Google.com
+========================================================
+
+<center><img src="HelpAndScripts-figure/googleanova.png"
+        height="600px"/></center>
+
+Cómo hacer buenas preguntas?
+========================================================
+
+* El arte de preguntar es algo que parece obvio pero la experiencia indica que no lo es
+* Consiste en un conjunto de reglas sencillas que mezclan un poco de asertividad, creatividad, y modales
+* Hay diferentes listas de normas para enviar mensajes en foros y listas de correo, las cuales deberían por sentido común aplicar a otras situaciones como grupos de facebook, sin embargo, esto no sucede... ni siquiera en las listas de correo oficiales de R
+
+Manuales para usar listas/foros
+========================================================
+
+* http://www.r-project.org/posting-guide.html
+* 
+
+
+How to ask questions the smart way
+========================================================
+
+* http://www.catb.org/~esr/faqs/smart-questions.html
+* Un sumario del contenido es
+
+        + Before You Ask
+        + When You Ask
+        + How To Interpret Answers
+        + On Not Reacting Like A Loser
+        + Questions Not To Ask
+        + Good and Bad Questions
+        + If You Can't Get An Answer
+        + How To Answer Questions in a Helpful Way
 
 
 ========================================================
@@ -84,3 +184,17 @@ StackOverflow.com
 
 
 ========================================================
+
+
+
+========================================================
+
+
+
+========================================================
+
+
+
+========================================================
+
+
