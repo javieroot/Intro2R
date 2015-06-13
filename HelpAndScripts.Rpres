@@ -1,0 +1,55 @@
+```{r setup, include=FALSE}
+opts_chunk$set(cache=TRUE)
+library(ggplot2)
+library(lattice)
+options(stringsAsFactors = FALSE)
+attach(mtcars)
+```
+
+INTRODUCCIÓN AL MANEJO DE DATOS Y PROGRAMACIÓN EN R
+========================================================
+width: 1366
+height: 768
+font-family: 'Serif'
+author: Gustavo A. Ballen
+
+Museu de Zoologia da Universidade de São Paulo
+
+gaballench@gmail.com
+
+========================================================
+# SCRIPTS INFORMÁTICOS Y CÓMO OBTENER AYUDA SOBRE R
+
+Por qué es importante obtener ayuda?
+========================================================
+
+
+
+========================================================
+
+
+========================================================
+
+
+
+========================================================
+
+
+
+========================================================
+
+
+
+========================================================
+
+
+
+========================================================
+
+
+
+========================================================
+
+
+
+========================================================
