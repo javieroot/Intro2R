@@ -15,11 +15,11 @@ En este repositorio encontrará información relevante para el curso *Introducci
 
 * Dar click [aquí](https://github.com/gaballench/Intro2R/blob/master/Session2.md) para ir a la presentación de la sesión 2 (menos aplicaciones, y temas 8 y 9)
 
-* Dar click [aquí]() para ir a la presentación de aplicaciones
+* Dar click [aquí](https://github.com/gaballench/Intro2R/blob/master/Applications.md) para ir a la presentación de aplicaciones
 
 * Dar click [aquí]() para ir a la presentación de los temas 8 y 9
 
-* Dar click [aquí]() para ir a la práctica de la sesión 2
+* Dar click [aquí](https://github.com/gaballench/Intro2R/blob/master/Session2Practice.md) para ir a la práctica de la sesión 2
 
 
 
