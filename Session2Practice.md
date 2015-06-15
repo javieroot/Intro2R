@@ -12,7 +12,7 @@ Museu de Zoologia da Universidade de São Paulo
 gaballench@gmail.com
 
 ========================================================
-# LLEGÓ LA HORA DE SEPARAR LOS NIÑOS DE LOS HOMBRES!
+# LLEGÓ LA HORA DE LA VERDAD!
 
 Aplicación de funciones, estr. de control y simulación
 ========================================================

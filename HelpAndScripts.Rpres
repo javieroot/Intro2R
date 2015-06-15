@@ -23,6 +23,147 @@ gaballench@gmail.com
 ========================================================
 # SCRIPTS INFORMÁTICOS
 
+Por qué son importantes los scripts?
+========================================================
+
+* Los scripts informáticos son un conjunto de instrucciones para que la computadora realice las tareas que deseamos
+* Sería muy aburrido tener que reescribir todas las instrucciones cada vez que quisieramos ordenarle a la computadora realizar esas tareas
+* Son una manera de compartir tal conocimiento con la comunidad científica
+* El estilo de programación muhas veces cambia conforme pasa el tiempo. Los scripts nos permiten aprender de la forma en que este evoluciona
+* Estos contenidos son guardados en un archivo de texto plano para permitir la mayor compatibilidad posible
+
+Estructura de un script sencillo de R
+========================================================
+
+```{r, eval=FALSE}
+# Inicio del archivo de texto
+library(ggplot2)
+library(gridExtra)
+
+setwd("Analyses")
+source("measurements.R")
+
+png(filename = "Figure 4.png", width = 480 , height = 480, unit = "px", 
+    bg = "white")
+headEyeQplot <- qplot(x = Species, y = Head.eye.L., data =corrected, geom = "boxplot", 
+                      main = "Head measurements", xlab = "Species", ylab = "Head-Eye L.")
+
+headPecQplot <- qplot(x = Species, y = Head.pectoral.L., data =corrected, geom = "boxplot", 
+                      xlab = "Species", ylab = "Head-Pectoral D.")
+grid.arrange(headEyeQplot, headPecQplot, ncol = 1)
+dev.off()
+# Fin del archivo de texto
+```
+
+Cómo comenzamos a escribir un script?
+========================================================
+
+* Podemos usar los IDEs que soportan R para tal actividad, pues ofrecen herramientas útiles de edición de texto de programación
+* Vamos escribiendo las líneas de código que nos van funcionando para realizar las tareas necesarias, de tal modo que al final tenemos la versión que sí funcionó de todos los intentos que hicimos
+* Guardamos este archivo con extensión .R
+
+Escribiendo un script en un IDE
+========================================================
+
+<center><img src="HelpAndScripts-figure/script.png"
+        height="650px"/></center>
+
+Buenas prácticas al escribir scripts
+========================================================
+
+* Existen por lo menos dos guías de estilo para scripts en R
+* Guía de estilo de Google Code para R, disponible [aquí](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml)
+* Guía de estilo de Hadlwy Wickham, disponible [aquí](http://adv-r.had.co.nz/Style.html)
+* Estas normas tienen ejemplos de buenas y malas prácticas. No entraremos en detalles de por qué son de un modo u otro, pues el usuario irá descubriendo por sí mismo el por qué de estas
+
+Cómo definitivamente NO escribir o guardar un script
+========================================================
+
+* En un archivo de MS Word o LibreOffice Writer
+* En una hoja de cálculo de MS Excel o LibreOffice Calc
+* Guardado como una captura de pantalla en archivo gráfico
+* Como imagen de la sesión de R .RData oi .Rhistory
+
+Por qué no guardar scripts de este modo?
+========================================================
+
+* Archivos de texto enrriquecido provenientes de Word, Writer u otros editores de texto comunes incluyen texto de formato en dichos archivos
+* Muchos problemas de compatibilidad
+* Archivos fáciles de corromper
+* Los archivos gráficos no son posibles de copiar, pegar y editar, de modo que no son nada útiles
+* Los archivos .RData pueden incluir no solo el script sino objetos guardados dentro de la sesión, para evitar errores inadvertidos es mejor solo guardar el texto del script para reproducir los objetos al correrlo de ser necesario
+* Los archivos .Rhistory guardan absolutamente todos los comandos enviados a la consola,. sean estos intentos erróneos o exitosos. Un archivo de estos va mucho trabajo para ser limpiado posteriormente
+
+Rhistory
+========================================================
+
+```{r, eval=FALSE}
+...
+## for loop
+for(i in seq_along(ordered)) {
+subset <- cbind(subset, dataset[, ordered[3]])
+count <- length(which(rowSums(subset) == 1))
+uniqueVector <- c(uniqueVector, count)
+}
+uniqueVector
+...
+meansVector <- vector("numeric")
+uniqueVector <- vector("numeric")
+## for loop
+for(i in seq_along(ordered)) {
+subset <- cbind(subset, dataset[, ordered[i]])
+count <- length(which(rowSums(subset) == 1))
+uniqueVector <- c(uniqueVector, count)
+}
+...
+```
+
+Reglas básicas de estilo: Identación
+========================================================
+
+* Usar identación para dar mejor claridad a la relación entre las líneas de una estructura compleja
+
+```{r, eval=FALSE}
+# Código sin identación
+repeat {
+if(s <= control) {
+print(s)
+s <- s + 1
+} else {
+break
+}
+}
+```
+
+***
+
+```{r, eval=FALSE}
+|# Código con identación
+repeat {
+        if(s <= control) {
+                print(s)
+                s <- s + 1
+        } else {
+                break
+        }
+}
+```
+
+Reglas básicas de estilo: Nombres de objetos
+========================================================
+
+* Intentar no llamar objetos con palabras "reservadas" o de funciones populares pues pueden haber ambiguedad sobre el objeto al cual se hace referencia
+* Por ejemplo, no llamar objetos `mean`, `sd`, `aov`, `var`, `function` pues estas corresponden a funciones muy utilizadas en R
+* Usar nombres 
+
+
+========================================================
+
+
+
+========================================================
+
+
 ========================================================
 # AYUDA!!!
 
@@ -253,32 +394,3 @@ Respuesta recibida en lista de correos
 
 <center><img src="HelpAndScripts-figure/badq93.png"
         height="350px"/></center>
-
-========================================================
-
-
-
-========================================================
-
-
-
-========================================================
-
-
-
-========================================================
-
-
-
-========================================================
-
-
-
-========================================================
-
-
-
-========================================================
-
-
-
