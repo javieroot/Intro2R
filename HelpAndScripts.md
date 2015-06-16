@@ -114,7 +114,7 @@ uniqueVector <- c(uniqueVector, count)
 ...
 ```
 
-Reglas básicas de estilo: Identación
+Consejos: Identación
 ========================================================
 
 * Usar identación para dar mejor claridad a la relación entre las líneas de una estructura compleja
@@ -147,20 +147,13 @@ repeat {
 }
 ```
 
-Reglas básicas de estilo: Nombres de objetos
+Consejos: Nombres de objetos
 ========================================================
 
 * Intentar no llamar objetos con palabras "reservadas" o de funciones populares pues pueden haber ambiguedad sobre el objeto al cual se hace referencia
 * Por ejemplo, no llamar objetos `mean`, `sd`, `aov`, `var`, `function` pues estas corresponden a funciones muy utilizadas en R
-* Usar nombres 
-
-
-========================================================
-
-
-
-========================================================
-
+* Usar nombres informativos para saber qué contienen determinados objetos
+* Tratar de utilizar nombres de objeto cortos para mayor eficiencia
 
 ========================================================
 # AYUDA!!!
